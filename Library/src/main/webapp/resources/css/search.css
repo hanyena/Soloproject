@@ -26,6 +26,11 @@ input {
 	height: 31px;
 }
 
+.search_ul{
+    border-top: 2px solid #ff0000;
+    
+}
+
 
 select,
 textarea,

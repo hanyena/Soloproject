@@ -70,62 +70,37 @@
 			          		</a>
 			          		<div class="nav-collapse collapse">
 			            		<ul class="nav">
-<!-- 			              			<li class="active"><a href="index.html">Home</a></li> -->
-<!-- 			              			<li><a href="about.html">About</a></li> -->
-<!-- 									<li><a href="services.html">Services</a></li> -->
 			              			<li class="dropdown">
 			                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">이용안내 <b class="caret"></b></a>
 			                			<ul class="dropdown-menu">
-			                  				<li><a href="#">Action</a></li>
-			                  				<li><a href="#">Another action</a></li>
-			                  				<li><a href="#">Something else here</a></li>
-			                  				<li class="divider"></li>
-			                  				<li class="nav-header">Nav header</li>
-			                  				<li><a href="#">Separated link</a></li>
-			                  				<li><a href="#">One more separated link</a></li>
+			                  				<li><a href="#">이용안내</a></li>
 			                			</ul>
 			              			</li>
 			              			
 			              			<li class="dropdown">
 			                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">자료마당 <b class="caret"></b></a>
 			                			<ul class="dropdown-menu">
-			                  				<li><a href="#">Action</a></li>
-			                  				<li><a href="#">Another action</a></li>
-			                  				<li><a href="#">Something else here</a></li>
-			                  				<li class="divider"></li>
-			                  				<li class="nav-header">Nav header</li>
-			                  				<li><a href="#">Separated link</a></li>
-			                  				<li><a href="#">One more separated link</a></li>
+			                  				<li><a href="#">신간안내</a></li>
+			                  				<li><a href="#">추천도서</a></li>
+			                  				<li><a href="#">도서검색</a></li>
 			                			</ul>
 			              			</li>
 			              			
 			              			<li class="dropdown">
 			                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">열린마당 <b class="caret"></b></a>
 			                			<ul class="dropdown-menu">
-			                  				<li><a href="#">Action</a></li>
-			                  				<li><a href="#">Another action</a></li>
-			                  				<li><a href="#">Something else here</a></li>
-			                  				<li class="divider"></li>
-			                  				<li class="nav-header">Nav header</li>
-			                  				<li><a href="#">Separated link</a></li>
-			                  				<li><a href="#">One more separated link</a></li>
+			                  				<li><a href="#">공지사항</a></li>
+			                  				<li><a href="#">자유게시판</a></li>
+			                  				<li><a href="#">FAQ</a></li>
 			                			</ul>
 			              			</li>
 			              			
 			              			<li class="dropdown">
 			                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">나만의 도서관 <b class="caret"></b></a>
 			                			<ul class="dropdown-menu">
-			                  				<li><a href="#">Action</a></li>
-			                  				<li><a href="#">Another action</a></li>
-			                  				<li><a href="#">Something else here</a></li>
-			                  				<li class="divider"></li>
-			                  				<li class="nav-header">Nav header</li>
-			                  				<li><a href="#">Separated link</a></li>
-			                  				<li><a href="#">One more separated link</a></li>
+			                  				<li><a href="#">도서대출</a></li>
 			                			</ul>
 			              			</li>
-			              			
-			              			
 			            		</ul>
 			          		</div>
 			        	</div>
@@ -136,28 +111,26 @@
 	<div class="slider-wrapper">
 		<div id="da-slider" class="da-slider">
 			<div class="da-slide">
-				<h2>Twitter Bootstrap</h2>
-				<p>예뚱이</p>
+				
+				<p>책은 마음의 양식....낄낄</p>
 				<a href="#" class="da-link">Read more</a>
-				<div class="da-img"><img src="resources/img/parallax-slider/twitter.png" alt="image01" /></div>
+				<div class="da-img"><img src="resources/img/banner/배너1.jpg" alt="image01" /></div>
 			</div>
 			<div class="da-slide">
-				<h2>Responsive Design</h2>
-				<p>도서관</p>
+			
+			
 				<a href="#" class="da-link">Read more</a>
-				<div class="da-img"><img src="resources/img/parallax-slider/responsive.png" alt="image02" /></div>
+				<div class="da-img"><img src="resources/img/banner/배너2.jpg" alt="image02" /></div>
 			</div>
 			<div class="da-slide">
-				<h2>HTML5</h2>
-				<p>입니다</p>
+				
 				<a href="#" class="da-link">Read more</a>
-				<div class="da-img"><img src="resources/img/parallax-slider/html5.png" alt="image03" /></div>
+				<div class="da-img"><img src="resources/img/banner/배너3.jpg" alt="image03" /></div>
 			</div>
 			<div class="da-slide">
-				<h2>CSS3</h2>
-				<p>ㅇㅅㅇ</p>
+				
 				<a href="#" class="da-link">Read more</a>
-				<div class="da-img"><img src="resources/img/parallax-slider/css3.png" alt="image04" /></div>
+				<div class="da-img"><img src="resources/img/banner/배너4.jpg" alt="image04" /></div>
 			</div>
 			<nav class="da-arrows">
 				<span class="da-arrows-prev"></span>

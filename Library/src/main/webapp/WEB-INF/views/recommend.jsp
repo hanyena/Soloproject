@@ -63,7 +63,7 @@
 			</header>
 			<!--end: Header-->
 			
-			<!--start: Navigation -->
+				<!--start: Navigation -->
 			<div class="span9 span9-2">
 					<div class="navbar navbar-inverse">
 			    		<div class="navbar-inner">
@@ -74,58 +74,35 @@
 			          		</a>
 			          		<div class="nav-collapse collapse">
 			            		<ul class="nav">
-<!-- 			              			<li class="active"><a href="index.html">Home</a></li> -->
-<!-- 			              			<li><a href="about.html">About</a></li> -->
-<!-- 									<li><a href="services.html">Services</a></li> -->
 			              			<li class="dropdown">
 			                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">이용안내 <b class="caret"></b></a>
 			                			<ul class="dropdown-menu">
-			                  				<li><a href="#">Action</a></li>
-			                  				<li><a href="#">Another action</a></li>
-			                  				<li><a href="#">Something else here</a></li>
-			                  				<li class="divider"></li>
-			                  				<li class="nav-header">Nav header</li>
-			                  				<li><a href="#">Separated link</a></li>
-			                  				<li><a href="#">One more separated link</a></li>
+			                  				<li><a href="#">이용안내</a></li>
 			                			</ul>
 			              			</li>
 			              			
 			              			<li class="dropdown">
 			                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">자료마당 <b class="caret"></b></a>
 			                			<ul class="dropdown-menu">
-			                  				<li><a href="#">Action</a></li>
-			                  				<li><a href="#">Another action</a></li>
-			                  				<li><a href="#">Something else here</a></li>
-			                  				<li class="divider"></li>
-			                  				<li class="nav-header">Nav header</li>
-			                  				<li><a href="#">Separated link</a></li>
-			                  				<li><a href="#">One more separated link</a></li>
+			                  				<li><a href="#">신간안내</a></li>
+			                  				<li><a href="#">추천도서</a></li>
+			                  				<li><a href="#">도서검색</a></li>
 			                			</ul>
 			              			</li>
 			              			
 			              			<li class="dropdown">
 			                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">열린마당 <b class="caret"></b></a>
 			                			<ul class="dropdown-menu">
-			                  				<li><a href="#">Action</a></li>
-			                  				<li><a href="#">Another action</a></li>
-			                  				<li><a href="#">Something else here</a></li>
-			                  				<li class="divider"></li>
-			                  				<li class="nav-header">Nav header</li>
-			                  				<li><a href="#">Separated link</a></li>
-			                  				<li><a href="#">One more separated link</a></li>
+			                  				<li><a href="#">공지사항</a></li>
+			                  				<li><a href="#">자유게시판</a></li>
+			                  				<li><a href="#">FAQ</a></li>
 			                			</ul>
 			              			</li>
 			              			
 			              			<li class="dropdown">
 			                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">나만의 도서관 <b class="caret"></b></a>
 			                			<ul class="dropdown-menu">
-			                  				<li><a href="#">Action</a></li>
-			                  				<li><a href="#">Another action</a></li>
-			                  				<li><a href="#">Something else here</a></li>
-			                  				<li class="divider"></li>
-			                  				<li class="nav-header">Nav header</li>
-			                  				<li><a href="#">Separated link</a></li>
-			                  				<li><a href="#">One more separated link</a></li>
+			                  				<li><a href="#">도서대출</a></li>
 			                			</ul>
 			              			</li>
 			            		</ul>

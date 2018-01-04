@@ -9,6 +9,10 @@
 	border-bottom: 1px solid;
 }
 
+.span8 {
+    width: 69.7%;
+}
+
 .table td{
 	padding: .75rem;
     vertical-align: top;
@@ -30,6 +34,7 @@
 #board_keyWord{
 	width: 135px;
     margin-left: -2px;
+        height: 24px;
 }
 
 #board_keyField{
