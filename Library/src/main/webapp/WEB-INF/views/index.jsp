@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/tag.jsp" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,30 +10,8 @@
 	<meta name="author" content="Łukasz Holeczek from creativeLabs"/>
    	<!--반응형 -->
    	<meta name="viewport" content="width=device-width, initial-scale=1">
-   	<!-- start: Java Script -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="resources/js/jquery-1.8.2.js"></script>
-	<script src="resources/js/bootstrap.js"></script>
-	<script src="resources/js/flexslider.js"></script>
-	<script src="resources/js/carousel.js"></script>
-	<script src="resources/js/jquery.cslider.js"></script>
-	<script src="resources/js/slider.js"></script>
-	<script defer="defer" src="resources/js/custom.js"></script>
-	<!-- end: Java Script -->
-    <link href="resources/css/bootstrap2.css" rel="stylesheet">
-<!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
-	
-<!--     <link href="resources/css/index.css" rel="stylesheet"> -->
-    <link href="resources/css/bootstrap-responsive.css" rel="stylesheet">
-	<link href="resources/css/style.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif">
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Boogaloo">
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Economica:700,400italic">
-	
- 
-   <link rel="stylesheet" href="resources/css/index.css">
-   
+   	<%@ include file="/WEB-INF/cdn.jsp" %>
+   	
 </head>
 <body>
 <div class="container">
@@ -71,9 +50,11 @@
 			          		<div class="nav-collapse collapse">
 			            		<ul class="nav">
 			              			<li class="dropdown">
-			                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">이용안내 <b class="caret"></b></a>
-			                			<ul class="dropdown-menu">
-			                  				<li><a href="#">이용안내</a></li>
+			                			<a href="#" class="dropdown-toggle"
+								data-toggle="dropdown">이용안내 <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+
+			                  				<li><a href="${path}/guide">이용안내</a></li>
 			                			</ul>
 			              			</li>
 			              			

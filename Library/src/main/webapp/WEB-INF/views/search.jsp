@@ -208,8 +208,21 @@
    					     <label for = "">발행년도</label>
    					   </th>
    					   <td>
-					     <input id="" type="text" name="StartYear" size="5" title="발행년도 시작" >부터 
-                                             <input id="" type="text" name="EndYear" size="5" title="발행년도 끝">까지
+달
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
+						<script type="text/javascript">
+							$(function() {
+								$('#startdate').datepicker({
+								
+								});
+								$('#enddate').datepicker({
+								
+								});	
+							})
+						</script>
+					     <input id="startdate" type="text" name="StartYear" size="5" title="발행년도 시작" >부터 
+                                             <input id="enddate" type="text" name="EndYear" size="5" title="발행년도 끝">까지
 					   </td>
 					   <th>
 					    <label for = "">쪽당출력건수</label>
@@ -226,7 +239,7 @@
    					<!-- 검색기능  -->
 	<form class="col-md-12">
        <div class="col-md-12 text-center">
-         <select id="s_keyField" name="keyField" class="form-control" style=>
+         <select id="s_keyField" name="keyField" class="form-control" style="">
                    <option value="ALL">전체</option>
                    <option value="WRITER">이름</option>
                    <option value="TITLE">제목</option>
