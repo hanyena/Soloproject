@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+
+
+
+#side{
+	height:100vh;
+}
+
+.aa{
+	line-height: 39px;
+	font-size : 17px;
+	height : 40px;
+	cursor : pointer;
+}
+.aa:active{
+	color: #333333;
+  	background: #fff no-repeat;
+}
+
+.active{
+    background: #e6e6e6  no-repeat 24px 50%;
+}
+
+#h3{
+	font-weight: 3.5rem;
+}

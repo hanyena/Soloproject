@@ -1,0 +1,42 @@
+@CHARSET "UTF-8";
+
+#board_top{
+	border-top: 2px solid indianred;
+	border-bottom: 2px solid indianred;
+}
+
+#board_bottom{
+	border-bottom: 1px solid;
+}
+
+.table td{
+	padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #e9ecef
+}
+
+.table th{
+	padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #e9ecef
+}
+
+#board_search{
+    margin-bottom: 9px;
+    height: 28px;
+    margin-left: -2px;
+}
+
+#board_keyWord{
+	width: 135px;
+    margin-left: -2px;
+}
+
+#board_keyField{
+	width: 69px;
+    margin-left: 1px;
+}
+.boardright{
+	position : relative;
+	float : right;
+}

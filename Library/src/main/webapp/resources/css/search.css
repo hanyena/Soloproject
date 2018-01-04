@@ -1,0 +1,57 @@
+@CHARSET "UTF-8";
+
+
+.table tr th{
+	    width: 15%;
+}
+.table tr td{
+	    width: 260px;
+}
+
+select {
+    width: 100px;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+}
+input {
+	width: 25%;
+}
+
+.span8 {
+	width : 69.7%;
+}
+
+#s_keyField{
+	width: 75px;
+	height: 31px;
+}
+
+
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+display: inline-block;
+  height: 20px;
+  padding: 4px 6px;
+  margin-bottom : 0px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #555555;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+}
