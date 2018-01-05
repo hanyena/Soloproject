@@ -1,4 +1,4 @@
-package com.java.libary;
+package com.java.library;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,10 +16,15 @@ public class DataController{
       return "search";
    }
    
-   
    @RequestMapping("/recommend")
    public String recommend(){
       return "recommend";
    }
+   
+   @RequestMapping("/recommendview")
+   public String recommendview(){
+      return "recommendview";
+   }
+   
    
 }

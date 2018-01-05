@@ -11,10 +11,14 @@
 	<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
 	<!-- end: Java Script -->
 	<link href="${path}/resources/css/bootstrap2.css" rel="stylesheet">
-<!--     <link href="resources/css/index.css" rel="stylesheet"> -->
     <link href="${path}/resources/css/guide.css" rel="stylesheet">
     <link href="${path}/resources/css/newbook.css" rel="stylesheet">
     <link href="${path}/resources/css/board.css" rel="stylesheet">
+     <link href="${path}/resources/css/boardInput.css" rel="stylesheet">
+     <link href="${path}/resources/css/manager.css" rel="stylesheet">
+     <link href="${path}/resources/css/search.css" rel="stylesheet">
+     <link href="${path}/resources/css/borrow.css" rel="stylesheet">
+     
     <link href="${path}/resources/css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="${path}/resources/css/style.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">

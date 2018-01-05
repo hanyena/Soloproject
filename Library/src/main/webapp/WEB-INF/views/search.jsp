@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/tag.jsp" %>     
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,110 +10,78 @@
 	<meta name="author" content="Łukasz Holeczek from creativeLabs"/>
    	<!--반응형 -->
    	<meta name="viewport" content="width=device-width, initial-scale=1">
-   	<!-- start: Java Script -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="resources/js/jquery-1.8.2.js"></script>
-	<script src="resources/js/bootstrap.js"></script>
-	<script src="resources/js/flexslider.js"></script>
-	<script src="resources/js/carousel.js"></script>
-	<script src="resources/js/jquery.cslider.js"></script>
-	<script src="resources/js/slider.js"></script>
-	<script defer="defer" src="resources/js/custom.js"></script>
-	<!-- end: Java Script -->
-	<link href="resources/css/bootstrap2.css" rel="stylesheet">
-	 <!--내가 만든 css영역  -->
-	 
-<!--     <link href="resources/css/index.css" rel="stylesheet"> -->
-    <link href="resources/css/guide.css" rel="stylesheet">
-    <link href="resources/css/newbook.css" rel="stylesheet">
-    <link href="resources/css/search.css" rel="stylesheet">
-    <link href="resources/css/bootstrap-responsive.css" rel="stylesheet">
-	<link href="resources/css/style.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif">
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Boogaloo">
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Economica:700,400italic">
-	<link href="resources/css/index.css" rel="stylesheet">
-  
+   	 <%@ include file="/WEB-INF/cdn.jsp" %>
    
 </head>
 <body>
+<!-- 최근 본 목록 -->
+<div class="newview">
 
-	<!--start: 중심부 내용-->
-	
-				
-		<!--start: Container -->
-    	<div class="container">
-	
+</div>
+<!--start: 중심부 내용-->
+<!--start: Container -->
+  <div class="container">
+	<header>
 			<!--start: Header -->
-			<header>
-					<!--start: Row -->
-					<div class="row">
-						<!--start: Logo -->
-						<div class="logo span3">
-							<a class="brand" href="#"><img src="resources/img/logo1.PNG" alt="Logo"></a>
-						</div>
-						<!--end: Logo -->
-						<div>
-							<ul>
-								<li class="li-inline"><a href="#">로그인</a></li>
-<!-- 								<li class="li-inline"><a href="#">회원가입</a></li> -->
-								<li class="li-inline"><a href="index.html" style="font-weight:1000;">Home</a></li>
-							</ul>
-						</div>
-					</div>
-					<!--end: Row -->	
-			</header>
-			<!--end: Header-->
-			
-					<!--start: Navigation -->
-			<div class="span9 span9-2">
-					<div class="navbar navbar-inverse">
-			    		<div class="navbar-inner">
-			          		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-			            		<span class="icon-bar"></span>
-			            		<span class="icon-bar"></span>
-			            		<span class="icon-bar"></span>
-			          		</a>
-			          		<div class="nav-collapse collapse">
-			            		<ul class="nav">
-			              			<li class="dropdown">
-			                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">이용안내 <b class="caret"></b></a>
-			                			<ul class="dropdown-menu">
-			                  				<li><a href="#">이용안내</a></li>
-			                			</ul>
-			              			</li>
-			              			
-			              			<li class="dropdown">
-			                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">자료마당 <b class="caret"></b></a>
-			                			<ul class="dropdown-menu">
-			                  				<li><a href="#">신간안내</a></li>
-			                  				<li><a href="#">추천도서</a></li>
-			                  				<li><a href="#">도서검색</a></li>
-			                			</ul>
-			              			</li>
-			              			
-			              			<li class="dropdown">
-			                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">열린마당 <b class="caret"></b></a>
-			                			<ul class="dropdown-menu">
-			                  				<li><a href="#">공지사항</a></li>
-			                  				<li><a href="#">자유게시판</a></li>
-			                  				<li><a href="#">FAQ</a></li>
-			                			</ul>
-			              			</li>
-			              			
-			              			<li class="dropdown">
-			                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">나만의 도서관 <b class="caret"></b></a>
-			                			<ul class="dropdown-menu">
-			                  				<li><a href="#">도서대출</a></li>
-			                			</ul>
-			              			</li>
-			            		</ul>
-			          		</div>
-			        	</div>
-			      	</div>
+		<!--start: Logo -->
+	<div class="logo span3">
+		<a class="brand" href="${path}/index"><img src="resources/img/logo1.PNG" alt="Logo"></a>
+	</div>
+<!--start: Navigation -->
+    <div class="span9 span9-2">
+		<div class="navbar navbar-inverse">
+    		<div class="navbar-inner">
+          		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            		<span class="icon-bar"></span>
+            		<span class="icon-bar"></span>
+            		<span class="icon-bar"></span>
+          		</a>
+          		<div class="nav-collapse collapse">
+            		<ul class="nav">
+              			<li class="dropdown">
+                			<a href="#" class="dropdown-toggle"data-toggle="dropdown">이용안내 <b class="caret"></b></a>
+					        <ul class="dropdown-menu">
+					        <li><a href="${path}/guide">이용안내</a></li>
+                			</ul>
+              			</li>
+              			
+              			<li class="dropdown">
+                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">자료마당 <b class="caret"></b></a>
+                			<ul class="dropdown-menu">
+                  				<li><a href="${path}/newbook">신간안내</a></li>
+                  				<li><a href="${path}/recommend">추천도서</a></li>
+                  				<li><a href="${path}/search">도서검색</a></li>
+                			</ul>
+              			</li>
+              			
+              			<li class="dropdown">
+                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">열린마당 <b class="caret"></b></a>
+                			<ul class="dropdown-menu">
+                  				<li><a href="${path}/board">공지사항</a></li>
+                  				<li><a href="${path}/board">자유게시판</a></li>
+                  				<li><a href="${path}/board">FAQ</a></li>
+                			</ul>
+              			</li>
+              			
+              			<li class="dropdown">
+                			<a href="#" class="dropdown-toggle" data-toggle="dropdown">나만의 도서관 <b class="caret"></b></a>
+                			<ul class="dropdown-menu">
+                  				<li><a href="${path}/borrow">도서대출</a></li>
+                			</ul>
+              			</li>
+              	        <li><a href="#">로그인</a></li>
+            		</ul>
+          		</div>
+        	</div>
+      	</div>
+	</div>
+				<!--end: Logo -->
+				<div>
+					<ul>
+					</ul>
 				</div>
 			
+  </header>
 			
 	
 			
@@ -141,15 +110,15 @@
 				
 				<div id="main" class="span8">
 					<div class="location">
-						 <p class="clfix">
-							  <a href=""><img src="resources/img/icons/homeicon.PNG" style="height: 20px" alt=""/></a>  >  
+						 <p class="main_p">
+							  <a href=""><img src="resources/img/icons/homeicon.PNG" style="height: 20px" alt=""/></a>  
 							  <a href="" onclick="">자료마당</a>  > 도서검색
 						 </p>
 						 
 			
 					  <br>
 					<div><h3>도서검색</h3></div>
-						<div style="border: 2px solid red;  height: 233px;">
+				<div class="search_table">
 					<!-- start: 도서검색-->
 					<table border="1"  class="table100 table">
 					 <tr>
@@ -208,7 +177,7 @@
    					     <label for = "">발행년도</label>
    					   </th>
    					   <td>
-달
+<!-- 달력 -->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
 						<script type="text/javascript">
@@ -238,7 +207,7 @@
    					</table>
    					<!-- 검색기능  -->
 	<form class="col-md-12">
-       <div class="col-md-12 text-center">
+       <div class="col-md-12" id="search_search">
          <select id="s_keyField" name="keyField" class="form-control" style="">
                    <option value="ALL">전체</option>
                    <option value="WRITER">이름</option>

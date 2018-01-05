@@ -130,3 +130,14 @@ ul{
     margin-left: 0;
   }
 }
+
+.newview{
+	width: 89px;
+    overflow: hidden;
+    display: block;
+    position: fixed;
+    top: 340px;
+    left:1590px;
+    background-color: red;
+    height:350px;
+}
