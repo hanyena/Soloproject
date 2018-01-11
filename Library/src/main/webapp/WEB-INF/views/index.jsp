@@ -18,6 +18,7 @@
 		<body>
 			<!-- 최근 본 목록 -->
 			<div class="newview">
+				<div id="newview_div"></div>
 
 			</div>
 			<div class="container">
@@ -86,23 +87,23 @@
 					
 						<div class="da-slide">
 							<p>책은 마음의 양식....낄낄</p>
-							<a href="#" class="da-link">Read more</a>
-							<div class="da-img"></div>
+							<a href="#" class="da-link"></a>
+							<div class="da-img"><img src="resources/img/banner/배너1.jpg"></div>
 						</div>
 						
 						<div class="da-slide">
-							<a href="#" class="da-link">Read more</a>
-							<div class="da-img"></div>
-						</div>
-						
-						<div class="da-slide" >
-							<a href="#" class="da-link">Read more</a>
-							<div class="da-img"><img src="resources/img/banner/배너3.jpg" alt="image03" /></div>
+							<a href="#" class="da-link"></a>
+							<div class="da-img"><img src="resources/img/banner/배너2.jpg"></div>
 						</div>
 						
 						<div class="da-slide">
-							<a href="#" class="da-link">Read more</a>
-							<div class="da-img"><img src="resources/img/banner/배너4.jpg" alt="image04" /></div>
+							<a href="#" class="da-link"></a>
+							<div class="da-img"><img src="resources/img/banner/배너3.jpg"></div>
+						</div>
+						
+						<div class="da-slide">
+							<a href="#" class="da-link"></a>
+							<div class="da-img"><img src="resources/img/banner/배너4.jpg"></div>
 						</div>
 						<nav class="da-arrows">
 							<span class="da-arrows-prev"></span>
@@ -135,6 +136,7 @@
 						<img class="img-responsive" style="display:inline-block;max-width: 150px;height: auto;" src="resources/img/logos/검색아이콘.jpg" alt="a" />
 					</div>
 					<div class="text-center col-md-4">
+<!-- 						<a href="#"><span>대출 내역 조회</span>></a> -->
 						<img class="img-responsive" src="resources/img/logos/2.png" style="display:inline-block; max-width: 100%;height: auto;" alt="b" />
 					</div>
 					<div class="text-center col-md-4">

@@ -11,11 +11,51 @@
    	<!--반응형 -->
    	<meta name="viewport" content="width=device-width, initial-scale=1">
     <%@ include file="/WEB-INF/cdn.jsp" %>
+    <script type="text/javascript">
+    $(document).ready(function(){
+    	
+    	 var data1 = []; // 데이터 담을 배열 변수 선언
+    	
+    	function createHtml(){ 
+    		$(".container .row .span8 tbody").empty(); 
+    		 for (var i = 0; i < data1.length; i++) {
+    			 var tag ="";
+    			 tag += '<tr>';
+    			
+    			  tag += '<td>' + data1[i].title + '</td>';
+    			  tag += '<td>' + data1[i].regname + '</td>'; 
+    			  tag += '<td>' + data1[i].regdate + '</td>';
+    			  tag += '<td>' + data1[i].boardcnt + '</td>'; 
+    			  tag += '</tr>';
+    		 $(".container .row .span8 tbody").append(tag);
+    			 
+             };
+    	 };
+    	
+       function initData(){
+    	$.ajax({
+    		url:"board_data",
+    		type:"post",
+    		data:{"d":"d"}
+    		}).done(function(result){
+    			  d = JSON.parse(result);
+    			  console.log(result);
+    			  console.log(d);
+    	          data1 = d.board;
+    	          createHtml(); 
+    		}).fail(function(d){
+    			alert("fail");
+    		});
+    	};
+    	initData();
+    });
+    </script>
    
 </head>
 <body>
 <!-- 최근 본 목록 -->
 <div class="newview">
+	<div id="newview_div"></div>
 
 </div>
 	<!--start: 중심부 내용-->
@@ -128,24 +168,24 @@
 							  </tr>
 							  </thead>
 							  <tbody>
-							    <tr>
-							     <td>책제목입니다</td>
-							     <td>예뚱이</td>
-							     <td>오늘</td>    
-							     <td>500</td>
-							    </tr>
-							     <tr>
-							     <td>책제목입니다</td>
-							     <td>예뚱이</td>
-							     <td>오늘</td>    
-							     <td>500</td>
-							    </tr>
-							     <tr>
-							     <td>책제목입니다</td>
-							     <td>예뚱이</td>
-							     <td>오늘</td>    
-							     <td>500</td>
-							    </tr>
+<!-- 							    <tr> -->
+<!-- 							     <td>책제목입니다</td> -->
+<!-- 							     <td>예뚱이</td> -->
+<!-- 							     <td>오늘</td>     -->
+<!-- 							     <td>500</td> -->
+<!-- 							    </tr> -->
+<!-- 							     <tr> -->
+<!-- 							     <td>책제목입니다</td> -->
+<!-- 							     <td>예뚱이</td> -->
+<!-- 							     <td>오늘</td>     -->
+<!-- 							     <td>500</td> -->
+<!-- 							    </tr> -->
+<!-- 							     <tr> -->
+<!-- 							     <td>책제목입니다</td> -->
+<!-- 							     <td>예뚱이</td> -->
+<!-- 							     <td>오늘</td>     -->
+<!-- 							     <td>500</td> -->
+<!-- 							    </tr> -->
 							  </tbody>
 						 </table>
 					<!-- end: 자유게시판-->

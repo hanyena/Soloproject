@@ -8,14 +8,17 @@
     font-weight: normal;
     font-style: normal;
 }
-
+.pppp{
+	width : 1170px;
+	height : 405px;
+}
 .da-slider{
 	width: 100%;
 	height: 400px;
 	position: relative;
 	margin: 0 auto;
 	overflow: hidden;
-	background: transparent url(../img/slider.jpg) repeat 0% 0%;
+/* 	background: transparent url(../img/banner/배너1.jpg) repeat 0% 0%; */
 	border-bottom: 5px solid #f6f6f6 !important;
 	-webkit-box-shadow: inset 0px 0px 5px rgba(0,0,0,.25);
 	-moz-box-shadow: inset 0px 0px 5px rgba(0,0,0,.25);

@@ -132,12 +132,25 @@ ul{
 }
 
 .newview{
-	width: 89px;
+	width: 188px;
     overflow: hidden;
     display: block;
     position: fixed;
-    top: 340px;
+    top: 469px;
     left:1590px;
     background-color: red;
     height:350px;
+}
+
+#newview_div{
+	height: 305px;
+    width: 146px;
+    background-color: black;
+    margin: 22px;
+}
+
+.span3tag{
+	font-size: 29px;
+    line-height: 115px;
+    margin-left: 89px;
 }
