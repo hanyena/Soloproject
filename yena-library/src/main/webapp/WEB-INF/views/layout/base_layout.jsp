@@ -3,7 +3,6 @@
 <%@ include file="/WEB-INF/tag.jsp"%>
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="description" content="GotYa Free Bootstrap Theme" />
@@ -16,16 +15,13 @@
 <tiles:insertAttribute name="pagestatic" ignore="true"/>
 <title><tiles:getAsString name="title" /></title>
 </head>
-
 <body>
 	<!-- 최근 본 목록 -->
 	<tiles:insertAttribute name="newview"/>
-
 	<div class="container">
 		<tiles:insertAttribute name="header" />
 		<!--start: Row -->
 		<div class="row">
-			<tiles:getAsString name="menu"/>
 			<tiles:insertAttribute name="sidebar"/>
 			<tiles:insertAttribute name="body" />
 		</div>

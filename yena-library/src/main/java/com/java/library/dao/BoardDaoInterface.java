@@ -6,17 +6,20 @@ import java.util.Map;
 
 public interface BoardDaoInterface {
 	
-	// 삽입
+	// 게시글 삽입
 	public int boardInsert(Map<String, Object> paramMap);
 	
-	// 수정
-//	public HashMap<String, Object> BoardUpdate(HashMap<String, Object> paramMap);
+	// 게시글 수정
+	public int boardUpdate(Map<String, Object> paramMap);
 	
-	// 삭제
-//	public HashMap<String, Object> BoardDelete(HashMap<String, Object> paramMap);
+	// 게시글 삭제
+	public int boardDelete(Map<String, Object> paramMap);
 	
-	// 선택
+	// 게시글 목록 조회
 	public List<Map<String, Object>> boardSelect(Map<String, Object> paramMap);
+	
+    // 게시글 1개 조회
+	public Map<String, Object> boardSelectOne(Map<String, Object> paramMap);
 	
 	
 

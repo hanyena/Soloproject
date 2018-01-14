@@ -90,10 +90,8 @@
 				%>
 				<li class="newbook_li">
 					<div style="float: left">
-						<a href="#"><img src="resources/img/뻐큐.jpg"
+						<a href="#"><img src="${path}/resources/img/뻐큐.jpg"
 							style="width: 75px; height: 113px;"></a>
-
-
 					</div>
 					<div>
 						<h3>
@@ -101,9 +99,9 @@
 						</h3>
 						<p class="author">저자</p>
 						<p class="proInfo">출판사</p>
-						<p class="location">책 코드</p>
+						<p class="location" style="display: inline-block;">책 코드</p>
+						<button type="button" style="float:right" onclick="">대출 </button>
 					</div>
-
 				</li>
 				<%
 					}

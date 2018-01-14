@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="${path}/resources/js/jquery-1.8.2.js"></script>
 <script src="${path}/resources/js/bootstrap.js"></script>
@@ -28,6 +29,7 @@
 <!--   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 <script type="text/javascript">
 	var call = {
+	    // 부분전환 함수
 		move : function(path) {
 			$.ajax({
 				url : "${path}"+path,

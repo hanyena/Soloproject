@@ -1,14 +1,9 @@
 @CHARSET "UTF-8";
 
-#board_top{
+.board{
 	border-top: 2px solid indianred;
 	border-bottom: 2px solid indianred;
 }
-
-#board_bottom{
-	border-bottom: 1px solid;
-}
-
 .span8 {
     width: 69.7%;
 }

@@ -36,9 +36,9 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown">열린마당 <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="${path}/open/list.do">공지사항</a></li>
+<%-- 								<li><a href="${path}/open/list.do">공지사항</a></li> --%>
 								<li><a href="${path}/open/list.do">자유게시판</a></li>
-								<li><a href="${path}/open/list.do">FAQ</a></li>
+<%-- 								<li><a href="${path}/open/list.do">FAQ</a></li> --%>
 							</ul></li>
 
 						<li class="dropdown"><a href="#" class="dropdown-toggle"

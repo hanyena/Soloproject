@@ -13,6 +13,7 @@ public class SiteController{
    }
    
 // 이용안내
+   // 타일즈를 불러옴
    @RequestMapping("/guide.do")
    public String guide(){
       return "guide/guide_index";

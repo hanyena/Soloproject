@@ -10,7 +10,6 @@
 	<meta name="author" content="Łukasz Holeczek from creativeLabs"/>
    	<!--반응형 -->
    	<meta name="viewport" content="width=device-width, initial-scale=1">
-    
 </head>
 <body>
 <!-- 최근 본 목록 -->

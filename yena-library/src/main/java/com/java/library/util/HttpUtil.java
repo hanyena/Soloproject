@@ -2,6 +2,7 @@ package com.java.library.util;
 
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,13 +13,14 @@ import net.sf.json.JSONSerializer;
 
 public class HttpUtil {
 	// 메모리에 먼저 할당시킴
-	public static ModelAndView returnJson(final HashMap<String, Object> result){
+	public static ModelAndView returnJson(final Map<String, Object> result){
 		
 		  ModelAndView mav = new ModelAndView();
 		
 		  JSONObject jsonObject = new JSONObject();
 	      // JSONObject형식으로 맞춰줌
 	      jsonObject = JSONObject.fromObject(JSONSerializer.toJSON(result));
+	      // json.jsp에 $message와 매칭이 되어서 json.jsp에 jsonObject.toString() 내용을 보여줌
 	      mav.addObject("message", jsonObject.toString());		
 	      mav.setViewName("json");
 	      

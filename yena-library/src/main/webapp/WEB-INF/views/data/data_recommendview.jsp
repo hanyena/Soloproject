@@ -13,7 +13,7 @@
 			<ul class="newbook_ul">
 				<li class="newbook_li">
 					<div style="float: left">
-						<a href="#"><img src="resources/img/뻐큐.jpg"
+						<a href="#"><img src="${path}/resources/img/뻐큐.jpg"
 							style="width: 75px; height: 113px;"></a>
 
 					</div>

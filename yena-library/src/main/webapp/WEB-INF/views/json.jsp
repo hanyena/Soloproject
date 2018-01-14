@@ -1,1 +1,1 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>${message}
+<%@ page language="java" contentType="application/json;charset=UTF-8; charset=UTF-8" pageEncoding="UTF-8"%>${message}

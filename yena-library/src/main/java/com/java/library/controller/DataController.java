@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value="/data/")
 public class DataController{
 	
+	// 타일즈를 부름
    @RequestMapping(value="newbook.do", method=RequestMethod.GET)
    public String getNewbook(){
       return "data/data_newbook";
    }
+   
+   // jsp파일을 부름(main에서 직접 부를 때)
    @RequestMapping(value="newbook.do", method=RequestMethod.POST)
    public String postNewbook(){
       return "/data/data_newbook";

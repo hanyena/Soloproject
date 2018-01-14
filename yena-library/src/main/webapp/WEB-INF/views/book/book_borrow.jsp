@@ -22,21 +22,12 @@
 				<th><label for="">대출일</label></th>
 
 				<th><label for="">반납예정일</label></th>
-
-				<th><label for="">연체일수</label></th>
-
-				<th><label for="">상태</label></th>
-				<th><label for="">연기</label></th>
 			</tr>
 			<tr>
 				<!-- colspan: 셀 확장 수 -->
 				<td colspan="7" id="borrow_td">등록된 자료가 없습니다.</td>
 			</tr>
 		</table>
-
-		<button type="button" id="borrow_button" name=""
-			style="margin-left: 5px">대출예약취소</button>
-		<button type="button" id="borrow_button" name="">반납연기</button>
 	</div>
 	<!-- end: 도서대출-->
 </div>

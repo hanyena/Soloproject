@@ -12,34 +12,39 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class BoardDao implements BoardDaoInterface {
 	
+	private static final String NS = "board.";
 	
 	@Resource(name = "sqlSession")
 	SqlSession session;
 
-	// 삽입
+	// 게시판 삽입
 	@Override
 	public int boardInsert(Map<String, Object> paramMap) {
-		return session.insert("board.insert", paramMap);
+		return session.insert(NS+"insert", paramMap);
 	}
 
-	// 수정
-//	@Override
-//	public HashMap<String, Object> BoardUpdate(HashMap<String, Object> paramMap) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	// 게시판삭제
+	@Override
+	public int boardDelete(Map<String, Object> paramMap) {
+		return session.update(NS+"delete", paramMap);
+	}
 
-	//삭제
-//	@Override
-//	public HashMap<String, Object> BoardDelete(HashMap<String, Object> paramMap) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
-	// 선택
+	// 게시판 선택
 	@Override
 	public List<Map<String, Object>> boardSelect(Map<String, Object> paramMap) {
-		return session.selectList("board.select", paramMap);
+		return session.selectList(NS+"select", paramMap);
+	}
+
+	// 게시글 1개 조회
+	@Override
+	public Map<String, Object> boardSelectOne(Map<String, Object> paramMap) {
+		return session.selectOne(NS+"selectOne", paramMap);
+	}
+
+	// 게시판 수정
+	@Override
+	public int boardUpdate(Map<String, Object> paramMap) {
+		return session.update(NS+"update", paramMap);
 	}
 
 }

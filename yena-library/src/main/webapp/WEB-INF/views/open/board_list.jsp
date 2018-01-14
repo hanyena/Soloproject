@@ -1,20 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <div id="main" class="span8">
 	<div class="location">
 		<p class="main_p">
 			<a href=""><img src="${path}/resources/img/icons/homeicon.PNG" style="height: 20px" alt="" /></a> &gt; <a href="" onclick="">열린마당</a> &gt; 자유게시판
 		</p>
 		<!-- start: 신간안내-->
-		<div>
+		<div id="board">
 			<br>
 			<div>
 				<h3>자유게시판</h3>
 			</div>
-			<table id="board_top" class="table100 table">
+			<table id="board" class="table100 table board">
 				<thead>
-					<tr id="board_bottom">
+					<tr>
 						<th>제목</th>
 						<th>작성자</th>
 						<th>날짜</th>
@@ -24,16 +23,18 @@
 				<tbody>
 				</tbody>
 			</table>
-			<!-- end: 자유게시판-->
-			<button type="button" id="board_write"
-				class="btn btn-default text-white bg-redred writbtn3 boardInput_button"
-				onclick="">삭제</button>
-			<button type="button" id="board_write"
-				class="btn btn-default text-white bg-redred writbtn3 boardInput_button"
-				onclick="">수정</button>
-			<button type="button" id="board_write"
-				class="btn btn-default text-white bg-redred writbtn3 boardInput_button"
-				onclick="location.href='boardInput'">쓰기</button>
+			<div>
+					<!-- end: 자유게시판-->
+<!-- 				<button type="button" id="board_write" -->
+<!-- 					class="btn btn-default text-white bg-redred writbtn3 boardInput_button" -->
+<!-- 					onclick="">삭제</button> -->
+<!-- 				<button type="button" id="board_write" -->
+<!-- 					class="btn btn-default text-white bg-redred writbtn3 boardInput_button" -->
+<!-- 					onclick="">수정</button> -->
+				<button type="button" id="board_write"
+					class="btn btn-default text-white bg-redred writbtn3 boardInput_button"
+					onclick="location.href='${path}/open/writeform.do'">쓰기</button>
+			</div>
 		</div>
 		<br> <br>
 		<!-- 검색기능  -->

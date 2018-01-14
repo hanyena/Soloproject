@@ -13,9 +13,9 @@
 		</div>
 
 		<ul class="tester" style="text-align: center;">
-			<li class="active aa">공지사항</li>
+<!-- 			<li class="active aa">공지사항</li> -->
 			<li class="active aa">자유게시판</li>
-			<li class="active aa">FAQ</li>
+<!-- 			<li class="active aa">FAQ</li> -->
 		</ul>
 	</div>
 	<!-- end: Sidebar -->
