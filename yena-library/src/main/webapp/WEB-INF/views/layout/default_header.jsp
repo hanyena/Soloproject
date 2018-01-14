@@ -30,8 +30,8 @@
 							<ul class="dropdown-menu">
 								<%-- <li><a href="${path}/data/newbook.do">신간안내</a></li> --%>
 								<li><a href="javascript:call.move('/data/newbook.do')">신간안내</a>
-								<li><a href="${path}/data/recommend.do">추천도서</a></li>
-								<li><a href="${path}/data/search.do">도서검색</a></li>
+								<li><a href="javascript:call.move('/data/recommend.do')">추천도서</a></li>
+								<li><a href="javascript:call.move('/data/search.do')">도서검색</a></li>
 							</ul></li>
 
 						<li class="dropdown"><a href="#" class="dropdown-toggle"

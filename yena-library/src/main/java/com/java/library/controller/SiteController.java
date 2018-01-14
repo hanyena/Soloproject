@@ -6,6 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class SiteController{
    
+	@RequestMapping("/")
+   public String main(){
+      return "redirect:/index.do";
+   }   
+	
 //   메인
    @RequestMapping("/index.do")
    public String site(){

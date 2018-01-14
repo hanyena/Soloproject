@@ -20,15 +20,26 @@ public class DataController{
       return "/data/data_newbook";
    }
    
-   @RequestMapping("search.do")
-   public String search(){
+   @RequestMapping(value="search.do", method=RequestMethod.GET)
+   public String getSearch(){
       return "data/data_search";
    }
-   
-   @RequestMapping("recommend.do")
-   public String recommend(){
-      return "data/data_recommend";
+
+   @RequestMapping(value="search.do", method=RequestMethod.POST)
+   public String postSearch(){
+      return "/data/data_search";
    }
+   
+   @RequestMapping(value="recommend.do", method=RequestMethod.GET)
+   public String getRecommend(){
+      return "data/data_recommend";
+   }	
+   
+   @RequestMapping(value="recommend.do", method=RequestMethod.POST)
+   public String postRecommend(){
+      return "/data/data_recommend";
+   }   
+   
    
    @RequestMapping("recommendview.do")
    public String recommendview(){

@@ -18,7 +18,7 @@ var board = {
 				tag += '<td class="content" colspan="4" style="display:none;">'
 				+ '<div>'+data1[i].content+'</div>'
 				+ '<div>'+ 	'<button type="button" id="board_write" class="btn btn-default text-white bg-redred writbtn3 boardInput_button" onclick="javascript:board.drop('+data1[i].no+');">삭제</button>'
-				+ '<button type="button" id="board_write" class="btn btn-default text-white bg-redred writbtn3 boardInput_button" onclick="javascript:board.modify('+data1[i].no+')">수정</button>'
+				+ '<button type="button" id="board_write" class="btn btn-default text-white bg-redred writbtn3 boardInput_button" onclick="javascript:board.modify('+data1[i].no+',2)">수정</button>'
 				+'</div>'+'</td>';
 				tag += '</tr>';
 				$("#board tbody").append(tag);
@@ -83,14 +83,15 @@ var board = {
 			})
 		},
 		// '/open/updateform.do'화면으로  게시글 번호(no)만 보내기 
-		modify : function(no) {
+		modify : function(no,type) {
 			$.ajax({
 				url:"${path}/open/updateform.do",
 				type:"GET",
 				// no값을 가지고 url로 보냄
 				data:{
 					// 키 : 값
-					"no":no
+					"no":no,
+					"boardlist_no":type
 				}
 			}).done(function(data){
 				if(data.result) {

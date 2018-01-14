@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!-- start: Copyright -->
 <div id="copyright">
 
@@ -7,7 +7,7 @@
     <div>
 
         <p>
-            ¿¹¶×¿¹¶×
+            ì˜ˆëš±ì˜ˆëš±
         </p>
 
     </div>
