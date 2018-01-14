@@ -51,8 +51,22 @@ public class OpenController {
     // 게시판 글쓰기 데이터 부분
     @RequestMapping("json/write.do")
     @ResponseBody
-    public String boardWrite(@RequestParam Map<String,Object> paramMap){
-	    // JSONSerializer => MAP은 순서가 없어서 디비에 저장된 값 순서대로 뽑아 쓰기...위해서..(?)
+    public String boardWrite(@RequestParam Map<String,Object> paramMap,HttpSession session){
+    	//로그인한 사용자의 세션 정보를 가져온다.
+    	Map<String,Object> userSession = (Map<String, Object>) session.getAttribute("UserSession");
+    	//로그인 된 상태인 경우 paramMap에 userSession 데이터를 넣는다ㅣ.
+    	if(userSession != null) {
+    		paramMap.putAll(userSession);
+    		paramMap.put("member_id", "yena");
+    		paramMap.put("boardlist_no", 2);
+    		paramMap.put("regname", "한예나");
+    	//로그인 전인경우는 테스트를 위해 임의로 회원정보를 넣는다.
+    	} else {
+    		paramMap.put("member_id", "yena");
+    		paramMap.put("boardlist_no", 2);
+    		paramMap.put("regname", "한예나");
+    	}
+    	// JSONSerializer => MAP은 순서가 없어서 디비에 저장된 값 순서대로 뽑아 쓰기...위해서..(?)
 	 	return JSONObject.fromObject(JSONSerializer.toJSON(bsi.boardInsert(paramMap))).toString();
     }
    

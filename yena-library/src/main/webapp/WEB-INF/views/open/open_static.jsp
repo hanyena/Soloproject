@@ -91,7 +91,6 @@ var board = {
 				data:{
 					// 키 : 값
 					"no":no,
-					"boardlist_no":type
 				}
 			}).done(function(data){
 				if(data.result) {
