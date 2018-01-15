@@ -49,7 +49,7 @@ public class BoardService implements BoardServiceInterface {
 		String id = "yena";
 		
 		// 받아온 getBoardOne에서 id값을 꺼내 로그인한 id값 비교
-		if(getBoardOne.get("id").equals(id)) {
+		if(getBoardOne.get("member_id").equals(id)) {
 			int rstDeleteCnt = bdi.boardDelete(paramMap);
 			if(rstDeleteCnt > 0) {
 				rstMap.put("result", "글 삭제가 완료 되었습니다.");

@@ -88,7 +88,7 @@ public class OpenController {
     	Map<String, Object> rstMap = bsi.boardSelectOne(paramMap);
     	// 로그인 임의의 아이디
     	String id = "yena";
-    	if(rstMap.get("id").equals(id)) {
+    	if(rstMap.get("member_id").equals(id)) {
     		// addObject : 화면(jsp)에 DB에서 갖고 온 데이터를 보냄
     	    mav.addObject("data",rstMap);
     	    // tiles대신 ajax로 jsp만 가져옴 <= 부분전환을 하기 위해

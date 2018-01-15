@@ -2,7 +2,8 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "/WEB-INF/config/dtd/mybatis-3-config.dtd">
 <configuration>
 	<settings>
-		<setting name="logImpl" value="LOG4J" />
+		<setting name="logImpl" value="LOG4J"/>
+		
 		<setting name="jdbcTypeForNull" value="VARCHAR" />
 		
 	</settings>
