@@ -3,8 +3,16 @@
 <!-- 변수 선언 부분	 -->
 <script type="text/javascript">
 var data = {
-	// 추천 도서 화면
-	createHtml : function(){
+		// 추천 도서 화면
+		recommend : function(){
+			$.ajax({
+				url:"${path}/data/recommend.do",
+				type:"GET"
+			}).done(function(data){
+					alert(data);
+			})
+		},
+/* 	createHtml : function(){
 	    $(".newbook_ul .newbook_li").empty();
 		for(var i = 0; i < 5; i++){
 			var tag = "";
@@ -20,8 +28,9 @@ var data = {
 			tag += '<p class="location">' + data1[i].price + '</p>';
 			tag += '</div>';
 			$(".newbook_ul .newbook_li").append(tag);
-		};
+		}; 
 	},
+*/
 	// 추천 도서 데이터 불러오기
 	initData : function(){
 		$.ajax({
@@ -30,9 +39,9 @@ var data = {
 			async : false
 		}).done(function(data){
 			console.log(data);
-			data.createHtml();
+// 			data.createHtml();
+            data.recommend();
 		})
-		
 	}
 }
 </script>

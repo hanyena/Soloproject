@@ -32,8 +32,7 @@ var board = {
 				async : false
 			}).done(function(result) {
 				console.log(result);
-				data1 = result.board;
-				board.createHtml();
+				board.createHtml(result.board);
 			}).fail(function(d) {
 				alert("fail");
 			});

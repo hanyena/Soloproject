@@ -48,11 +48,12 @@ public class DataController{
    // 추천 도서 화면 
    @RequestMapping(value="recommend.do", method=RequestMethod.GET)
    public ModelAndView getRecommend(ModelAndView mav){
-	   
+	   mav.addObject("data", "추천도서");
 	   // tiles 화면 매칭 
 	   mav.setViewName("data/data_recommend");
 	   return mav;
    }	
+   
    
    // 추천 도서 데이터 불러오기
    @RequestMapping(value="recommend.do", method=RequestMethod.POST)
