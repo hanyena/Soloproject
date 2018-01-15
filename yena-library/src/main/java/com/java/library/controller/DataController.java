@@ -63,11 +63,6 @@ public class DataController{
 	   return JSONObject.fromObject(JSONSerializer.toJSON(dsi.recommendSelect(paramMap))).toString();
    }   
    
-   
-   
-   
-   
-   
    @RequestMapping("recommendview.do")
    public String recommendview(){
       return "data/data_recommendview";
