@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTR-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTR-8" pageEncoding="UTF-8"%>
 <div class="title" style="text-align: center">
 	<br>
 	<h3>자료마당</h3>
