@@ -2,23 +2,23 @@
 	pageEncoding="UTF-8"%>
 <!-- 변수 선언 부분	 -->
 <script type="text/javascript">
-var board = {
+var board = {	
 		// 게시판 목록 화면
-		createHtml : function() {
+		createHtml : function(data) {
 			$("#board tbody").empty();
-			for (var i = 0; i < data1.length; i++) {
+			for (var i = 0; i < data.length; i++) {
 				var tag = "";
 				tag += '<tr>';
-				tag += '<td><a href="javascript:board.status('+i+');">' + data1[i].title + '</a></td>';
-				tag += '<td>' + data1[i].regname + '</td>';
-				tag += '<td>' + data1[i].regdate2 + '</td>';
-				tag += '<td>' + data1[i].boardcnt + '</td>';
+				tag += '<td><a href="javascript:board.status('+i+');">' + data[i].title + '</a></td>';
+				tag += '<td>' + data[i].regname + '</td>';
+				tag += '<td>' + data[i].regdate2 + '</td>';
+				tag += '<td>' + data[i].boardcnt + '</td>';
 				tag += '</tr>';
 				tag += '<tr style="border-top:3px solid red;  ">';
 				tag += '<td class="content" colspan="4" style="display:none;">'
-				+ '<div>'+data1[i].content+'</div>'
-				+ '<div>'+ 	'<button type="button" id="board_write" class="btn btn-default text-white bg-redred writbtn3 boardInput_button" onclick="javascript:board.drop('+data1[i].no+');">삭제</button>'
-				+ '<button type="button" id="board_write" class="btn btn-default text-white bg-redred writbtn3 boardInput_button" onclick="javascript:board.modify('+data1[i].no+',2)">수정</button>'
+				+ '<div>'+data[i].content+'</div>'
+				+ '<div>'+ 	'<button type="button" id="board_write" class="btn btn-default text-white bg-redred writbtn3 boardInput_button" onclick="javascript:board.drop('+data[i].no+');">삭제</button>'
+				+ '<button type="button" id="board_write" class="btn btn-default text-white bg-redred writbtn3 boardInput_button" onclick="javascript:board.modify('+data[i].no+',2)">수정</button>'
 				+'</div>'+'</td>';
 				tag += '</tr>';
 				$("#board tbody").append(tag);
@@ -32,8 +32,7 @@ var board = {
 				async : false
 			}).done(function(result) {
 				console.log(result);
-				data1 = result.board;
-				board.createHtml();
+				board.createHtml(result.board);
 			}).fail(function(d) {
 				alert("fail");
 			});
@@ -42,13 +41,13 @@ var board = {
 		write : function() {
 			// #writeform의 모든 값을 가져온다
 			var formData = $('#writeform').serialize();
-
 			$.ajax({
 				url : "${path}/open/json/write.do",
 				type : "post",
 				data : formData
 			}).done(function(data) {
-				console.log(data);
+				console.log(data.rstType);
+				location.href = "${path}/open/list.do";
 			}).fail(function(d) {
 				alert("fail");
 			});
@@ -111,7 +110,6 @@ var board = {
 				data: formData
 			}).done(function(data){
 				if(data.result) {
-					alert(data.result);
 					location.href = "${path}/open/list.do";
 				}
 			})
@@ -131,7 +129,6 @@ var board = {
 <!-- 실행 부분 -->
 <script type="text/javascript">
 	$(document).ready(function() {
-		var data1 = []; // 데이터 담을 배열 변수 선언
 		board.initData();
 		
 	});
