@@ -49,7 +49,6 @@ public class DataController{
    // 추천 페이지 화면 
    @RequestMapping(value="recommend.do", method=RequestMethod.GET)
    public ModelAndView getRecommend(ModelAndView mav, @RequestParam Map<String,Object> paramMap){
-
 	   mav.setViewName("/data/data_recommend");
 	   return mav;
    }	
