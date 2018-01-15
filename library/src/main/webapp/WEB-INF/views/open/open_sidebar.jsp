@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTR-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/tag.jsp"%>
 <div id="side" class="span4" style="background-color: pink;">
 	<!-- start: Sidebar -->
 	<div id="sidebar">

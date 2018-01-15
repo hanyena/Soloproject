@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ include file="/WEB-INF/tag.jsp"%>
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="${path}/resources/js/jquery-1.8.2.js"></script>
 <script src="${path}/resources/js/bootstrap.js"></script>
