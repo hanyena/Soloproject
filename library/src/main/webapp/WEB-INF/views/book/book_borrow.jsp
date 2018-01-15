@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/tag.jsp"%>
 
-<div id="main" class="span8">
 	<div class="location">
 		<p class="main_p">
 			<a href=""><img src="${path}/resources/img/icons/homeicon.PNG"
@@ -31,4 +30,3 @@
 		</table>
 	</div>
 	<!-- end: 도서대출-->
-</div>
