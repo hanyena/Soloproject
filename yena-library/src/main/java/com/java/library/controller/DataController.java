@@ -1,12 +1,28 @@
 package com.java.library.controller;
 
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.java.library.service.DataServiceInterface;
+
+import net.sf.json.JSONObject;
+import net.sf.json.JSONSerializer;
 
 @Controller
 @RequestMapping(value="/data/")
 public class DataController{
+	
+	@Autowired
+	DataServiceInterface dsi;
+	
+	
 	
 	// 타일즈를 부름
    @RequestMapping(value="newbook.do", method=RequestMethod.GET)
@@ -30,15 +46,26 @@ public class DataController{
       return "/data/data_search";
    }
    
+   // 추천 페이지 화면 
    @RequestMapping(value="recommend.do", method=RequestMethod.GET)
-   public String getRecommend(){
-      return "data/data_recommend";
+   public ModelAndView getRecommend(ModelAndView mav, @RequestParam Map<String,Object> paramMap){
+
+	   mav.setViewName("/data/data_recommend");
+	   return mav;
    }	
    
+   // 추천 페이지 데이터 불러오기
    @RequestMapping(value="recommend.do", method=RequestMethod.POST)
-   public String postRecommend(){
-      return "/data/data_recommend";
+   //디비에서 삭제했단 결과를 알려주기 위해서 
+   @ResponseBody
+   public String postRecommend(@RequestParam Map<String,Object> paramMap){
+ 	   // JSONSerializer => MAP은 순서가 없어서 디비에 저장된 값 순서대로 뽑아 쓰기...위해서..(?)
+	   return JSONObject.fromObject(JSONSerializer.toJSON(dsi.recommendSelect(paramMap))).toString();
    }   
+   
+   
+   
+   
    
    
    @RequestMapping("recommendview.do")

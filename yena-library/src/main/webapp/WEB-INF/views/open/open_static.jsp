@@ -107,7 +107,7 @@ var board = {
 			$.ajax({
 				url:"${path}/open/updateform.do",
 				type:"POST",
-				// no값을 가지고 url로 보냄
+				// formData를 가지고 url로 보냄
 				data: formData
 			}).done(function(data){
 				if(data.result) {

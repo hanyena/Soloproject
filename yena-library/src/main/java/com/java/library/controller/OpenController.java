@@ -104,7 +104,7 @@ public class OpenController {
     // 게시판  데이터 수정 부분(데이터 부분)
     @RequestMapping(value="updateform.do", method=RequestMethod.POST)
     @ResponseBody
-    public String postBoardUpdate(ModelAndView mav, @RequestParam Map<String,Object> paramMap){
+    public String postBoardUpdate(@RequestParam Map<String,Object> paramMap){
     	// JSONSerializer => MAP은 순서가 없어서 디비에 저장된 값 순서대로 뽑아 쓰기...위해서..(?)
     	return JSONObject.fromObject(JSONSerializer.toJSON(bsi.boardUpdate(paramMap))).toString();
   
