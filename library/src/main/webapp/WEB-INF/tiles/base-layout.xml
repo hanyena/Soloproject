@@ -30,7 +30,8 @@
 		<put-attribute name="pagestatic" value="/WEB-INF/views/{1}/{1}_static.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
 		<put-attribute name="sidebar" value="/WEB-INF/views/{1}/{1}_sidebar.jsp"/>
-		
+		<put-attribute name="url1" value="{1}"/>
+		<put-attribute name="url2" value="{2}"/>
 	</definition>
 		
 </tiles-definitions>

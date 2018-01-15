@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTR-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/tag.jsp" %>
 <!-- 변수 선언 부분	 -->
 <script type="text/javascript">
 	var board = {
@@ -26,7 +27,7 @@
 						+ '<button type="button" id="board_write" class="btn btn-default text-white bg-redred writbtn3 boardInput_button" onclick="javascript:board.modify('
 						+ data[i].no + ',2)">수정</button>' + '</div>' + '</td>';
 				tag += '</tr>';
-				$("#board tbody").prepend(tag);
+				$("#board tbody").append(tag);
 			}
 			;
 		},
@@ -111,7 +112,7 @@
 			// #updateform의 모든 값을 가져온다
 			var formData = $('#updateform').serialize();
 			$.ajax({
-				url : "${path}/open/updateform.do",
+				url : "${path}/open/json/updateform.do",
 				type : "POST",
 				// formData를 가지고 url로 보냄
 				data : formData
@@ -124,8 +125,8 @@
 		},
 		mainchange : function(data) {
 			// span8의 부모(row)의 위치를 먼저 찾아놓음
-			var parent = $('#main').parent();
-			$('#main').remove();
+			var parent = $('#main');
+			parent.empty();
 			// 뒷부분에 ajax실행된 후 data부분을 붙여 넣음
 			parent.append(data);
 		}

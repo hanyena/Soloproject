@@ -27,13 +27,13 @@ public class OpenController {
 	BoardServiceInterface bsi;
 
 	// 게시판 목록 화면 부분
-	@RequestMapping("list.do")
+	@RequestMapping(value="list.do",method=RequestMethod.GET)
 	public String board() {
 		return "open/board_list";
 	}
 
 	// 게시판 목록 데이터 부분
-	@RequestMapping("json/list.do")
+	@RequestMapping(value="json/list.do",method=RequestMethod.POST)
 	@ResponseBody
 	public String boardSelect(@RequestParam Map<String,Object> paramMap){
 		// 값을 아예 json형식으로 내보냄
@@ -102,7 +102,7 @@ public class OpenController {
     }
     
     // 게시판  데이터 수정 부분(데이터 부분)
-    @RequestMapping(value="updateform.do", method=RequestMethod.POST)
+    @RequestMapping(value="json/updateform.do", method=RequestMethod.POST)
     @ResponseBody
     public String postBoardUpdate(@RequestParam Map<String,Object> paramMap){
     	// JSONSerializer => MAP은 순서가 없어서 디비에 저장된 값 순서대로 뽑아 쓰기...위해서..(?)

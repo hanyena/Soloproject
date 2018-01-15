@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/tag.jsp"%>
+
 <!-- start: 배너 -->
 <div class="slider-wrapper">
 	<div id="da-slider" class="da-slider">
@@ -9,28 +11,17 @@
 			<div class="da-img">
 				<img src="resources/img/banner/배너1.jpg">
 			</div>
-		</div>
-
-		<div class="da-slide">
-			<a href="#" class="da-link"></a>
 			<div class="da-img">
 				<img src="resources/img/banner/배너2.jpg">
 			</div>
-		</div>
-
-		<div class="da-slide">
-			<a href="#" class="da-link"></a>
 			<div class="da-img">
 				<img src="resources/img/banner/배너3.jpg">
 			</div>
-		</div>
-
-		<div class="da-slide">
-			<a href="#" class="da-link"></a>
 			<div class="da-img">
 				<img src="resources/img/banner/배너4.jpg">
 			</div>
 		</div>
+
 		<nav class="da-arrows">
 			<span class="da-arrows-prev"></span> <span class="da-arrows-next"></span>
 		</nav>

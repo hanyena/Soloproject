@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTR-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="/WEB-INF/tag.jsp" %>
 <div class="location">
 	<p class="main_p">
 		<a href=""><img src="${path}/resources/img/icons/homeicon.PNG"
@@ -6,7 +7,7 @@
 		&gt; 자유게시판
 	</p>
 	<!-- start: 신간안내-->
-	<div id="board">
+	<div>
 		<br>
 		<div>
 			<h3>자유게시판</h3>
