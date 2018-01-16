@@ -16,7 +16,7 @@
 			${data}
 			<ul class="newbook_ul">
 				<%
-					for (int i = 1; i < 11; ++i) {
+					for (int i = 1; i < 6; ++i) {
 				%>
 				<li class="newbook_li"
 					onclick="location.href='${path}/data/recommendview.do'">
