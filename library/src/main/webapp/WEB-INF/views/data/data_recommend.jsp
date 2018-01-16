@@ -14,9 +14,9 @@
 		</div>
 		<div>
 			${data}
-			<ul class="recommendbook_ul">
-				<li class="recommendnewbook_li"
-					onclick="location.href='${path}/data/recommendview.do'">
+			<ul class="recommend_ul">
+<!-- 				<li class="recommend_li" -->
+<%-- 					onclick="location.href='${path}/data/recommendview.do'"> --%>
 <!-- 					<div style="float: left"> -->
 <%-- 						<a href="#"><img src="${path}/resources/img/뻐큐.jpg" --%>
 <!-- 							style="width: 75px; height: 113px;"></a> -->
@@ -29,7 +29,7 @@
 <!-- 						<p class="proInfo">출판사</p> -->
 <!-- 						<p class="location">책 코드</p> -->
 <!-- 					</div> -->
-				</li>
+<!-- 				</li> -->
 
 			</ul>
 		</div>

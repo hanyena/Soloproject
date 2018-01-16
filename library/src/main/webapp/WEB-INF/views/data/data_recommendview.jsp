@@ -8,8 +8,8 @@
 	</p>
 	<!-- start: 추천관리자 -->
 	<div>
-		<ul class="newbookview_ul">
-			<li class="newbookview_li">
+		<ul class="recommendview_ul">
+			<li class="recommendview_li">
 				<div style="float: left">
 					<a href="#"><img src="${path}/resources/img/뻐큐.jpg"
 						style="width: 75px; height: 113px;"></a>
