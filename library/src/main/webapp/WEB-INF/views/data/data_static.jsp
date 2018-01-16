@@ -15,55 +15,91 @@
 				async : false
 			}).done(function(resultData) {
 				$('.active').removeClass("active");
-				$('#'+paramData).addClass("active");	
+				$('#' + paramData).addClass("active");
 				data.mainchange(resultData);
-				history.pushState(null,null,paramData+".do");
+				history.pushState(null, null, paramData + ".do");
 			})
+			switch (paramData) {
+			case "recommend":
+				data.recommendInitData();
+			}
 		},
 		// 추천도서 목록 화면 생성
-		recreateHtml : function(data) {
+		recommendHtml : function(data) {
 			$(".recommend_ul").empty();
-			for (var i = 0; i < data.length; i++){
+			for (var i = 0; i < data.length; i++) {
 				var tag = "";
-				tag += '<li class="recommend_li" onclick="location.href=(${path}/data/recommendview.do)">';
+				tag += '<li class="recommend_li">';
 				tag += '<div style="float: left">';
-                tag += '<a href="#">' + '<img src="${path}/resources/img/뻐큐.jpg" style="width: 75px; height: 113px;">' + '</a>';
+				tag += '<a href="#">'
+						+ '<img src="${path}/resources/img/뻐큐.jpg" style="width: 75px; height: 113px;">'
+						+ '</a>';
 				tag += '</div>'
-				tag += '<h3>'+ '<a href="#">'+ data[i].title +'</a>' +'</h3>';
-				tag += '<p class="author">'+ data[i].author + '</p>';
-				tag += '<p class="proInfo">'+ data[i].publisher +'</p>';
+				tag += '<h3>'
+						+ '<a href="javascript:data.recommendviewInitData('
+						+ data[i].no + ');">' + data[i].title + '</a>'
+						+ '</h3>';
+				tag += '<p class="author">' + data[i].author + '</p>';
+				tag += '<p class="proInfo">' + data[i].publisher + '</p>';
 				tag += '<p class="location">' + data[i].price + '</p>';
-                tag += '</div>';
-                tag += '</li>';
+				tag += '</div>';
+				tag += '</li>';
 				$(".recommend_ul").append(tag);
-			};
-		},
-		// 추천도서 상세페이지 화면 생성
-		reviewcreateHtml : function(data) {
-			$(".recommendview_li").empty();
-			for (var i = 0; i < data.length; i++){
-				var tag = "";
-				tag += '<div style="float: left">';
-                tag += '<a href="#">' + '<img src="${path}/resources/img/뻐큐.jpg" style="width: 75px; height: 113px;">' + '</a>';
-				tag += '</div>'
-				tag += '<h3>'+ '<a href="#">'+ data[i].title +'</a>' +'</h3>';
-				tag += '<p class="author">'+ data[i].author + '</p>';
-				tag += '<p class="proInfo">'+ data[i].publisher +'</p>';
-				tag += '<p >' + data[i].discription + '</p>';
-                tag += '</div>';
-				$(".recommendview_li").append(tag);
-			};
+			}
+			;
 		},
 		// 추천도서 데이터 불러오기
-		initData : function() {
+		recommendInitData : function() {
 			$.ajax({
 				url : "${path}/data/json/recommend.do",
 				type : "POST",
 				async : false
 			}).done(function(result) {
 				console.log(result);
-				data.recreateHtml(result.recommend);
-			}).fail(function(d){
+// 				data.move("recommendview");
+				data.recommendHtml(result.recommend);
+			}).fail(function(d) {
+				alert("fail");
+			});
+		},
+		// 추천도서 상세페이지 화면 생성
+		recommendviewHtml : function(data) {
+			$.ajax({
+				url : "${path}/data/recommendview.do",
+				type : "GET",
+				async : false,
+				data : {}
+			}).done(function(resultData) {
+				alert(resultData);
+				$('#main').html(resultData);
+			})
+						$(".recommendview_li").empty();
+						$.each(function(index, element) {
+							var tag = "";
+							tag += '<div style="float: left">';
+			                tag += '<a href="#">' + '<img src="${path}/resources/img/뻐큐.jpg" style="width: 75px; height: 113px;">' + '</a>';
+							tag += '</div>'
+							tag += '<h3>'+ '<a href="#">'+ element.title +'</a>' +'</h3>';
+							tag += '<p class="author">'+ element.author + '</p>';
+							tag += '<p class="proInfo">'+ element.publisher +'</p>';
+							tag += '<p >' + element.discription + '</p>';
+			                tag += '</div>';
+							$(".recommendview_li").append(tag);
+						})
+		},
+		// 추천도서 상세페이지 데이터 불러오기
+		recommendviewInitData : function(no) {
+			$.ajax({
+				url : "${path}/data/json/recommendview.do",
+				type : "POST",
+				data : {
+					"no" : no
+				},
+				async : false
+			}).done(function(result) {
+				console.log(result);
+				data.recommendviewHtml(result.recommend);
+			}).fail(function(d) {
 				alert("fail");
 			});
 		},
@@ -79,10 +115,10 @@
 </script>
 <!-- 실행 부분 -->
 <script type="text/javascript">
-$(document).ready(function() {
-	// 해당 클릭 메뉴마다 이벤트 설정
-	// addClass : 클래스 추가.
-	$('#'+nowPath).addClass("active");
-	data.initData();
-});
+	$(document).ready(function() {
+		// 해당 클릭 메뉴마다 이벤트 설정
+		// addClass : 클래스 추가.
+		$('#' + nowPath).addClass("active");
+		data.recommendInitData();
+	});
 </script>

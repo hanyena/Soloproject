@@ -22,11 +22,6 @@ public class DataDao implements DataDaoInterface {
 		return session.selectList(NS+"recommendselect", paramMap);
 	}
 
-	// 추천도서 상세페이지 데이터(1개) 가져오기
-	@Override
-	public Map<String, Object> recommendViewSelect(Map<String, Object> paramMap) {
-		return session.selectOne(NS+"recommendselect", paramMap);
-	}
 	
 	
 

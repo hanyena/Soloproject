@@ -7,10 +7,9 @@
     <!-- 추천도서 데이터 목록 조회 -->
 	<select id = "recommendselect" parameterType="hashmap" resultType="hashmap">
 		select * from library
-		<if test="id != null ">
+		<if test="no != null ">
 		   where del_yn = 'N' and no = #{no}
 		</if>
 	</select>
-	
 
 </mapper>
