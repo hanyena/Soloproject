@@ -48,16 +48,15 @@
 	<div class="text-center col-md-4">
 		<img class="img-responsive"
 			style="display: inline-block; max-width: 150px; height: auto;"
-			src="resources/img/logos/검색아이콘.jpg" alt="a" />
+			src="resources/img/logos/search.jpg" alt="a" />
 	</div>
 	<div class="text-center col-md-4">
-		<!-- 						<a href="#"><span>대출 내역 조회</span>></a> -->
-		<img class="img-responsive" src="resources/img/logos/2.png"
-			style="display: inline-block; max-width: 100%; height: auto;" alt="b" />
+		<img class="img-responsive" src="resources/img/logos/borrow.png"
+			style="display: inline-block; max-width: 150%; height: auto;" alt="b" />
 	</div>
 	<div class="text-center col-md-4">
-		<img class="img-responsive" src="resources/img/logos/3.png"
-			style="display: inline-block; max-width: 100%; height: auto;" alt="c" />
+		<img class="img-responsive" src="resources/img/logos/so.jpg"
+			style="display: inline-block; max-width: 150%; height: auto;" alt="c" />
 	</div>
 </div>
 

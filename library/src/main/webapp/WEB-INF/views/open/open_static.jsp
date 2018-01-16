@@ -3,8 +3,8 @@
 <!-- 변수 선언 부분	 -->
 <script type="text/javascript">
 	var board = {
-		// 게시판 목록 화면
-		createHtml : function(data) {
+		// 게시판 목록 화면생성
+		createHtml : function(data){
 			$("#board tbody").empty();
 			for (var i = 0; i < data.length; i++) {
 				var tag = "";
@@ -28,8 +28,7 @@
 						+ data[i].no + ',2)">수정</button>' + '</div>' + '</td>';
 				tag += '</tr>';
 				$("#board tbody").append(tag);
-			}
-			;
+			};
 		},
 		// 게시판 목록들 불러오기
 		initData : function() {
@@ -44,11 +43,10 @@
 				alert("fail");
 			});
 		},
-		// 게시판 글 작성
+		// 게시판 글 작성 
 		write : function() {
 			// #writeform의 모든 값을 가져온다
 			var formData = $('#writeform').serialize();
-
 			$.ajax({
 				url : "${path}/open/json/write.do",
 				type : "post",
@@ -79,7 +77,6 @@
 					"no" : no
 				}
 			}).done(function(data) {
-
 				if (data.result) {
 					alert(data.result);
 				}
@@ -89,10 +86,10 @@
 				board.initData();
 			})
 		},
-		// '/open/updateform.do'화면으로  게시글 번호(no)만 보내기 
+		// '/open/update.do'화면으로  게시글 번호(no)만 보내기 
 		modify : function(no, type) {
 			$.ajax({
-				url : "${path}/open/updateform.do",
+				url : "${path}/open/update.do",
 				type : "GET",
 				// no값을 가지고 url로 보냄
 				data : {
@@ -112,7 +109,7 @@
 			// #updateform의 모든 값을 가져온다
 			var formData = $('#updateform').serialize();
 			$.ajax({
-				url : "${path}/open/json/updateform.do",
+				url : "${path}/open/json/update.do",
 				type : "POST",
 				// formData를 가지고 url로 보냄
 				data : formData
@@ -124,8 +121,9 @@
 			})
 		},
 		mainchange : function(data) {
-			// span8의 부모(row)의 위치를 먼저 찾아놓음
+			// span8(id=main) 부분을 변수에 담기
 			var parent = $('#main');
+			// span8부분을 전체 비워줌
 			parent.empty();
 			// 뒷부분에 ajax실행된 후 data부분을 붙여 넣음
 			parent.append(data);

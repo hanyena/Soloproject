@@ -23,40 +23,52 @@ public class DataController{
 	@Autowired
 	DataServiceInterface dsi;
 	
-	// 타일즈를 부름
+   // 신간안내 페이지 화면(타일즈)
    @RequestMapping(value="newbook.do", method=RequestMethod.GET)
-   public String getNewbook(){
+   public String newbook(){
       return "data/data_newbook";
    }
    
-   // jsp파일을 부름(main에서 직접 부를 때)
+   // 신간안내 페이지 데이터 
    @RequestMapping(value="json/newbook.do", method=RequestMethod.POST)
    @ResponseBody
-   public String postNewbook(){
+   public String getDataNewbook(){
       return "";
    }
    
+   // 도서검색 페이지 화면(타일즈)
    @RequestMapping(value="search.do", method=RequestMethod.GET)
-   public String getSearch(){
+   public String search(){
       return "data/data_search";
    }
 
+   // 도서검색 페이지 데이터
    @RequestMapping(value="json/search.do", method=RequestMethod.POST)
    @ResponseBody
    public String getDataSearch(){
       return "";
    }
    
-   // 추천 도서 화면 
+   // 추천도서 페이지 화면(타일즈)
    @RequestMapping(value="recommend.do", method=RequestMethod.GET)
-   public ModelAndView getRecommend(ModelAndView mav){
+   public ModelAndView recommend(ModelAndView mav){
 	   mav.addObject("data", "추천도서");
 	   // tiles 화면 매칭 
 	   mav.setViewName("data/data_recommend");
 	   return mav;
    }	
    
-   // 추천 도서 화면 
+   
+   // 추천도서 페이지 데이터 불러오기
+   @RequestMapping(value="json/recommend.do", method=RequestMethod.POST)
+   @ResponseBody
+   public String getDataRecommend(@RequestParam Map<String,Object> paramMap){
+ 	   // JSONSerializer => MAP은 순서가 없어서 디비에 저장된 값 순서대로 뽑아 쓰기...위해서..(?)
+	   return JSONObject.fromObject(JSONSerializer.toJSON(dsi.recommendSelect(paramMap))).toString();
+   }   
+   
+   
+   // 추천도서 페이지 사이드바 부분전환(ajax를 이용한 jsp파일 불러오기)
    @RequestMapping(value="changemain.do", method=RequestMethod.POST)
    public ModelAndView ajaxChangeMain(ModelAndView mav,@RequestParam Map<String,Object> paramMap){
 	   String type = (String) paramMap.get("type");
@@ -68,36 +80,23 @@ public class DataController{
 		   mav.setViewName("/data/data_"+type);
 	   }
 	   mav.addObject("data", "추천도서");
-	   // tiles 화면 매칭 
 	   return mav;
    }
    
-   // 추천 도서 데이터 불러오기
-   @RequestMapping(value="json/recommend.do", method=RequestMethod.POST)
-   @ResponseBody
-   public String jsonRecommendData(@RequestParam Map<String,Object> paramMap){
- 	   // JSONSerializer => MAP은 순서가 없어서 디비에 저장된 값 순서대로 뽑아 쓰기...위해서..(?)
-	   return JSONObject.fromObject(JSONSerializer.toJSON(dsi.recommendSelect(paramMap))).toString();
-   }   
    
-   
-   
-   
-   
-   
-   
-   
- // 여기는 recommendview쪽
+   // 추천도서 상세페이지 화면(타일즈)
    @RequestMapping(value="recommendview.do", method=RequestMethod.GET)
-   public String getRecommendView(){
+   public String recommendView(){
       return "data/data_recommendview";
    }
    
-   @RequestMapping(value="recommendview.do", method=RequestMethod.POST)
+   
+   // 추천도서 상세페이지 데이터
+   @RequestMapping(value="json/recommendview.do", method=RequestMethod.POST)
    //디비에서 삭제했단 결과를 알려주기 위해서 
    @ResponseBody
-   public String postRecommendview(){
-      return "data/data_recommendview";
+   public String getDataRecommendview(){
+      return "";
    }
    
    

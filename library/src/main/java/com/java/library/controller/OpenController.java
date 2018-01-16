@@ -26,12 +26,13 @@ public class OpenController {
 	@Autowired
 	BoardServiceInterface bsi;
 
-	// 게시판 목록 화면 부분
-	@RequestMapping(value="list.do",method=RequestMethod.GET)
+	// 게시판 목록 화면 부분(타일즈)
+	@RequestMapping(value="list.do", method=RequestMethod.GET)
 	public String board() {
 		return "open/board_list";
 	}
 
+	
 	// 게시판 목록 데이터 부분
 	@RequestMapping(value="json/list.do",method=RequestMethod.POST)
 	@ResponseBody
@@ -41,15 +42,15 @@ public class OpenController {
 	}
 
 	
-	// 게시판 글쓰기 화면 부분
-	@RequestMapping("writeform.do")
+	// 게시판 글쓰기 화면 부분(타일즈)
+	@RequestMapping(value="write.do", method=RequestMethod.GET)
 	public String boardInsert(ModelAndView mav) {
 		return "open/board_write";
 	}
 	
 	
     // 게시판 글쓰기 데이터 부분
-    @RequestMapping("json/write.do")
+    @RequestMapping(value="json/write.do", method=RequestMethod.POST)
     @ResponseBody
     public String boardWrite(@RequestParam Map<String,Object> paramMap,HttpSession session){
     	//로그인한 사용자의 세션 정보를 가져온다.
@@ -81,7 +82,7 @@ public class OpenController {
     }
    
     // 게시판  데이터 수정 부분(화면부분)
-    @RequestMapping(value="updateform.do", method=RequestMethod.GET)
+    @RequestMapping(value="update.do", method=RequestMethod.GET)
     public ModelAndView getBoardUpdate(ModelAndView mav, @RequestParam Map<String,Object> paramMap){
         
         // 아이디 값을 비교하여 수정버튼이 작동되게 하는 조건
@@ -102,7 +103,7 @@ public class OpenController {
     }
     
     // 게시판  데이터 수정 부분(데이터 부분)
-    @RequestMapping(value="json/updateform.do", method=RequestMethod.POST)
+    @RequestMapping(value="json/update.do", method=RequestMethod.POST)
     @ResponseBody
     public String postBoardUpdate(@RequestParam Map<String,Object> paramMap){
     	// JSONSerializer => MAP은 순서가 없어서 디비에 저장된 값 순서대로 뽑아 쓰기...위해서..(?)
