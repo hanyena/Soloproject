@@ -16,6 +16,7 @@
 			}).done(function(resultData) {
 				$('.active').removeClass("active");
 				$('#' + paramData).addClass("active");
+				nowPath = paramData;				
 				//메인 화면을 교체함
 				data.mainchange(resultData);
 				//주소를 변한것처럼 사용자를 속임

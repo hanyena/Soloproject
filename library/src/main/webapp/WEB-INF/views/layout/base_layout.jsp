@@ -16,6 +16,8 @@
 	// indexOf() :  괄호 안에 문자의 시작 인덱스
 	// substring() :  괄호 안 문자열 추출 
 	nowPath = nowPath.substring(nowPath.indexOf("_")+1);
+	alert("nowPath >>>>" + nowPath);
+	
 </script>
 <tiles:insertAttribute name="static" ignore="true" />
 <tiles:insertAttribute name="pagestatic" ignore="true" />
