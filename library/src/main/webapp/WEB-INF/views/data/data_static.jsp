@@ -16,16 +16,15 @@
 			}).done(function(resultData) {
 				$('.active').removeClass("active");
 				$('#' + paramData).addClass("active");
+				//메인 화면을 교체함
 				data.mainchange(resultData);
+				//주소를 변한것처럼 사용자를 속임
 				history.pushState(null, null, paramData + ".do");
 			})
-			switch (paramData) {
-			case "recommend":
-				data.recommendInitData();
-			}
 		},
+		
 		// 추천도서 목록 화면 생성
-		recommendHtml : function(data) {
+		createhtmlRecommend : function(data) {
 			$(".recommend_ul").empty();
 			for (var i = 0; i < data.length; i++) {
 				var tag = "";
@@ -36,8 +35,7 @@
 						+ '</a>';
 				tag += '</div>'
 				tag += '<h3>'
-						+ '<a href="javascript:data.recommendviewInitData('
-						+ data[i].no + ');">' + data[i].title + '</a>'
+						+ '<a href="javascript:data.recommendviewInitData('+ data[i].no + ');">' + data[i].title + '</a>'
 						+ '</h3>';
 				tag += '<p class="author">' + data[i].author + '</p>';
 				tag += '<p class="proInfo">' + data[i].publisher + '</p>';
@@ -45,25 +43,12 @@
 				tag += '</div>';
 				tag += '</li>';
 				$(".recommend_ul").append(tag);
-			}
-			;
+			};
 		},
-		// 추천도서 데이터 불러오기
-		recommendInitData : function() {
-			$.ajax({
-				url : "${path}/data/json/recommend.do",
-				type : "POST",
-				async : false
-			}).done(function(result) {
-				console.log(result);
-// 				data.move("recommendview");
-				data.recommendHtml(result.recommend);
-			}).fail(function(d) {
-				alert("fail");
-			});
-		},
-		// 추천도서 상세페이지 화면 생성
-		recommendviewHtml : function(data) {
+		
+		createhtmlRecommendView : function(data) {
+			$(".recommendview_li").empty();
+			
 			$.ajax({
 				url : "${path}/data/recommendview.do",
 				type : "GET",
@@ -86,9 +71,33 @@
 			                tag += '</div>';
 							$(".recommendview_li").append(tag);
 						})
+		}
+		// span8부분 가져오기
+		mainchange : function(paramData) {
+			// span8의 부모(row)의 위치를 먼저 찾아놓음
+			var parent = $('#main');
+			parent.empty();
+			// 뒷부분에 ajax실행된 후 data부분을 붙여 넣음
+			parent.append(paramData);
 		},
+		
+		// 추천도서 데이터 불러오기
+		initDataRecommend : function() {
+			$.ajax({
+				url : "${path}/data/json/recommend.do",
+				type : "POST",
+				async : false
+			}).done(function(result) {
+				console.log(result);
+				data.move("recommend");
+				data.createhtmlRecommend(result.recommend);
+			}).fail(function(d) {
+				alert("fail");
+			});
+		},
+		
 		// 추천도서 상세페이지 데이터 불러오기
-		recommendviewInitData : function(no) {
+		initDataRecommendView : function(no) {
 			$.ajax({
 				url : "${path}/data/json/recommendview.do",
 				type : "POST",
@@ -98,19 +107,20 @@
 				async : false
 			}).done(function(result) {
 				console.log(result);
-				data.recommendviewHtml(result.recommend);
+				data.move("recommendview");
+				
+				
 			}).fail(function(d) {
 				alert("fail");
 			});
 		},
-		// span8부분 가져오기
-		mainchange : function(paramData) {
-			// span8의 부모(row)의 위치를 먼저 찾아놓음
-			var parent = $('#main');
-			parent.empty();
-			// 뒷부분에 ajax실행된 후 data부분을 붙여 넣음
-			parent.append(paramData);
-		}
+
+		
+		
+		
+		
+		
+		
 	}
 </script>
 <!-- 실행 부분 -->
