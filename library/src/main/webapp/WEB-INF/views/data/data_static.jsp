@@ -22,7 +22,7 @@
 		},
 		// 추천도서 목록 화면 생성
 		createHtml : function(data) {
-			$(".newbook_li").empty();
+			$(".recommendnewbook_li").empty();
 			for (var i = 0; i < data.length; i++){
 				var tag = "";
 				tag += '<div style="float: left">';
@@ -33,7 +33,7 @@
 				tag += '<p class="proInfo">'+ data[i].publisher +'</p>';
 				tag += '<p class="location">' + data[i].price + '</p>';
                 tag += '</div>';
-				$(".newbook_li").append(tag);
+				$(".recommendnewbook_li").append(tag);
 			};
 		},
 		// 추천 도서 데이터 불러오기

@@ -8,12 +8,11 @@
 	</p>
 	<!-- start: 추천관리자 -->
 	<div>
-		<ul class="newbook_ul">
-			<li class="newbook_li">
+		<ul class="newbookview_ul">
+			<li class="newbookview_li">
 				<div style="float: left">
 					<a href="#"><img src="${path}/resources/img/뻐큐.jpg"
 						style="width: 75px; height: 113px;"></a>
-
 				</div>
 				<div>
 					<h3>

@@ -15,15 +15,28 @@
 	margin-left : 6px;
 }
 
+.recommendbook_ul{
+    border-top: 2px solid #ff0000;
+}
+
+.recommendnewbook_li{
+	border-bottom: 1px solid #b7bad9;	
+}
+
 .newbook_ul{
     border-top: 2px solid #ff0000;
-    
 }
 
 .newbook_li{
 	border-bottom: 1px solid #b7bad9;	
-	
-	
+}
+
+.newbookview_ul{
+    border-top: 2px solid #ff0000;
+}
+
+.newbookview_li{
+	border-bottom: 1px solid #b7bad9;	
 }
 
 .table100{

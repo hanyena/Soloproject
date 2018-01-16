@@ -14,11 +14,8 @@
 		</div>
 		<div>
 			${data}
-			<ul class="newbook_ul">
-				<%
-					for (int i = 1; i < 6; ++i) {
-				%>
-				<li class="newbook_li"
+			<ul class="recommendbook_ul">
+				<li class="recommendnewbook_li"
 					onclick="location.href='${path}/data/recommendview.do'">
 <!-- 					<div style="float: left"> -->
 <%-- 						<a href="#"><img src="${path}/resources/img/뻐큐.jpg" --%>
@@ -32,11 +29,7 @@
 <!-- 						<p class="proInfo">출판사</p> -->
 <!-- 						<p class="location">책 코드</p> -->
 <!-- 					</div> -->
-
 				</li>
-				<%
-					}
-				%>
 
 			</ul>
 		</div>
