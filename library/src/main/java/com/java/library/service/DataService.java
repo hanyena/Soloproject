@@ -15,11 +15,19 @@ public class DataService implements DataServiceInterface {
 	
 	Map<String, Object> rstMap;
 
-	// 추천 도서 데이터 목록 가져오기
+	// 추천도서 데이터 목록 가져오기
 	@Override
 	public Map<String, Object> recommendSelect(Map<String, Object> paramMap){
 		rstMap = new HashMap<String, Object>();
 		rstMap.put("recommend", ddi.recommendSelect(paramMap));
+		return rstMap;
+	}
+
+	// 추천도서 상세페이지 데이터(1개) 가져오기
+	@Override
+	public Map<String, Object> recommendViewSelect(Map<String, Object> paramMap) {
+		rstMap = new HashMap<String, Object>();
+		rstMap.put("recommendview", ddi.recommendViewSelect(paramMap));
 		return rstMap;
 	}
 	

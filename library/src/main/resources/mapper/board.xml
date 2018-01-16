@@ -25,7 +25,6 @@
 	<!-- 게시판 전체 목록 조회 -->
 	<select id="select" parameterType="hashmap" resultType="hashmap">
       select *, DATE_FORMAT(regdate,'%X-%m-%d') as regdate2 from boardcontent 
-      
       where del_yn = 'N' ORDER BY REGDATE DESC
    </select>
 

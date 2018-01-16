@@ -20,8 +20,8 @@ import net.sf.json.JSONSerializer;
 @RequestMapping(value="/data/")
 public class DataController{
 	
-	@Autowired
-	DataServiceInterface dsi;
+   @Autowired
+   DataServiceInterface dsi;
 	
    // 신간안내 페이지 화면(타일즈)
    @RequestMapping(value="newbook.do", method=RequestMethod.GET)
@@ -52,6 +52,7 @@ public class DataController{
    // 추천도서 페이지 화면(타일즈)
    @RequestMapping(value="recommend.do", method=RequestMethod.GET)
    public ModelAndView recommend(ModelAndView mav){
+	   // 추천jsp에서 확인해보세용
 	   mav.addObject("data", "추천도서");
 	   // tiles 화면 매칭 
 	   mav.setViewName("data/data_recommend");
@@ -61,6 +62,7 @@ public class DataController{
    
    // 추천도서 페이지 데이터 불러오기
    @RequestMapping(value="json/recommend.do", method=RequestMethod.POST)
+   // 디비에서 처리된 결과를 알려주기 위해서 
    @ResponseBody
    public String getDataRecommend(@RequestParam Map<String,Object> paramMap){
  	   // JSONSerializer => MAP은 순서가 없어서 디비에 저장된 값 순서대로 뽑아 쓰기...위해서..(?)
@@ -86,17 +88,18 @@ public class DataController{
    
    // 추천도서 상세페이지 화면(타일즈)
    @RequestMapping(value="recommendview.do", method=RequestMethod.GET)
-   public String recommendView(){
-      return "data/data_recommendview";
+   public ModelAndView recommendView(ModelAndView mav){
+	   mav.setViewName("data/data_recommendview");
+	   return mav;
    }
    
    
    // 추천도서 상세페이지 데이터
    @RequestMapping(value="json/recommendview.do", method=RequestMethod.POST)
-   //디비에서 삭제했단 결과를 알려주기 위해서 
+   //디비에서 처리된 결과를 알려주기 위해서 
    @ResponseBody
-   public String getDataRecommendview(){
-      return "";
+   public String getDataRecommendview(@RequestParam Map<String,Object> paramMap){
+	   return JSONObject.fromObject(JSONSerializer.toJSON(dsi.recommendSelect(paramMap))).toString();
    }
    
    

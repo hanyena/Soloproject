@@ -16,10 +16,16 @@ public class DataDao implements DataDaoInterface {
 	@Resource(name = "sqlSession")
 	SqlSession session;
 
-	// 추천 도서 데이터 목록 가져오기
+	// 추천도서 데이터 목록 가져오기
 	@Override
 	public List<Map<String, Object>> recommendSelect(Map<String, Object> paramMap) {
-		return session.selectList(NS+"select", paramMap);
+		return session.selectList(NS+"recommendselect", paramMap);
+	}
+
+	// 추천도서 상세페이지 데이터(1개) 가져오기
+	@Override
+	public Map<String, Object> recommendViewSelect(Map<String, Object> paramMap) {
+		return session.selectOne(NS+"recommendselect", paramMap);
 	}
 	
 	
