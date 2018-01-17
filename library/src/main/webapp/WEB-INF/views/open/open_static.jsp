@@ -33,15 +33,17 @@
 				datatype : "json",
 				async : false
 			}).done(function(resultData) {
-				console.log(resultData);
 				if (resultData.result) {
 					alert(resultData.result);
+					location.href="${path}/open/list.do";
 				} else {
-					alert(paramData);
-					//주소를 변한것처럼 사용자를 속임
-					history.pushState(null, null, paramData + ".do");
+					alert("MOVE >>>>>>>>>>> : "+paramData);
+					nowPath = paramData;					
 					//메인 화면을 교체함
 					board.mainchange(resultData);
+
+					//주소를 변한것처럼 사용자를 속임
+					history.pushState(null, null, paramData + ".do");
 				}
 			})
 		},
@@ -79,7 +81,6 @@
 				type : "POST",
 				async : false
 			}).done(function(result) {
-				console.log(result);
 				board.createBoardList(result.board);
 			}).fail(function(d) {
 				alert("fail");
@@ -87,25 +88,30 @@
 		},
 		// 게시판 글 작성 
 		write : function() {
-			// #writeform의 모든 값을 가져온다
-			var formData = $('#writeform').serialize();
-			// 			 var formData = $('#writeform')[0];
-			// ck자체 들어가 있는 java script 언어
+
 			var ckeditor = CKEDITOR.instances['cont'].getData();
-			$('#cont').val(ckeditor);
-			var data = new FormData(formData);
-			if ($("#title").val() != "" && $("#cont").val() != "") {
+			$('#content').val(ckeditor);
+			
+			// #writeform의 모든 값을 가져온다
+
+			var orgFormData = $('#writeform')[0];
+			
+			var newFormData = new FormData(orgFormData);
+			console.log(newFormData);
+			
+			// ck자체 들어가 있는 java script 언어
+			if ($("#title").val() != "" && $("#content").val() != "") {
 				$.ajax({
 					url : "${path}/open/json/write.do",
 					cache : false,
 					processData : false,
-					contentType : false,
-					type : "post",
-					data : data
+				    contentType: false,
+					type : "POST",
+					data : newFormData,
+					async : false
 				}).done(function(data) {
 					console.log(data);
-					board.move("writeform");
-					// 					location.href = "${path}/open/list.do";
+					board.move("list",null);
 				}).fail(function(d) {
 					alert("fail");
 				});
@@ -184,7 +190,33 @@
 			parent.empty();
 			// 뒷부분에 ajax실행된 후 data부분을 붙여 넣음
 			parent.append(data);
+			switch(nowPath) {
+			case "writeform" : 
+			    $.getScript("https://cdn.ckeditor.com/4.7.3/full-all/ckeditor.js").done(function() {
+			        if (CKEDITOR.instances['cont']) {
+			            CKEDITOR.instances['cont'].destroy();
+			        }
+			        CKEDITOR.replace('cont', {
+			      	  customConfig: '${path}/resources/js/config.js',
+			      	  filebrowserUploadUrl: '${path}/board/fileimageUpload'
+			        });
+			    });  
+			case "modify" :
+			    $.getScript("https://cdn.ckeditor.com/4.7.3/full-all/ckeditor.js").done(function() {
+			        if (CKEDITOR.instances['cont']) {
+			            CKEDITOR.instances['cont'].destroy();
+			        }
+			        CKEDITOR.replace('cont', {
+			      	  customConfig: '${path}/resources/js/config.js',
+			      	  filebrowserUploadUrl: '${path}/board/fileimageUpload'
+			        });
+			    });  
+			case "list" :
+				board.initData();
+			}
 		}
+		
+		
 	}
 </script>
 

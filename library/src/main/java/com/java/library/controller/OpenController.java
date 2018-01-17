@@ -62,6 +62,8 @@ public class OpenController {
 	@RequestMapping(value = "json/write.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String boardWrite(@RequestParam Map<String, Object> paramMap, HttpSession session) {
+		
+		System.out.println("게시판 JSON write.do >>>> : " + paramMap);
 		// 로그인한 사용자의 세션 정보를 가져온다.
 		Map<String, Object> userSession = (Map<String, Object>) session.getAttribute("UserSession");
 		// 로그인 된 상태인 경우 paramMap에 userSession 데이터를 넣는다.
