@@ -21,7 +21,8 @@ public class HttpUtil {
 	      // JSONObject형식으로 맞춰줌
 	      jsonObject = JSONObject.fromObject(JSONSerializer.toJSON(result));
 	      // json.jsp에 $message와 매칭이 되어서 json.jsp에 jsonObject.toString() 내용을 보여줌
-	      mav.addObject("message", jsonObject.toString());		
+	      mav.addObject("message", jsonObject.toString());	
+	      System.out.println("JSON 있어요 ?");
 	      mav.setViewName("json");
 	      
 	      return mav;

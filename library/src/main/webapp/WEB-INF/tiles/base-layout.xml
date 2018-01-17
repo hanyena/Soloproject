@@ -33,5 +33,5 @@
 		<put-attribute name="url1" value="{1}"/>
 		<put-attribute name="url2" value="{2}"/>
 	</definition>
-		
+	
 </tiles-definitions>

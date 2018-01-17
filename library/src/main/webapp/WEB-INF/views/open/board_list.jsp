@@ -28,7 +28,7 @@
 			<!-- end: 자유게시판-->
 			<button type="button" id="board_write"
 				class="btn btn-default text-white bg-redred writbtn3 boardInput_button"
-				onclick="location.href='${path}/open/write.do'">쓰기</button>
+				onclick="javascipt:board.writeform();">쓰기</button>
 		</div>
 	</div>
 	<br> <br>

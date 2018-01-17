@@ -46,7 +46,7 @@
 						onclick="javascript:board.initData();'">목록</button>
 					<button type="button"
 						class="btn btn-default text-white bg-redred writbtn3 boardInput_button"
-						id="write" onclick="javascript:board.write()">작성</button>
+						id="write" onclick="javascript:board.writeform()">작성</button>
 				</div>
 			</div>
 		</form>

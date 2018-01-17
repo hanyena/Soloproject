@@ -40,10 +40,22 @@ public class OpenController {
 		return JSONObject.fromObject(JSONSerializer.toJSON(bsi.boardSelect(paramMap))).toString();
 	}
 
-	// 게시판 글쓰기 화면 부분(타일즈)
-	@RequestMapping(value = "write.do", method = RequestMethod.GET)
-	public String boardInsert(ModelAndView mav) {
-		return "open/board_write";
+	// board.move로 이동하였을때 write.do로 주소가 변하는데  실제 페이지가 없다면 500 ERROR가 발생하여 임시로 만듬
+	@RequestMapping(value = "writeform.do", method = RequestMethod.GET)
+	public String boardWriteForm(ModelAndView mav) {
+		return "redirect:/open/list.do";
+	}
+	
+	// board.move로 이동하였을때 write.do로 주소가 변하는데  실제 페이지가 없다면 500 ERROR가 발생하여 임시로 만듬
+		@RequestMapping(value = "write.do", method = RequestMethod.GET)
+		public String boardWrite(ModelAndView mav) {
+			return "redirect:/open/list.do";
+		}
+		
+	// board.move로 이동하였을때 modify.do로 주소가 변하는데  실제 페이지가 없다면 500 ERROR가 발생하여 임시로 만듬
+	@RequestMapping(value = "modify.do", method = RequestMethod.GET)
+	public String boardModifyForm(ModelAndView mav) {
+		return "redirect:/open/list.do";
 	}
 
 	// 게시판 글쓰기 데이터 부분
@@ -78,26 +90,26 @@ public class OpenController {
 		return JSONObject.fromObject(JSONSerializer.toJSON(bsi.boardDelete(paramMap))).toString();
 	}
 
-	// 게시판 데이터 수정 부분(화면부분)
-	@RequestMapping(value = "update.do", method = RequestMethod.GET)
-	public ModelAndView getBoardUpdate(ModelAndView mav, @RequestParam Map<String, Object> paramMap) {
-
-		// 아이디 값을 비교하여 수정버튼이 작동되게 하는 조건
-		Map<String, Object> rstMap = bsi.boardSelectOne(paramMap);
-		// 로그인 임의의 아이디
-		String id = "yena";
-		if (rstMap.get("member_id").equals(id)) {
-			// addObject : 화면(jsp)에 DB에서 갖고 온 데이터를 보냄
-			mav.addObject("data", rstMap);
-			// tiles대신 ajax로 jsp만 가져옴 <= 부분전환을 하기 위해
-			mav.setViewName("/open/board_update");
-		} else {
-			rstMap = new HashMap<String, Object>();
-			rstMap.put("result", "본인글이 아닙니다.");
-			mav = HttpUtil.returnJson(rstMap);
-		}
-		return mav;
-	}
+//	// 게시판 데이터 수정 부분(화면부분)
+//	@RequestMapping(value = "update.do", method = RequestMethod.GET)
+//	public ModelAndView getBoardUpdate(ModelAndView mav, @RequestParam Map<String, Object> paramMap) {
+//		
+//		// 아이디 값을 비교하여 수정버튼이 작동되게 하는 조건
+//		Map<String, Object> rstMap = bsi.boardSelectOne(paramMap);
+//		// 로그인 임의의 아이디
+//		String id = "yena";
+//		if (rstMap.get("member_id").equals(id)) {
+//			// addObject : 화면(jsp)에 DB에서 갖고 온 데이터를 보냄
+//			mav.addObject("data", rstMap);
+//			// tiles대신 ajax로 jsp만 가져옴 <= 부분전환을 하기 위해
+//			mav.setViewName("/open/board_update");
+//		} else {
+//			rstMap = new HashMap<String, Object>();
+//			rstMap.put("result", "본인글이 아닙니다.");
+//			mav = HttpUtil.returnJson(rstMap);
+//		}
+//		return mav;
+//	}
 
 	// 게시판 데이터 수정 부분(데이터 부분)
 	@RequestMapping(value = "json/update.do", method = RequestMethod.POST)
@@ -105,17 +117,38 @@ public class OpenController {
 	public String postBoardUpdate(@RequestParam Map<String, Object> paramMap) {
 		// JSONSerializer => MAP은 순서가 없어서 디비에 저장된 값 순서대로 뽑아 쓰기...위해서..(?)
 		return JSONObject.fromObject(JSONSerializer.toJSON(bsi.boardUpdate(paramMap))).toString();
-
 	}
+	
 
-	// 추천도서 페이지 사이드바 부분전환(ajax를 이용한 jsp파일 불러오기)
+	// 부분전환(ajax를 이용한 jsp파일 불러오기)
 	@RequestMapping(value = "changemain.do", method = RequestMethod.POST)
 	public ModelAndView ajaxChangeMain(ModelAndView mav, @RequestParam Map<String, Object> paramMap) {
+		System.out.println(paramMap);
 		String type = (String) paramMap.get("type");
-		if ("newbook".equalsIgnoreCase(type)) {
+		if ("list".equalsIgnoreCase(type)) {
 			mav.setViewName("/open/board_" + type);
-		} 
-		// mav.addObject("data", "추천도서");
+		} else if ("writeform".equalsIgnoreCase(type)) {
+			mav.setViewName("/open/board_" + type);
+		/** 게시판 데이터 수정 부분(화면부분) */
+		} else if ("modify".equalsIgnoreCase(type)) {
+			// 아이디 값을 비교하여 수정버튼이 작동되게 하는 조건
+			Map<String, Object> rstMap = bsi.boardSelectOne(paramMap);
+			// 로그인 임의의 아이디
+			String id = "yena";
+			System.out.println("DB HOW USER : " + rstMap);
+			if (rstMap.get("member_id").equals(id)) {
+				// addObject : 화면(jsp)에 DB에서 갖고 온 데이터를 보냄
+				mav.addObject("data", rstMap);
+				// tiles대신 ajax로 jsp만 가져옴 <= 부분전환을 하기 위해
+				mav.setViewName("/open/board_" + type);
+			} else {
+				rstMap = new HashMap<String, Object>();
+				rstMap.put("result", "본인글이 아닙니다.");
+				mav = HttpUtil.returnJson(rstMap);
+			}
+//		} else if ("".equals(type)) {
+//			mav.setViewName("/open/data_" + type);
+		}
 		return mav;
 	}
 }

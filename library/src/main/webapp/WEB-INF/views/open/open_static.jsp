@@ -1,10 +1,52 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/tag.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/tag.jsp"%>
 <!-- 변수 선언 부분	 -->
 <script type="text/javascript">
 	var board = {
+		// 자바스크립트를 이용한 화면 부분전환용 
+		move : function(paramData, param) {
+			/*
+			 {
+				"no" : no,
+			 }
+			*/
+			var json;
+			
+			if(param == null ) {
+				json = {};	
+			} else {
+				json = param;
+			}
+			// 변수 json에 키 값을 추가
+			json.type = paramData;
+			/*
+			 {
+				"no": no,
+				"type" : paramData
+			}
+			*/
+			$.ajax({
+				url : "${path}/open/changemain.do",
+				type : "POST",
+				data : json,
+				datatype : "json",
+				async : false
+			}).done(function(resultData) {
+				console.log(resultData);
+				if (resultData.result) {
+					alert(resultData.result);
+				} else {
+					alert(paramData);
+					//주소를 변한것처럼 사용자를 속임
+					history.pushState(null, null, paramData + ".do");
+					//메인 화면을 교체함
+					board.mainchange(resultData);
+				}
+			})
+		},
 		// 게시판 목록 화면생성
-		createBoardList : function(data){
+		createBoardList : function(data) {
 			$("#board tbody").empty();
 			for (var i = 0; i < data.length; i++) {
 				var tag = "";
@@ -47,34 +89,39 @@
 		write : function() {
 			// #writeform의 모든 값을 가져온다
 			var formData = $('#writeform').serialize();
-// 			 var formData = $('#writeform')[0];
+			// 			 var formData = $('#writeform')[0];
 			// ck자체 들어가 있는 java script 언어
-	     	var ckeditor = CKEDITOR.instances['cont'].getData();
-	       	$('#cont').val(ckeditor);
-	        var data = new FormData(formData);
-	        if($("#title").val()!="" && $("#cont").val()!=""){
+			var ckeditor = CKEDITOR.instances['cont'].getData();
+			$('#cont').val(ckeditor);
+			var data = new FormData(formData);
+			if ($("#title").val() != "" && $("#cont").val() != "") {
 				$.ajax({
 					url : "${path}/open/json/write.do",
 					cache : false,
-		      	  	processData : false,
-		       		contentType : false,
+					processData : false,
+					contentType : false,
 					type : "post",
 					data : data
 				}).done(function(data) {
 					console.log(data);
-					location.href = "${path}/open/list.do";
+					board.move("writeform");
+					// 					location.href = "${path}/open/list.do";
 				}).fail(function(d) {
 					alert("fail");
 				});
-	        }else{
-	        	 if($("#title").val()==null){
-	        		 alert("제목을 입력하세요");
-	        	 } else if($("#cont").val()==null){
-	        		 alert("내용을 입력하세요");
-	        	 } else{
-	        		 alert("제목 또는 내용 입력하세요");
-	        	 }
-	        }
+			} else {
+				if ($("#title").val() == null) {
+					alert("제목을 입력하세요");
+				} else if ($("#cont").val() == null) {
+					alert("내용을 입력하세요");
+				} else {
+					alert("제목 또는 내용 입력하세요");
+				}
+			}
+		},
+		// 게시판 글 작성 화면 생성
+		writeform : function(){
+			board.move("writeform", null);
 		},
 		// 게시판 클릭 시 해당 번호 값 상세내용 보여주기
 		status : function(num) {
@@ -104,24 +151,11 @@
 				board.initData();
 			})
 		},
-		// '/open/update.do'화면으로  게시글 번호(no)만 보내기 
+		// '/open/modify.do'화면으로  게시글 번호(no)만 보내기 
 		modify : function(no, type) {
-			$.ajax({
-				url : "${path}/open/update.do",
-				type : "GET",
-				// no값을 가지고 url로 보냄
-				data : {
-					// 키 : 값
-					"no" : no,
-				}
-			}).done(function(data) {
-				if (data.result) {
-					alert(data.result);
-				} else {
-					
-					board.mainchange(data);
-				}
-			})
+			board.move("modify", {
+				"no" : no
+			});
 		},
 		// 최종으로 글 수정 버튼
 		update : function() {
@@ -135,12 +169,15 @@
 			}).done(function(data) {
 				if (data.result) {
 					alert(data.result);
-					location.href = "${path}/open/list.do";
+					board.move("list", null);
+					board.initData();
 				}
 			})
 		},
 		// span8부분 가져오기
 		mainchange : function(data) {
+			alert("MAIN CHANGE >>>>>>>"+nowPath);
+			
 			// span8(id=main) 부분을 변수에 담기
 			var parent = $('#main');
 			// span8부분을 전체 비워줌
@@ -156,18 +193,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		board.initData();
-		switch(nowPath) {
-		case "write" : 
-		    $.getScript("https://cdn.ckeditor.com/4.7.3/full-all/ckeditor.js").done(function() {
-		        if (CKEDITOR.instances['cont']) {
-		            CKEDITOR.instances['cont'].destroy();
-		        }
-		        CKEDITOR.replace('cont', {
-		      	  customConfig: '${path}/resources/js/config.js',
-		      	  filebrowserUploadUrl: '${path}/board/fileimageUpload'
-		        });
-		    });  
-		}
+		alert("(document READY) >>>>>>>>>>>>>"+nowPath);
 	});
 </script>
 
