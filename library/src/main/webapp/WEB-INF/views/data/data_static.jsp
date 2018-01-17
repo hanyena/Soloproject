@@ -23,14 +23,13 @@
 				data.mainchange(resultData);
 				//주소를 변한것처럼 사용자를 속임
 				history.pushState(null, null, paramData + ".do");
-
+				//사이드바가 추천도서일 때 부분전환
 				switch (paramData) {
 				case "recommend":
 					data.initDataRecommend();
 				}
 			})
 		},
-
 		// 추천도서 목록 화면 생성
 		createhtmlRecommend : function(data) {
 			$(".recommend_ul").empty();
@@ -57,7 +56,7 @@
 				$(".recommend_ul").append(tag);
 			})
 		},
-
+		// 추천도서 상세페이지 화면 생성
 		createhtmlRecommendView : function(data) {
 			$(".recommendview_li").empty();
 			$.each(data, function(index, element) {
@@ -80,13 +79,13 @@
 		},
 		// span8부분 가져오기
 		mainchange : function(paramData) {
-			// span8의 부모(row)의 위치를 먼저 찾아놓음
+			// span8(id=main) 부분을 변수에 담기
 			var parent = $('#main');
+			// span8부분을 전체 비워줌
 			parent.empty();
 			// 뒷부분에 ajax실행된 후 data부분을 붙여 넣음
 			parent.append(paramData);
 		},
-
 		// 추천도서 데이터 불러오기
 		initDataRecommend : function() {
 			$.ajax({
@@ -99,7 +98,6 @@
 				alert("fail");
 			});
 		},
-
 		// 추천도서 상세페이지 데이터 불러오기
 		initDataRecommendView : function(no) {
 			$.ajax({
@@ -118,7 +116,6 @@
 				alert("fail");
 			});
 		},
-		
 		// 사이드바 메뉴가 선택되었을때 색상을 입힌다.
 		menuSelectCSS : function() {
 			// 해당 클릭 메뉴마다 이벤트 설정
@@ -127,9 +124,77 @@
 				nowPath = "recommend";
 			}
 			$('#' + nowPath).addClass("active");
-		
+		},
+		// 신간안내페이지 검색 시 데이터 목록 화면 생성
+		createhtmlNewbook : function(data){
+			$('#newbooklist').empty();
+			$.each(data, function(index, element) {
+				var tag = "";
+				tag += '<ul class="newbook_ul">';
+				tag += '<li class="recommend_li">';
+				tag += '<div style="float: left">';
+				tag += '<a href="#">'
+					+ '<img src="${path}/resources/img/뻐큐.jpg" style="width: 75px; height: 113px;">'
+					+ '</a>';
+				tag += '</div>';
+				tag += '<h3>' + '<a href="#">' + element.title + '</a>' + '</h3>';
+				tag += '<p class="author">' + element.author + '</p>';
+				tag += '<p class="proInfo">'+ element.publisher + '</p>';
+				tag += '<p class="location">' + element.price + '</p>';
+				tag += '</div>';
+				tag += '</li>';
+				tag += '</ul>';
+				$('#newbooklist').append(tag);
+			})
+		},
+		// 신간안내 데이터 불러오기
+		initDataNewbook : function() {
+			$.ajax({
+				url : "${path}/data/json/newbook.do",
+				type : "POST",
+				async : false
+			}).done(function(result) {
+				console.log(result);
+				data.createhtmlNewbook(result.newbook);
+			}).fail(function(d) {
+				alert("fail");
+			});
+		},
+		// 도서검색페이지 검색 시 데이터 목록 화면 생성
+		createhtmlSearch : function(data){
+			$('#searchlist').empty();
+			$.each(data, function(index, element) {
+				var tag = "";
+				tag += '<ul class="search_ul">';
+				tag += '<li class="search_li">';
+				tag += '<div style="float: left">';
+				tag += '<a href="#">'
+					+ '<img src="${path}/resources/img/뻐큐.jpg" style="width: 75px; height: 113px;">'
+					+ '</a>';
+				tag += '</div>';
+				tag += '<h3>' + '<a href="#">' + element.title + '</a>' + '</h3>';
+				tag += '<p class="author">' + element.author + '</p>';
+				tag += '<p class="proInfo">'+ element.publisher + '</p>';
+				tag += '<p class="location">' + element.price + '</p>';
+				tag += '</div>';
+				tag += '</li>';
+				tag += '</ul>';
+				$('#searchlist').append(tag);
+			})
+		},
+		// 도서검색 데이터 불러오기
+		initDataSearch : function() {
+			$.ajax({
+				url : "${path}/data/json/search.do",
+				type : "POST",
+				async : false
+			}).done(function(result) {
+				console.log(result);
+				data.createhtmlSearch(result.search);
+			}).fail(function(d) {
+				alert("fail");
+			});
 		}
-
 	}
 </script>
 <!-- 실행 부분 -->

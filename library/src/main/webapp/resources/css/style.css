@@ -428,7 +428,7 @@ html[xmlns] .slides {display: block;}
 .icons-box h3 {
 	margin: 0 auto;
 	padding-top: 10px;
-	border-bottom: 3px double #f6f6f6;
+/* 	border-bottom: 3px double #f6f6f6; */
 	margin-bottom: 10px;
 }
 

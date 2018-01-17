@@ -33,18 +33,18 @@
 	</div>
 	<br> <br>
 	<!-- 검색기능  -->
-	<form class="boardright">
-		<div>
-			<select id="board_keyField" name="keyField" class="form-control"
-				style=>
-				<option value="ALL">전체</option>
-				<option value="WRITER">이름</option>
-				<option value="TITLE">제목</option>
-			</select> <input id="board_keyWord" type="text" size="16" name="KeyWord"
-				id="KeyWord" class="form-control" placeholder="Search for...">
-			<input id="board_search" type="submit" value="검색"
-				style="display: inline-block;"> <input type="hidden"
-				name="page" value="0">
-		</div>
-	</form>
+<!-- 	<form class="boardright"> -->
+<!-- 		<div> -->
+<!-- 			<select id="board_keyField" name="keyField" class="form-control" -->
+<!-- 				style=> -->
+<!-- 				<option value="ALL">전체</option> -->
+<!-- 				<option value="WRITER">이름</option> -->
+<!-- 				<option value="TITLE">제목</option> -->
+<!-- 			</select> <input id="board_keyWord" type="text" size="16" name="KeyWord" -->
+<!-- 				id="KeyWord" class="form-control" placeholder="Search for..."> -->
+<!-- 			<input id="board_search" type="submit" value="검색" -->
+<!-- 				style="display: inline-block;"> <input type="hidden" -->
+<!-- 				name="page" value="0"> -->
+<!-- 		</div> -->
+<!-- 	</form> -->
 </div>

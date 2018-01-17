@@ -9,6 +9,7 @@
 <script src="${path}/resources/js/slider.js"></script>
 <script defer="defer" src="${path}/resources/js/custom.js"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<script src="${path}/resources/ckeditor/ckeditor.js"></script>
 <!-- end: Java Script -->
 <link href="${path}/resources/css/bootstrap2.css" rel="stylesheet">
 <link href="${path}/resources/css/guide.css" rel="stylesheet">

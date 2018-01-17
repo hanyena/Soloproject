@@ -5,6 +5,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,49 +30,40 @@ public class DataController {
 
 	// 신간안내 페이지 화면(타일즈)
 	@RequestMapping(value = "newbook.do", method = RequestMethod.GET)
-	public String newbook() {
-		return "data/data_newbook";
+	public ModelAndView newbook(ModelAndView mav){
+		mav.setViewName("data/data_newbook");
+		return mav;
 	}
 
+	
 	// 신간안내 페이지 데이터
 	@RequestMapping(value = "json/newbook.do", method = RequestMethod.POST)
+	// 디비에서 처리된 결과를 알려주기 위해서
 	@ResponseBody
-	public String getDataNewbook() {
-		return "";
+	public String getDataNewbook(@RequestParam Map<String, Object> paramMap){
+		return JSONObject.fromObject(JSONSerializer.toJSON(dsi.newbookSelect(paramMap))).toString();
 	}
 
-	// 도서검색 페이지 화면(타일즈)
-	@RequestMapping(value = "search.do", method = RequestMethod.GET)
-	public String search() {
-		return "data/data_search";
-	}
-
-	// 도서검색 페이지 데이터
-	@RequestMapping(value = "json/search.do", method = RequestMethod.POST)
-	@ResponseBody
-	public String getDataSearch() {
-		return "";
-	}
-
+	
 	// 추천도서 페이지 화면(타일즈)
 	@RequestMapping(value = "recommend.do", method = RequestMethod.GET)
 	public ModelAndView recommend(ModelAndView mav) {
 		// 추천jsp에서 확인해보세용
-		mav.addObject("data", "추천도서");
+//		mav.addObject("data", "추천도서");
 		// tiles 화면 매칭
 		mav.setViewName("data/data_recommend");
 		return mav;
 	}
 
+	
 	// 추천도서 페이지 데이터 불러오기
 	@RequestMapping(value = "json/recommend.do", method = RequestMethod.POST)
-	// 디비에서 처리된 결과를 알려주기 위해서
 	@ResponseBody
 	public String getDataRecommend(@RequestParam Map<String, Object> paramMap) {
 		// JSONSerializer => MAP은 순서가 없어서 디비에 저장된 값 순서대로 뽑아 쓰기...위해서..(?)
-		System.out.println(paramMap);
 		return JSONObject.fromObject(JSONSerializer.toJSON(dsi.recommendSelect(paramMap))).toString();
 	}
+	
 
 	// 추천도서 페이지 사이드바 부분전환(ajax를 이용한 jsp파일 불러오기)
 	@RequestMapping(value = "changemain.do", method = RequestMethod.POST)
@@ -86,10 +78,11 @@ public class DataController {
 		} else if ("recommendview".equals(type)) {
 			mav.setViewName("/data/data_" + type);
 		}
-		mav.addObject("data", "추천도서");
+//		mav.addObject("data", "추천도서");
 		return mav;
 	}
 
+	
 	// 추천도서 상세페이지 화면(타일즈)
 	@RequestMapping(value = "recommendview.do", method = RequestMethod.GET)
 	public ModelAndView recommendView(ModelAndView mav) {
@@ -99,11 +92,25 @@ public class DataController {
 
 	// 추천도서 상세페이지 데이터
 	@RequestMapping(value = "json/recommendview.do", method = RequestMethod.POST)
-	// 디비에서 처리된 결과를 알려주기 위해서
 	@ResponseBody
 	public String getDataRecommendview(@RequestParam Map<String, Object> paramMap) {
-
 		return JSONObject.fromObject(JSONSerializer.toJSON(dsi.recommendSelect(paramMap))).toString();
+	}
+	
+	
+	// 도서검색 페이지 화면(타일즈)
+	@RequestMapping(value = "search.do", method = RequestMethod.GET)
+	public ModelAndView search(ModelAndView mav) {
+		mav.setViewName("data/data_search");
+		return mav;
+	}
+
+	
+	// 도서검색 페이지 데이터
+	@RequestMapping(value = "json/search.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String getDataSearch(@RequestParam Map<String, Object> paramMap) {
+		return JSONObject.fromObject(JSONSerializer.toJSON(dsi.searchSelect(paramMap))).toString();
 	}
 
 }

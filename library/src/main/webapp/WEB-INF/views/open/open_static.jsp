@@ -47,16 +47,33 @@
 		write : function() {
 			// #writeform의 모든 값을 가져온다
 			var formData = $('#writeform').serialize();
-			$.ajax({
-				url : "${path}/open/json/write.do",
-				type : "post",
-				data : formData
-			}).done(function(data) {
-				console.log(data);
-				location.href = "${path}/open/list.do";
-			}).fail(function(d) {
-				alert("fail");
-			});
+			// ck자체 들어가 있는 java script 언어
+	     	var ckeditor = CKEDITOR.instances['CONT'].getData();
+	       	$('#cont').val(ckeditor);
+	        var data = new FormData(formData);
+	        if($("#title").val()!="" && $("#cont").val()!=""){
+				$.ajax({
+					url : "${path}/open/json/write.do",
+					cache : false,
+		      	  	processData : false,
+		       		contentType : false,
+					type : "post",
+					data : data
+				}).done(function(data) {
+					console.log(data);
+					location.href = "${path}/open/list.do";
+				}).fail(function(d) {
+					alert("fail");
+				});
+	        }else{
+	        	 if($("#title").val()==null){
+	        		 alert("제목을 입력하세요");
+	        	 } else if($("#cont").val()==null){
+	        		 alert("내용을 입력하세요");
+	        	 } else{
+	        		 alert("제목 또는 내용 입력하세요");
+	        	 }
+	        }
 		},
 		// 게시판 클릭 시 해당 번호 값 상세내용 보여주기
 		status : function(num) {
@@ -120,6 +137,7 @@
 				}
 			})
 		},
+		// span8부분 가져오기
 		mainchange : function(data) {
 			// span8(id=main) 부분을 변수에 담기
 			var parent = $('#main');
@@ -136,6 +154,15 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		board.initData();
+		$.getScript("https://cdn.ckeditor.com/4.7.3/full-all/ckeditor.js").done(function() {
+	        if (CKEDITOR.instances['CONT']) {
+	            CKEDITOR.instances['CONT'].destroy();
+	        }
+	        CKEDITOR.replace('CONT', {
+	      	  customConfig: '${path}/resources/js/config.js'
+// 	      	  filebrowserUploadUrl: '${path}/upload'
+	        });
+	    }); 
 
 	});
 </script>

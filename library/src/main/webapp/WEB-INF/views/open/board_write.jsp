@@ -27,11 +27,11 @@
 				</div>
 			</div>
 
-			<div class="form-group">
-				<label for="TYPE" class="col-xs-6 control-label">분류</label>
-				<!-- 스크롤바 사용 -->
-				<div class="col-xs-6"></div>
-			</div>
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="TYPE" class="col-xs-6 control-label">분류</label> -->
+<!-- 				스크롤바 사용 -->
+<!-- 				<div class="col-xs-6"></div> -->
+<!-- 			</div> -->
 			<div class="form-group">
 				<label for="cont" class="col-xs-6 control-label">내용</label>
 				<div class="col-xs-6">
