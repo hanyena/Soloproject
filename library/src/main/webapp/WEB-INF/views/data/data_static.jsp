@@ -6,6 +6,7 @@
 	var data = {
 		// 자료마당 사이드바 부분전환 화면
 		move : function(paramData) {
+			console.log(paramData);
 			$.ajax({
 				url : "${path}/data/changemain.do",
 				type : "POST",
@@ -14,9 +15,10 @@
 				},
 				async : false
 			}).done(function(resultData) {
+				console.log("URL MOVE : "+paramData);
 				$('.active').removeClass("active");
 				$('#' + paramData).addClass("active");
-				nowPath = paramData ;				
+// 				nowPath = paramData ;				
 				//메인 화면을 교체함
 				data.mainchange(resultData);
 				//주소를 변한것처럼 사용자를 속임
@@ -90,7 +92,6 @@
 			$.ajax({
 				url : "${path}/data/json/recommend.do",
 				type : "POST",
-				async : false
 			}).done(function(result) {
 				console.log(result);
 				data.createhtmlRecommend(result.recommend);
@@ -109,12 +110,10 @@
 				},
 				async : false
 			}).done(function(result) {
-				console.log(result);
 				//상세페이지 레이아웃을 가져옴. 
 				data.move("recommendview");
-				data.createhtmlRecommendView(result.recommend);
-				alert(nowPath);
 				data.menuSelectCSS();
+				data.createhtmlRecommendView(result.recommend);
 			}).fail(function(d) {
 				alert("fail");
 			});
