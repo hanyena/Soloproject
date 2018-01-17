@@ -43,7 +43,7 @@
 				<div class="col-xs-3">
 					<button type="button"
 						class="btn text-white bg-redred writbtn3 boardInput_button"
-						onclick="location.href='javascript:history.go(-1)'">목록</button>
+						onclick="javascript:board.initData();'">목록</button>
 					<button type="button"
 						class="btn btn-default text-white bg-redred writbtn3 boardInput_button"
 						id="write" onclick="javascript:board.write()">작성</button>

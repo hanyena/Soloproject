@@ -4,7 +4,7 @@
 <script type="text/javascript">
 	var board = {
 		// 게시판 목록 화면생성
-		createHtml : function(data){
+		createBoardList : function(data){
 			$("#board tbody").empty();
 			for (var i = 0; i < data.length; i++) {
 				var tag = "";
@@ -38,7 +38,7 @@
 				async : false
 			}).done(function(result) {
 				console.log(result);
-				board.createHtml(result.board);
+				board.createBoardList(result.board);
 			}).fail(function(d) {
 				alert("fail");
 			});
@@ -47,8 +47,9 @@
 		write : function() {
 			// #writeform의 모든 값을 가져온다
 			var formData = $('#writeform').serialize();
+// 			 var formData = $('#writeform')[0];
 			// ck자체 들어가 있는 java script 언어
-	     	var ckeditor = CKEDITOR.instances['CONT'].getData();
+	     	var ckeditor = CKEDITOR.instances['cont'].getData();
 	       	$('#cont').val(ckeditor);
 	        var data = new FormData(formData);
 	        if($("#title").val()!="" && $("#cont").val()!=""){
@@ -117,6 +118,7 @@
 				if (data.result) {
 					alert(data.result);
 				} else {
+					
 					board.mainchange(data);
 				}
 			})
@@ -154,16 +156,18 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		board.initData();
-		$.getScript("https://cdn.ckeditor.com/4.7.3/full-all/ckeditor.js").done(function() {
-	        if (CKEDITOR.instances['CONT']) {
-	            CKEDITOR.instances['CONT'].destroy();
-	        }
-	        CKEDITOR.replace('CONT', {
-	      	  customConfig: '${path}/resources/js/config.js'
-// 	      	  filebrowserUploadUrl: '${path}/upload'
-	        });
-	    }); 
-
+		switch(nowPath) {
+		case "write" : 
+		    $.getScript("https://cdn.ckeditor.com/4.7.3/full-all/ckeditor.js").done(function() {
+		        if (CKEDITOR.instances['cont']) {
+		            CKEDITOR.instances['cont'].destroy();
+		        }
+		        CKEDITOR.replace('cont', {
+		      	  customConfig: '${path}/resources/js/config.js',
+		      	  filebrowserUploadUrl: '${path}/board/fileimageUpload'
+		        });
+		    });  
+		}
 	});
 </script>
 

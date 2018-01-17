@@ -1,10 +1,13 @@
 CKEDITOR.editorConfig = function( config ) {
 	config.language = 'ko';
-	config.uiColor = '#b22222';
-	config.height = 300;
+	config.uiColor = '#EEEEEE';
 	config.toolbarCanCollapse = true; 
 //    config.filebrowserUploadUrl = '/yumyum/upload';
-    
+
+	config.extraPlugins = 'autogrow';
+	config.autoGrow_minHeight = 200;
+	config.autoGrow_maxHeight = 500;
+	config.autoGrow_bottomSpace = 50;
     config.toolbarGroups = [ { name: 'document',  groups: [ 'mode' ] }, 
                              { name: 'clipboard', groups: [ 'clipboard', 'undo' ] }, 
                              { name: 'editing',   groups: [ 'find', 'selection', 'spellchecker' ] },
