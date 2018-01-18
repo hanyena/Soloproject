@@ -128,7 +128,8 @@ public class BoardService implements BoardServiceInterface {
 		System.out.println(path);
 		System.out.println(path.indexOf(".metadata"));
 		if(path.indexOf(".metadata") > -1){
-			path = "C:/Users/GD/git/Soloproject/library/src/main/webapp/" + path2;
+//			path = "C:/Users/GD/git/Soloproject/library/src/main/webapp/" + path2;
+			path = "E:/git/library-yena/library/src/main/webapp/" +path2;
 			System.out.println(path);
 		}
 		
