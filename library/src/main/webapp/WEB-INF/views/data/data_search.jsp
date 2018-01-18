@@ -15,8 +15,7 @@
 			<tr>
 				<th><label for="">정렬조건</label></th>
 				<td><select id="" name="">
-						<option value="발행연도" selected="selected">발행연도</option>
-						<option value="도서명">도서명</option>
+						<option value="도서명" selected="selected">도서명</option>
 						<option value="저자">저자</option>
 						<option value="출판사">출판사</option>
 				</select> <select id="" name="">
@@ -33,25 +32,25 @@
 					</select>
 				</td>
 			</tr>
-			<tr>
-				<th><label for="">본문언어</label></th>
-				<td>
-					<select id="" name="">
-						<option value="전체" selected="selected">전체</option>
-						<option value="한국어">한국어</option>
-						<option value="영어">영어</option>
-						<option value="중국어">중국어</option>
-					</select>
-				</td>
-				<th><label for="">요약문언어</label></th>
-				<td>
-					<select id="" name="">
-						<option value="전체" selected="selected">전체</option>
-						<option value="한국어">한국어</option>
-						<option value="영어">영어</option>
-					</select>
-				</td>
-			</tr>
+<!-- 			<tr> -->
+<!-- 				<th><label for="">본문언어</label></th> -->
+<!-- 				<td> -->
+<!-- 					<select id="" name=""> -->
+<!-- 						<option value="전체" selected="selected">전체</option> -->
+<!-- 						<option value="한국어">한국어</option> -->
+<!-- 						<option value="영어">영어</option> -->
+<!-- 						<option value="중국어">중국어</option> -->
+<!-- 					</select> -->
+<!-- 				</td> -->
+<!-- 				<th><label for="">요약문언어</label></th> -->
+<!-- 				<td> -->
+<!-- 					<select id="" name=""> -->
+<!-- 						<option value="전체" selected="selected">전체</option> -->
+<!-- 						<option value="한국어">한국어</option> -->
+<!-- 						<option value="영어">영어</option> -->
+<!-- 					</select> -->
+<!-- 				</td> -->
+<!-- 			</tr> -->
 			<tr>
 				<th><label for="">발행년도</label></th>
 				<td>
@@ -70,7 +69,6 @@
 			</tr>
 		</table>
 		
-
 
 		<!-- start: 도서 검색 기능-->
 		<form class="col-md-12">

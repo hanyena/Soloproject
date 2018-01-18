@@ -58,7 +58,7 @@
 <%-- 				<%for (int i = 1; i < 11; ++i) {%> --%>
 <!-- 					<li class="newbook_li"> -->
 <!-- 						<div style="float: left"> -->
-<%-- 							<a href="#"><img src="${path}/resources/img/뻐큐.jpg" style="width: 75px; height: 113px;"></a> --%>
+<%-- 							<a href="#"><img src="${path}/resources/img/fuck.jpg" style="width: 75px; height: 113px;"></a> --%>
 <!-- 						</div> -->
 <!-- 						<div> -->
 <!-- 							<h3> -->

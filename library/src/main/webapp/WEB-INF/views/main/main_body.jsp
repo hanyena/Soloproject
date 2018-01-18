@@ -9,16 +9,16 @@
 			<p>책은 마음의 양식....낄낄</p>
 			<a href="#" class="da-link"></a>
 			<div class="da-img">
-				<img src="resources/img/banner/배너1.jpg">
+				<img src="resources/img/banner/banner1.jpg">
 			</div>
 			<div class="da-img">
-				<img src="resources/img/banner/배너2.jpg">
+				<img src="resources/img/banner/banner2.jpg">
 			</div>
 			<div class="da-img">
-				<img src="resources/img/banner/배너3.jpg">
+				<img src="resources/img/banner/banner3.jpg">
 			</div>
 			<div class="da-img">
-				<img src="resources/img/banner/배너4.jpg">
+				<img src="resources/img/banner/banner4.jpg">
 			</div>
 		</div>
 
@@ -91,7 +91,7 @@
 					<ul>
 						<li>
 							<div style="float: left">
-								<a href="${path}/data/recommend.do"><img src="${path}/resources/img/뻐큐.jpg" style="width: 75px; height: 113px;"></a>
+								<a href="${path}/data/recommend.do"><img src="${path}/resources/img/fuck.jpg" style="width: 75px; height: 113px;"></a>
 							</div>
 							<div>
 							<h3>

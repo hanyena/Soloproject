@@ -11,9 +11,11 @@
 				"no" : no,
 			 }
 			*/
+			// ajax의 data(json 형식) 변수 선언 
 			var json;
 			
 			if(param == null ) {
+				// null값일 때 빈 객체만 넣어줌
 				json = {};	
 			} else {
 				json = param;
@@ -37,13 +39,12 @@
 					alert(resultData.result);
 					location.href="${path}/open/list.do";
 				} else {
-					alert("MOVE >>>>>>>>>>> : "+paramData);
-					nowPath = paramData;					
-					//메인 화면을 교체함
-					board.mainchange(resultData);
-
+// 					alert("MOVE >>>>>>>>>>> : "+paramData);
+					nowPath = paramData;		
 					//주소를 변한것처럼 사용자를 속임
 					history.pushState(null, null, paramData + ".do");
+					//메인 화면을 교체함
+					board.mainchange(resultData);
 				}
 			})
 		},
@@ -88,19 +89,15 @@
 		},
 		// 게시판 글 작성 
 		write : function() {
-
+			// ck자체 들어가 있는 java script 언어
 			var ckeditor = CKEDITOR.instances['cont'].getData();
-			$('#content').val(ckeditor);
-			
+			// textarae의 name
+			$('#cont').val(ckeditor);
 			// #writeform의 모든 값을 가져온다
-
 			var orgFormData = $('#writeform')[0];
-			
 			var newFormData = new FormData(orgFormData);
 			console.log(newFormData);
-			
-			// ck자체 들어가 있는 java script 언어
-			if ($("#title").val() != "" && $("#content").val() != "") {
+			if ($("#title").val() != "" && $("#cont").val() != ""){
 				$.ajax({
 					url : "${path}/open/json/write.do",
 					cache : false,
@@ -111,6 +108,7 @@
 					async : false
 				}).done(function(data) {
 					console.log(data);
+					// 글쓰기 입력 완료 후 list.do로 부분전환이동
 					board.move("list",null);
 				}).fail(function(d) {
 					alert("fail");
@@ -165,16 +163,24 @@
 		},
 		// 최종으로 글 수정 버튼
 		update : function() {
+			// ck자체 들어가 있는 java script 언어
+			var ckeditor = CKEDITOR.instances['cont'].getData();
+			$('#cont').val(ckeditor);
 			// #updateform의 모든 값을 가져온다
-			var formData = $('#updateform').serialize();
+			var orgFormData = $('#updateform')[0];
+			var newFormData = new FormData(orgFormData);
 			$.ajax({
 				url : "${path}/open/json/update.do",
+				cache : false,
+				processData : false,
+			    contentType: false,
 				type : "POST",
-				// formData를 가지고 url로 보냄
-				data : formData
+				// newFormData를 가지고 url로 보냄
+				data : newFormData
 			}).done(function(data) {
 				if (data.result) {
 					alert(data.result);
+					// 글 수정 완료시 list.do로 부분전환으로 이동
 					board.move("list", null);
 					board.initData();
 				}
@@ -182,14 +188,14 @@
 		},
 		// span8부분 가져오기
 		mainchange : function(data) {
-			alert("MAIN CHANGE >>>>>>>"+nowPath);
-			
+// 			alert("MAIN CHANGE >>>>>>>"+nowPath);
 			// span8(id=main) 부분을 변수에 담기
 			var parent = $('#main');
 			// span8부분을 전체 비워줌
 			parent.empty();
 			// 뒷부분에 ajax실행된 후 data부분을 붙여 넣음
 			parent.append(data);
+			// jsp파일에 해당될 때마다 실행되는 함수들
 			switch(nowPath) {
 			case "writeform" : 
 			    $.getScript("https://cdn.ckeditor.com/4.7.3/full-all/ckeditor.js").done(function() {
@@ -197,8 +203,8 @@
 			            CKEDITOR.instances['cont'].destroy();
 			        }
 			        CKEDITOR.replace('cont', {
-			      	  customConfig: '${path}/resources/js/config.js',
-			      	  filebrowserUploadUrl: '${path}/board/fileimageUpload'
+			      	  customConfig: '/resources/js/config.js',
+			      	  filebrowserUploadUrl: '/open/fileimageUpload'
 			        });
 			    });  
 			case "modify" :
@@ -207,16 +213,14 @@
 			            CKEDITOR.instances['cont'].destroy();
 			        }
 			        CKEDITOR.replace('cont', {
-			      	  customConfig: '${path}/resources/js/config.js',
-			      	  filebrowserUploadUrl: '${path}/board/fileimageUpload'
+			      	  customConfig: '/resources/js/config.js',
+			      	  filebrowserUploadUrl: '/open/fileimageUpload'
 			        });
 			    });  
 			case "list" :
 				board.initData();
 			}
 		}
-		
-		
 	}
 </script>
 
@@ -225,7 +229,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		board.initData();
-		alert("(document READY) >>>>>>>>>>>>>"+nowPath);
+// 		alert("(document READY) >>>>>>>>>>>>>"+nowPath);
 	});
 </script>
 

@@ -16,8 +16,22 @@
 	// indexOf() :  괄호 안에 문자의 시작 인덱스
 	// substring() :  괄호 안 문자열 추출 
 	nowPath = nowPath.substring(nowPath.indexOf("_")+1);
-	alert("nowPath >>>>" + nowPath);
-	
+// 	alert("nowPath >>>>" + nowPath);
+	function getCookie(cname) {
+	    var name = cname + "=";
+	    var decodedCookie = decodeURIComponent(document.cookie);
+	    var ca = decodedCookie.split(';');
+	    for(var i = 0; i <ca.length; i++) {
+	        var c = ca[i];
+	        while (c.charAt(0) == ' ') {
+	            c = c.substring(1);
+	        }
+	        if (c.indexOf(name) == 0) {
+	            return c.substring(name.length, c.length);
+	        }
+	    }
+	    return "";
+	}
 </script>
 <tiles:insertAttribute name="static" ignore="true" />
 <tiles:insertAttribute name="pagestatic" ignore="true" />

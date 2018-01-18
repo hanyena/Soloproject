@@ -38,7 +38,7 @@
 				tag += '<li class="recommend_li">';
 				tag += '<div style="float: left">';
 				tag += '<a href="#">'
-					+ '<img src="${path}/resources/img/뻐큐.jpg" style="width: 75px; height: 113px;">'
+					+ '<img src="${path}/resources/img/fuck.jpg" style="width: 75px; height: 113px;">'
 					+ '</a>';
 				tag += '</div>'
 				tag += '<h3>'
@@ -63,7 +63,7 @@
 				var tag = "";
 				tag += '<div style="float: left">';
 				tag += '<a href="#">'
-						+ '<img src="${path}/resources/img/뻐큐.jpg" style="width: 75px; height: 113px;">'
+						+ '<img src="${path}/resources/img/fuck.jpg" style="width: 75px; height: 113px;">'
 						+ '</a>';
 				tag += '</div>'
 				tag += '<h3>' + '<a href="#">' + element.title
@@ -134,7 +134,7 @@
 				tag += '<li class="recommend_li">';
 				tag += '<div style="float: left">';
 				tag += '<a href="#">'
-					+ '<img src="${path}/resources/img/뻐큐.jpg" style="width: 75px; height: 113px;">'
+					+ '<img src="${path}/resources/img/fuck.jpg" style="width: 75px; height: 113px;">'
 					+ '</a>';
 				tag += '</div>';
 				tag += '<h3>' + '<a href="#">' + element.title + '</a>' + '</h3>';
@@ -169,7 +169,7 @@
 				tag += '<li class="search_li">';
 				tag += '<div style="float: left">';
 				tag += '<a href="#">'
-					+ '<img src="${path}/resources/img/뻐큐.jpg" style="width: 75px; height: 113px;">'
+					+ '<img src="${path}/resources/img/fuck.jpg" style="width: 75px; height: 113px;">'
 					+ '</a>';
 				tag += '</div>';
 				tag += '<h3>' + '<a href="#">' + element.title + '</a>' + '</h3>';

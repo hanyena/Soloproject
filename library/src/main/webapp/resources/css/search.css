@@ -17,6 +17,7 @@ select {
 
 #search_search{
 	    margin-top: -14px;
+	    margin-left: 86px;
 }
 input {
 	width: 25%;
@@ -67,7 +68,7 @@ display: inline-block;
 }
 .search_table{
 	border: 2px solid red;
-	height: 242px;
+	height: 190px;
 	padding-top: 1%;
 	padding-left: 1%;
 	padding-right: 1%;

@@ -1,11 +1,25 @@
 package com.java.library.service;
 
 import java.util.Map;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.java.library.dao.BoardDaoInterface;
 
@@ -93,6 +107,85 @@ public class BoardService implements BoardServiceInterface {
 	@Override
 	public Map<String, Object> boardSelectOne(Map<String, Object> paramMap) {
 		rstMap = bdi.boardSelectOne(paramMap);
+		return rstMap;
+	}
+
+	// ck에디터 파일업로드 부분
+	@Override
+	public Map<String, Object> boardUpload(MultipartHttpServletRequest req) {
+		rstMap = new HashMap<String, Object>();
+		String name = "";
+		String origin = "";
+		String extension = "";
+		Boolean isExtension = false;
+		String path = "";
+		String path2 = "resources/fileimageUpload/";
+		System.out.println(path2 + name);
+		int rstSuccessCnt = 0;
+		UUID uuid = UUID.randomUUID();
+		
+		path = req.getSession().getServletContext().getRealPath("/") + path2;
+		System.out.println(path);
+		System.out.println(path.indexOf(".metadata"));
+		if(path.indexOf(".metadata") > -1){
+			path = "C:/Users/GD/git/Soloproject/library/src/main/webapp/" + path2;
+			System.out.println(path);
+		}
+		
+		String[] extensions = new String[] { "jpg", "png", "gif", "jpeg" };
+		
+//		 파일 저장 부분
+		try {
+			MultipartFile file = null;
+			Iterator<String> iter = req.getFileNames();
+			while(iter.hasNext()) {
+				file = req.getFile(iter.next());
+				origin = file.getOriginalFilename();
+				extension = origin.substring(origin.lastIndexOf(".") + 1, origin.length()).toLowerCase();
+				System.out.println(extension);
+				
+				// 이미지 여부 검사
+				for(int i = 0; i < extensions.length; i++){
+					if(extensions[i].equals(extension)){
+						isExtension = true;
+					}
+				}
+				
+				// 이미지만 파일 저장
+				if(isExtension){
+					name = uuid + "." + extension;
+					byte[] bytes = file.getBytes();
+					
+					File fDir = new File(path);
+		//			 파일 경로 없을 때 폴더 생성하기
+					if(!fDir.exists()){
+						fDir.mkdirs();
+					}
+					
+					File newFile = new File(path + name);
+		//			 경로에 같은 파일이 없을때 파일 생성
+					if(!newFile.exists()){
+						OutputStream out = new FileOutputStream(newFile);
+						out.write(bytes);
+						out.close();
+					}
+					rstSuccessCnt++;
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			// 파일 저장 내용 리스트에 담기
+			if (rstSuccessCnt > 0) {
+				rstMap.put("origin", origin);
+				rstMap.put("imgUrl", "/" + path2 + name);
+				rstMap.put("rstMsg", "파일 업로드가 성공적으로 완료 되었습니다.");
+			} else if (rstSuccessCnt == 0) {
+				rstMap.put("imgUrl", "");
+				rstMap.put("rstMsg", "파일 업로드가 실패하였습니다.");
+			}
+		}
+		
 		return rstMap;
 	}
 

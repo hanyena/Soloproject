@@ -2,6 +2,11 @@ package com.java.library.service;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 public interface BoardServiceInterface {
 	
 	// 게시판 목록 가져오기
@@ -19,6 +24,8 @@ public interface BoardServiceInterface {
 	// 게시판 한 개 목록 가져오기
 	public Map<String, Object> boardSelectOne(Map<String, Object> paramMap);
 	
+	// 게시판 한 개 목록 가져오기
+	public Map<String, Object> boardUpload(MultipartHttpServletRequest req);
 	
 
 }

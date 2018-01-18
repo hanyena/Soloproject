@@ -1,8 +1,19 @@
 package com.java.library.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.java.library.service.BoardServiceInterface;
@@ -47,10 +60,10 @@ public class OpenController {
 	}
 	
 	// board.move로 이동하였을때 write.do로 주소가 변하는데  실제 페이지가 없다면 500 ERROR가 발생하여 임시로 만듬
-		@RequestMapping(value = "write.do", method = RequestMethod.GET)
-		public String boardWrite(ModelAndView mav) {
-			return "redirect:/open/list.do";
-		}
+	@RequestMapping(value = "write.do", method = RequestMethod.GET)
+	public String boardWrite(ModelAndView mav) {
+		return "redirect:/open/list.do";
+	}
 		
 	// board.move로 이동하였을때 modify.do로 주소가 변하는데  실제 페이지가 없다면 500 ERROR가 발생하여 임시로 만듬
 	@RequestMapping(value = "modify.do", method = RequestMethod.GET)
@@ -81,6 +94,84 @@ public class OpenController {
 		// JSONSerializer => MAP은 순서가 없어서 디비에 저장된 값 순서대로 뽑아 쓰기...위해서..(?)
 		return JSONObject.fromObject(JSONSerializer.toJSON(bsi.boardInsert(paramMap))).toString();
 	}
+	
+	
+	// 게시판 ck에디터 이미디 파일 업로드
+	@RequestMapping("/fileimageUpload")
+	public void imgUpload(MultipartHttpServletRequest req, HttpServletResponse res, HttpSession session, @RequestParam HashMap<String, Object> paramMap) {
+		
+//		List<String> ImgList = new ArrayList<String>();
+		
+		// 이전 이미지 업로드 쿠키 초기화 부분 
+//		Cookie[] cookies = req.getCookies();
+//		if(cookies != null){
+//			for(int i = 0; i < cookies.length; i++){
+//				if("origin".equals(cookies[i].getName())){
+//					Cookie cookie = cookies[i];
+//					System.out.println(cookie.getName());
+//					cookie.setMaxAge(0);
+//					res.addCookie(cookie);
+//				}
+//			}
+//		}
+		// 세션 초기화
+//		session.invalidate();
+//		System.out.println(session.getAttribute("origin"));
+//		if(session.getAttribute("origin") != null) {
+//			ImgList = (List<String>) session.getAttribute("origin"); 
+//		}
+		
+		Map<String, Object> resultMap = bsi.boardUpload(req);
+		System.out.println(resultMap);
+		
+		// 이미지 업로드 쿠키 생성 부분
+//		if(resultMap.get("origin") != null){
+//			System.out.println("origin : " + resultMap.get("origin"));
+//			Cookie info = new Cookie("origin", resultMap.get("origin").toString());
+//			info.setMaxAge(24*60*60);
+//			info.setPath("/");
+//			res.addCookie(info);
+//		}
+		// 세션 값 담기
+//		ImgList.add(resultMap.get("origin").toString());
+//		session.setAttribute("origin", ImgList);
+		
+		// 초기값 설정 부분
+		PrintWriter printWriter = null;
+		
+		// 리턴값 설정 부분
+		try {
+			/* ck에서 지정된 약속
+			 * <script type='text/javascript'>
+			 * 	 window.parent.CKEDITOR.tools.callFunction(
+			 * 내용	  몇건                         이미지주소         결과메세지 반환
+			 * 값	'콜백의 식별 ID 값', '파일의 URL', '전송완료 메시지'
+			 *   );</script>
+			 */
+			String printMsg = "";
+			printMsg += "<script type='text/javascript'>";
+			printMsg += "window.parent.CKEDITOR.tools.callFunction(";
+			printMsg += "'" + paramMap.get("CKEditorFuncNum") + "',"; 
+			printMsg += "'" + resultMap.get("imgUrl") + "',";
+			printMsg += "'" + resultMap.get("rstMsg") + "');";
+			printMsg += "</script>";
+			System.out.println(printMsg);
+			// 전송완료 메세지 한글 깨짐 방지
+			res.setCharacterEncoding("UTF-8");
+			// 
+			printWriter = res.getWriter();
+			printWriter.println(printMsg);
+			// flush() : 파일 남아 있는거 보내라 (마저보내라)
+			printWriter.flush(); 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			// close() : 화면 출력 객체 종료
+			printWriter.close(); 
+		}
+				
+	}
+
 
 	// 게시판 데이터 삭제 부분
 	@RequestMapping("json/delete.do")
@@ -92,26 +183,6 @@ public class OpenController {
 		return JSONObject.fromObject(JSONSerializer.toJSON(bsi.boardDelete(paramMap))).toString();
 	}
 
-//	// 게시판 데이터 수정 부분(화면부분)
-//	@RequestMapping(value = "update.do", method = RequestMethod.GET)
-//	public ModelAndView getBoardUpdate(ModelAndView mav, @RequestParam Map<String, Object> paramMap) {
-//		
-//		// 아이디 값을 비교하여 수정버튼이 작동되게 하는 조건
-//		Map<String, Object> rstMap = bsi.boardSelectOne(paramMap);
-//		// 로그인 임의의 아이디
-//		String id = "yena";
-//		if (rstMap.get("member_id").equals(id)) {
-//			// addObject : 화면(jsp)에 DB에서 갖고 온 데이터를 보냄
-//			mav.addObject("data", rstMap);
-//			// tiles대신 ajax로 jsp만 가져옴 <= 부분전환을 하기 위해
-//			mav.setViewName("/open/board_update");
-//		} else {
-//			rstMap = new HashMap<String, Object>();
-//			rstMap.put("result", "본인글이 아닙니다.");
-//			mav = HttpUtil.returnJson(rstMap);
-//		}
-//		return mav;
-//	}
 
 	// 게시판 데이터 수정 부분(데이터 부분)
 	@RequestMapping(value = "json/update.do", method = RequestMethod.POST)
@@ -153,4 +224,31 @@ public class OpenController {
 		}
 		return mav;
 	}
+	
+	
+	
+	
+	
+	
+	
+//	// 게시판 데이터 수정 부분(화면부분)
+//	@RequestMapping(value = "update.do", method = RequestMethod.GET)
+//	public ModelAndView getBoardUpdate(ModelAndView mav, @RequestParam Map<String, Object> paramMap) {
+//		
+//		// 아이디 값을 비교하여 수정버튼이 작동되게 하는 조건
+//		Map<String, Object> rstMap = bsi.boardSelectOne(paramMap);
+//		// 로그인 임의의 아이디
+//		String id = "yena";
+//		if (rstMap.get("member_id").equals(id)) {
+//			// addObject : 화면(jsp)에 DB에서 갖고 온 데이터를 보냄
+//			mav.addObject("data", rstMap);
+//			// tiles대신 ajax로 jsp만 가져옴 <= 부분전환을 하기 위해
+//			mav.setViewName("/open/board_update");
+//		} else {
+//			rstMap = new HashMap<String, Object>();
+//			rstMap.put("result", "본인글이 아닙니다.");
+//			mav = HttpUtil.returnJson(rstMap);
+//		}
+//		return mav;
+//	}
 }

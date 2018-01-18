@@ -1,8 +1,8 @@
-CKEDITOR.editorConfig = function( config ) {
+CKEDITOR.editorConfig = function(config ) {
 	config.language = 'ko';
 	config.uiColor = '#EEEEEE';
 	config.toolbarCanCollapse = true; 
-//    config.filebrowserUploadUrl = '/yumyum/upload';
+    config.filebrowserUploadUrl = 'open/fileimageUpload';
 
 	config.extraPlugins = 'autogrow';
 	config.autoGrow_minHeight = 200;
