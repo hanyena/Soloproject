@@ -55,6 +55,7 @@
 
 			<div id="main" class="span8">
 				<tiles:insertAttribute name="body" />
+				<tiles:insertAttribute name="paging" />
 			</div>
 
 		</div>

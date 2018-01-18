@@ -28,6 +28,7 @@
       where del_yn = 'N' ORDER BY REGDATE DESC
    </select>
 
+
 	<!-- 수정  -->
 	<update id="update" parameterType="hashmap">
 	  update boardcontent
@@ -40,6 +41,7 @@
 		where no = #{no}
 	</update>
 
+
 	<!-- 삭제  -->
 	<update id="delete" parameterType="hashmap">
 		update boardcontent
@@ -48,4 +50,10 @@
 		</set>
 		where no = #{no}
 	</update>
+	
+	
+	<!-- 게시글 글 총 갯수 조회  -->
+	<select id="boardcntSelect" parameterType="hashmap" resultType="int">
+		select count(*) from boardcontent where del_yn = 'N'
+	</select>
 </mapper>

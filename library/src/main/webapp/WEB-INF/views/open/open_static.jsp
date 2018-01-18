@@ -3,6 +3,9 @@
 <%@ include file="/WEB-INF/tag.jsp"%>
 <!-- 변수 선언 부분	 -->
 <script type="text/javascript">
+	var limitCnt = 10;
+	var limitPageCnt = 10;
+
 	var board = {
 		// 자바스크립트를 이용한 화면 부분전환용 
 		move : function(paramData, param) {
@@ -82,7 +85,9 @@
 				type : "POST",
 				async : false
 			}).done(function(result) {
+				console.log(result);
 				board.createBoardList(result.board);
+				util.initPaging(1,10,10,result.boardCnt);
 			}).fail(function(d) {
 				alert("fail");
 			});
@@ -230,6 +235,9 @@
 	$(document).ready(function() {
 		board.initData();
 // 		alert("(document READY) >>>>>>>>>>>>>"+nowPath);
+		if(nowPath == "list.do") {
+			util.paging(aa,a,aa,a);
+		}
 	});
 </script>
 

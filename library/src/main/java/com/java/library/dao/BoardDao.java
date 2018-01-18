@@ -47,4 +47,10 @@ public class BoardDao implements BoardDaoInterface {
 		return session.update(NS+"update", paramMap);
 	}
 
+	// 게시판 글 총 갯수
+	@Override
+	public int boardCntSelect(Map<String, Object> paramMap) {
+		return session.selectOne(NS+"boardcntSelect", paramMap);
+	}
+
 }

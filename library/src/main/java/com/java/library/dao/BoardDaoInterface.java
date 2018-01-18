@@ -20,6 +20,9 @@ public interface BoardDaoInterface {
 	
     // 게시글 1개 조회
 	public Map<String, Object> boardSelectOne(Map<String, Object> paramMap);
+
+	// 게시글 총 갯수 조회
+	public int boardCntSelect(Map<String, Object> paramMap);
 	
 	
 

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+// <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="/WEB-INF/tag.jsp"%>
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="${path}/resources/js/jquery-1.8.2.js"></script>
@@ -29,23 +29,32 @@
 <!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 <!--   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 <script type="text/javascript">
-	var call = {
-	    // 부분전환 함수
-		move : function(path) {
+var util = {
+		// 페이징 목록들 불러오기
+		initPaging : function(pageNum, pageLimitCnt, limitCnt, totalCnt){
 			$.ajax({
-				url : "${path}"+path,
-				data : {},
+				url : "${path}/api/paging.do",
 				type : "POST",
-				
-			}).done(function(data) {
-				// span8의 부모(row)의 위치를 먼저 찾아놓음
-				var parent = $('#main').parent();
-				$('#main').remove();
-				// 뒷부분에 ajax실행된 후 data부분을 붙여 넣음
-				parent.append(data);
+				data : {
+					"pageNum" : pageNum,
+					"pageLimitCnt" : pageLimitCnt,
+					"limitCnt" : limitCnt,
+					"totalCnt" : totalCnt
+				},
+				async :  false 
+			}).done(function(resultData){
+				console.log(resultData);
+				util.createHtmlPaging(resultData);
 			})
+		},
+		// 화면생성
+		createHtmlPaging : function(result) {
+			var tag = "";
+			$('#paging').empty();	
+
+			$('#paging').append(tag);	
 		}
-	}
+}
 
 </script>
 
