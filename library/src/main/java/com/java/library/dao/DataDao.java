@@ -35,6 +35,13 @@ public class DataDao implements DataDaoInterface {
 	}
 
 	
+	// 도서 데이터 총 갯수 조회 (페이징용)
+	@Override
+	public int bookCntSelect(Map<String, Object> paramMap) {
+		return session.selectOne(NS+"bookcntselect", paramMap);
+	}
+
+	
 	
 
 }

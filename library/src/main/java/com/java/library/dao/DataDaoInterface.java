@@ -13,6 +13,9 @@ public interface DataDaoInterface {
 
 	// 도서검색 데이터 목록 가져오기
 	public List<Map<String, Object>> searchSelect(Map<String, Object> paramMap);
+
+	// 도서 데이터 총 갯수 조회(페이징용)
+	public int bookCntSelect(Map<String, Object> paramMap);
 	
 
 }

@@ -91,9 +91,17 @@
 			$.ajax({
 				url : "${path}/data/json/recommend.do",
 				type : "POST",
-			}).done(function(result) {
-				console.log(result);
-				data.createhtmlRecommend(result.recommend);
+				data : {
+					"start":start,
+					"viewRow":viewRow
+				},
+				async : false
+			}).done(function(resultData) {
+				console.log(resultData);
+				data.createhtmlRecommend(resultData.recommend);
+				totCnt = resultData.bookCnt;
+				console.log(totCnt);
+				util.createHtmlPaging(resultData);
 			}).fail(function(d) {
 				alert("fail");
 			});
@@ -187,10 +195,17 @@
 			$.ajax({
 				url : "${path}/data/json/search.do",
 				type : "POST",
+// 				data : {
+// 					"start":start,
+// 					"viewRow":viewRow
+// 				},
 				async : false
-			}).done(function(result) {
-				console.log(result);
-				data.createhtmlSearch(result.search);
+			}).done(function(resultData) {
+				console.log(resultData);
+				data.createhtmlSearch(resultData.search);
+// 				totCnt = resultData.bookCnt;
+// 				console.log(totCnt);
+// 				util.createHtmlPaging(resultData);
 			}).fail(function(d) {
 				alert("fail");
 			});

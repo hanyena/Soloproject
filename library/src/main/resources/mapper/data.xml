@@ -8,8 +8,13 @@
 	<select id = "recommendselect" parameterType="hashmap" resultType="hashmap">
 		select * from library
 		<if test="no != null ">
-		   where del_yn = 'N' and no = #{no}
+		   where del_yn = 'N' and no = #{no} limit ${start}, ${viewRow}
 		</if>
+	</select>
+	
+	
+	<select id = "bookcntselect"  parameterType="hashmap" resultType="int">
+		select count(*) from library where del_yn = 'N' 
 	</select>
 	
 	

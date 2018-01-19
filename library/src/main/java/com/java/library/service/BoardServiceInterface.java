@@ -24,7 +24,7 @@ public interface BoardServiceInterface {
 	// 게시판 한 개 목록 가져오기
 	public Map<String, Object> boardSelectOne(Map<String, Object> paramMap);
 	
-	// 게시판 한 개 목록 가져오기
+	// 게시판 파일 업로드 
 	public Map<String, Object> boardUpload(MultipartHttpServletRequest req);
 	
 
