@@ -3,8 +3,7 @@
 <%@ include file="/WEB-INF/tag.jsp"%>
 <!-- 변수 선언 부분	 -->
 <script type="text/javascript">
-	var limitCnt = 10;
-	var limitPageCnt = 10;
+	
 
 	var board = {
 		// 자바스크립트를 이용한 화면 부분전환용 
@@ -83,13 +82,17 @@
 			$.ajax({
 				url : "${path}/open/json/list.do",
 				type : "POST",
+				data : {
+					"start":start,
+					"viewRow":viewRow
+				},
 				async : false
-			}).done(function(result) {
-				console.log(result);
-				board.createBoardList(result.board);
-				util.initPaging(1,10,10,result.boardCnt);
-				
-				
+			}).done(function(resultData) {
+				console.log(resultData);
+				board.createBoardList(resultData.board);
+				totCnt = resultData.boardCnt;
+				console.log(totCnt);
+				util.createHtmlPaging(resultData);
 			}).fail(function(d) {
 				alert("fail");
 			});

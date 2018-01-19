@@ -36,6 +36,7 @@ public class BoardService implements BoardServiceInterface {
 	public Map<String, Object> boardSelect(Map<String, Object> paramMap) {
 		rstMap = new HashMap<String, Object>();
 		rstMap.put("board", bdi.boardSelect(paramMap));
+		// 페이징하기 위한 게시물 총 갯수
 		rstMap.put("boardCnt", bdi.boardCntSelect(paramMap));
 		return rstMap;
 	}
