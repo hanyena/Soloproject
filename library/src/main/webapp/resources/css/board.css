@@ -48,3 +48,11 @@
     margin-top: -8px;
     margin-right: 3px;
 }
+
+
+.atag_a{
+	display : inline-block;
+	margin-right : 10px;
+	font-weight: bold;
+	font-size : 18px;
+}

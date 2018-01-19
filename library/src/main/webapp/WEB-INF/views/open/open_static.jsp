@@ -88,10 +88,10 @@
 				},
 				async : false
 			}).done(function(resultData) {
-				console.log(resultData);
+// 				console.log(resultData);
 				board.createBoardList(resultData.board);
 				totCnt = resultData.boardCnt;
-				console.log(totCnt);
+// 				console.log(totCnt);
 				util.createHtmlPaging(resultData);
 			}).fail(function(d) {
 				alert("fail");
