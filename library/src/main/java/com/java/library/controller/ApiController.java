@@ -24,8 +24,10 @@ public class ApiController{
 		
 		Map<String,Object> rstPaging = Util.paging(pageNum, pageLimitCnt, limitCnt, totalCnt);
 		JSONObject rstObj = JSONObject.fromObject(JSONSerializer.toJSON(rstPaging));
+		System.out.println(rstObj.toString());
 		return rstObj.toString();
 	}
 	
 
 }
+

@@ -8,8 +8,4 @@ var book = {
 </script>
 <!-- 실행 부분 -->
 <script type="text/javascript">
-// 	$(document).ready(function() {
-// 		data.initData();
-		
-// 	});
 </script>

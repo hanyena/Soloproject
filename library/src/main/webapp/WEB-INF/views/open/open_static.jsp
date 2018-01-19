@@ -88,6 +88,8 @@
 				console.log(result);
 				board.createBoardList(result.board);
 				util.initPaging(1,10,10,result.boardCnt);
+				
+				
 			}).fail(function(d) {
 				alert("fail");
 			});
