@@ -10,6 +10,7 @@
 	<typeAliases>
 		<!-- 빈클래스 별명 (Alias) -->
 		<!-- <typeAlias type="" alias=""/> -->
+		<typeAlias type="com.java.library.util.social.naver.NaverProfile" alias="naverProfile"/>
 	</typeAliases>
 
 	<mappers>

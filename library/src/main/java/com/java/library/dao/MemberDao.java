@@ -10,6 +10,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.java.library.util.social.naver.NaverProfile;
+
 @Repository
 public class MemberDao implements MemberDaoInterface {
 	
@@ -18,10 +20,25 @@ public class MemberDao implements MemberDaoInterface {
 	@Autowired
 	SqlSession session;
 
+	// 로그인한 회원정보를 삽입
 	@Override
-	public Map<String, Object> getMemberOne(Map<String, Object> paramMap) {
-		return session.selectOne(NS+"getMemberOne",paramMap);
+	public int insertMember(NaverProfile nProfile) {
+		 return session.insert(NS + "insert", nProfile);
 	}
+
+	// 로그인한 회원정보를 수정
+	@Override
+	public int updateMember(NaverProfile nProfile) {
+		return session.update(NS + "update", nProfile);
+		
+	}
+
+	@Override
+	public NaverProfile selectMember(NaverProfile nProfile) {
+		return session.selectOne(NS + "select", nProfile);
+	}
+
+
 
 
 }

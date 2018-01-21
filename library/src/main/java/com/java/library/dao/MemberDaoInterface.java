@@ -1,11 +1,18 @@
 package com.java.library.dao;
 
-import java.util.Map;
+
+import com.java.library.util.social.naver.NaverProfile;
 
 public interface MemberDaoInterface {
 
-	Map<String, Object> getMemberOne(Map<String, Object> paramMap);
-	
-	
+	// 로그인한 회원정보를 삽입
+	public int insertMember(NaverProfile nProfile);
+
+	// 로그인한 회원정보를 수정
+	public int updateMember(NaverProfile nProfile);
+
+	// 회원 정보 가져오기
+	public NaverProfile selectMember(NaverProfile nProfile);
+
 
 }

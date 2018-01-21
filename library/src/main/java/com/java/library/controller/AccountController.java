@@ -39,7 +39,7 @@ public class AccountController{
 		Map<String,Object> userSessionMap = new HashMap<String,Object>();
 		paramMap.put("id", "yena");
 		paramMap.put("password", "yena456");
-		session.setAttribute("UserSession", msi.getMember(paramMap));
+//		session.setAttribute("UserSession", msi.getMember(paramMap));
 		String plainString = JSONObject.fromObject(JSONSerializer.toJSON(session.getAttribute("UserSession"))).toString();
 		String convertString = plainString.trim();
 		System.out.println(plainString);
