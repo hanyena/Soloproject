@@ -11,6 +11,7 @@
 		<h3>도서검색</h3>
 	</div>
 	
+	<!--form안에 select태그가 있으면 name값을 키 값으로 option선택한 값이 자동 선택됨  -->
 	<form id="librarySearch" name="librarySearch">
 		<!-- start: 조건검색테이블-->
 		<div class="search_table">
