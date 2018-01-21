@@ -169,9 +169,12 @@ public class NaverProfile {
 	 */
 	public static void memberDataReset(JSONObject obj, HttpSession session) {
 		//https://nid.naver.com/oauth2.0/token?grant_type=refresh_token&client_id=jyvqXeaVOVmV&client_secret=527300A0_COq1_XV33cf&refresh_token=c8ceMEJisO4Se7uGCEYKK1p52L93bHXLn
-		//신규회원인경우
-		if(obj != null && NaverProfile.getSessionNaverProfile(session) != null) {
-			NaverProfile nProfile = new NaverProfile();
+		if(obj != null) {
+			NaverProfile nProfile = getSessionNaverProfile(session);
+			
+			if(nProfile == null) {
+				nProfile = new NaverProfile();
+			}
 			
 			if(StringUtils.isNotEmpty(obj.getString("nickname"))) {
 				nProfile.setNickName(obj.getString("nickname"));
