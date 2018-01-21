@@ -59,9 +59,9 @@
 						}else if(nowPath == "list"){
 							board.initData();
 						}else if(nowPath == "search"){
-							board.initDataSearch();
+							data.initDataSearch();
 						}else if(nowPath == "newbook"){
-							board.initDataNewbook();
+							data.initDataNewbook();
 						}
 					   // 0.1초 후에 실행 하기 위하여 setTimeout() 함수를 실행한다.
 				   }, 100); 

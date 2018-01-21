@@ -15,10 +15,13 @@
 				},
 				async : false
 			}).done(function(resultData) {
+				console.log("11"+resultData);
 				console.log("URL MOVE : "+paramData);
 				$('.active').removeClass("active");
 				$('#' + paramData).addClass("active");
-// 				nowPath = paramData ;				
+// 				nowPath = paramData ;	
+				resultData += '<ul id="paging" class="pagination justify-content-center text-center">';
+				resultData += '</ul>';
 				//메인 화면을 교체함
 				data.mainchange(resultData);
 				//주소를 변한것처럼 사용자를 속임
@@ -26,6 +29,7 @@
 				//사이드바가 추천도서일 때 부분전환
 				switch (paramData) {
 				case "recommend":
+					alert(paramData);
 					data.initDataRecommend();
 				}
 			})
@@ -85,6 +89,7 @@
 			parent.empty();
 			// 뒷부분에 ajax실행된 후 data부분을 붙여 넣음
 			parent.append(paramData);
+			
 		},
 		// 추천도서 데이터 불러오기
 		initDataRecommend : function() {
@@ -160,10 +165,17 @@
 			$.ajax({
 				url : "${path}/data/json/newbook.do",
 				type : "POST",
+				data : {
+					"start":start,
+					"viewRow":viewRow
+				},
 				async : false
-			}).done(function(result) {
-				console.log(result);
-				data.createhtmlNewbook(result.newbook);
+			}).done(function(resultData) {
+				console.log(resultData);
+				data.createhtmlNewbook(resultData.newbook);
+				totCnt = resultData.bookCnt;
+				console.log(totCnt);
+				util.createHtmlPaging(resultData);
 			}).fail(function(d) {
 				alert("fail");
 			});
@@ -195,17 +207,17 @@
 			$.ajax({
 				url : "${path}/data/json/search.do",
 				type : "POST",
-// 				data : {
-// 					"start":start,
-// 					"viewRow":viewRow
-// 				},
+				data : {
+					"start":start,
+					"viewRow":viewRow
+				},
 				async : false
 			}).done(function(resultData) {
 				console.log(resultData);
 				data.createhtmlSearch(resultData.search);
-// 				totCnt = resultData.bookCnt;
-// 				console.log(totCnt);
-// 				util.createHtmlPaging(resultData);
+				totCnt = resultData.bookCnt;
+				console.log(totCnt);
+				util.createHtmlPaging(resultData);
 			}).fail(function(d) {
 				alert("fail");
 			});
@@ -216,6 +228,10 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		data.menuSelectCSS();
-		data.initDataRecommend();
+		if(nowPath == "recommend"){
+			data.initDataRecommend();
+		}
+		
+		
 	});
 </script>
