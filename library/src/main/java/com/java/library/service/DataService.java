@@ -3,11 +3,14 @@ package com.java.library.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.library.dao.DataDaoInterface;
+import com.java.library.util.social.naver.NaverProfile;
 @Service
 public class DataService implements DataServiceInterface {
 	
@@ -56,6 +59,7 @@ public class DataService implements DataServiceInterface {
 	@Override
 	public Map<String, Object> searchSelect(Map<String, Object> paramMap) {
 		rstMap = new HashMap<String, Object>();
+		
 		// var로 선언된 변수들을 int형으로 바꿔줌 => sql문에서 limit가 숫자를 받기 때문(#)
 		if(StringUtils.isNotEmpty(paramMap.get("start").toString())) {
 			paramMap.put("start", Integer.parseInt(paramMap.get("start").toString()));

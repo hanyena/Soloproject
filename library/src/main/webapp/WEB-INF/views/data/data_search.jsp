@@ -17,9 +17,9 @@
 		<div class="search_table">
 			<table border="1" class="table100 table">
 				<tr>
-					<th><label for="arraycondition">정렬조건</label></th>
+					<th><label for="arraycondition">검색조건</label></th>
 					<td  colspan="4">
-						<select id="arraycondition" name="arraaycondition">
+						<select id="arraycondition" name="arraycondition">
 							<option value="bookname" selected="selected">도서명</option>
 							<option value="author">저자</option>
 							<option value="publisher">출판사</option>
@@ -31,11 +31,12 @@
 					<br>
 					</td>
 				</tr>
+				<tr>
 					<th><label for="startyear">발행년도</label></th>
 					<td><input id="startdate" type="text" name="startyear" size="5" title="발행년도 시작">부터 
-					<input id="enddate" type="text" name="endYear" size="5" title="발행년도 끝">까지</td>
+					<input id="enddate" type="text" name="endyear" size="5" title="발행년도 끝">까지</td>
 					<th><label for="booksize">쪽당출력건수</label></th>
-					<td><select id="" name="">
+					<td><select id="booksize" name="booksize">
 							<option value="10" selected="selected">10</option>
 							<option value="15">15</option>
 							<option value="20">20</option>
@@ -49,16 +50,19 @@
 				<select id="s_keyField" name="keyField" class="form-control"
 					style="">
 					<option value="all">전체</option>
-				</select> <input id="keyWord" type="text" size="16" name="keyWord"
+				</select> 
+				<input id="keyWord" type="text" size="16" name="keyWord"
 					class="form-control input-tag" placeholder="Search for...">
 				<button id="search" type="button" style="display: inline-block"; 
 				 onclick="javascript:data.initDataSearch();">검색</button>
-				<input type="hidden" name="page" value="0">
+<!-- <input type="hidden" name="page" value="0"> -->
 			</div>
+			
+		</div>
+		<!-- 조건검색테이블  -->
+		<input type="hidden" name="searchperson" value="${UserSession.name}"/>
 	</form>
 	<!-- end: 도서 검색 기능-->
-</div>
-<!-- 조건검색테이블  -->
 
 <br>
 <br>

@@ -2,6 +2,8 @@ package com.java.library.service;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 public interface DataServiceInterface {
 	
 	// 추천도서 페이지  데이터 불러오기

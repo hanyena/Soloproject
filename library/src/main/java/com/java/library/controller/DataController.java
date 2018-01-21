@@ -2,6 +2,8 @@ package com.java.library.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -109,7 +111,7 @@ public class DataController {
 	// 도서검색 페이지 데이터
 	@RequestMapping(value = "json/search.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String getDataSearch(@RequestParam Map<String, Object> paramMap) {
+	public String getDataSearch(@RequestParam Map<String, Object> paramMap, HttpSession session) {
 		System.out.println(paramMap);
 		return JSONObject.fromObject(JSONSerializer.toJSON(dsi.searchSelect(paramMap))).toString();
 	}
