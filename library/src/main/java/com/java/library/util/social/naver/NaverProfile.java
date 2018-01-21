@@ -240,6 +240,21 @@ public class NaverProfile {
 				nProfile.setExpires_in(obj.getInt("expires_in"));
 			}
 			setSessionNaverProfile(nProfile,session);
+		} else {
+			NaverProfile nProfile = getSessionNaverProfile(session);
+			if(StringUtils.isNotEmpty(obj.getString("access_token"))) {
+				nProfile.setAccessToken(obj.getString("access_token"));
+			}
+			if(StringUtils.isNotEmpty(obj.getString("refresh_token"))) {
+				nProfile.setRefreshToken(obj.getString("refresh_token"));
+			}
+			if(StringUtils.isNotEmpty(obj.getString("token_type"))) {
+				nProfile.setTypeToken(obj.getString("token_type"));
+			}
+			if(obj.getInt("expires_in") > 0) {
+				nProfile.setExpires_in(obj.getInt("expires_in"));
+			}
+			setSessionNaverProfile(nProfile,session);
 		}
 	}
 	

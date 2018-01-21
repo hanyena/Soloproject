@@ -45,8 +45,14 @@
 							data-toggle="dropdown">나만의 도서관 <b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li><a href="${path}/mylibrary/borrow.do">도서대출</a></li>
-							</ul></li>
-						<li><a href="${NAVER_API_URL}">로그인</a></li>
+							</ul>
+						</li>
+						<c:if test="${empty UserSession}">
+							<li><a href="javascript:naver.openLogin();">로그인</a></li>
+						</c:if>
+						<c:if test="${!empty UserSession}">
+							<li><a href="javascript:naver.openLogout();">로그아웃</a></li>
+						</c:if>
 					</ul>
 				</div>
 			</div>

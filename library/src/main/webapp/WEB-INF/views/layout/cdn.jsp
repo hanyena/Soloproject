@@ -41,6 +41,10 @@
 		 openLogin : function() {
 			 var apiURL = "${NAVER_API_URL}";
 			 window.open(apiURL, 'naverloginpop', 'titlebar=1, resizable=1, scrollbars=yes, width=600, height=550');
+		 },
+		 closeLogin : function() {
+			 opener.parent.location.reload();
+			 window.close();
 		 }
  }
 </script>

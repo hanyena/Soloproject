@@ -54,18 +54,24 @@ public class ApiController{
 	 * @param mav
 	 * @return
 	 */
-	@ResponseBody
-	public String naverLoginSuccess(HttpServletRequest req, HttpServletResponse res, HttpSession session, @RequestParam Map<String,Object> paramMap, ModelAndView mav) throws UnsupportedEncodingException {
+	public ModelAndView naverLoginSuccess(HttpServletRequest req, HttpServletResponse res, HttpSession session, @RequestParam Map<String,Object> paramMap, ModelAndView mav) throws UnsupportedEncodingException {
 		JSONObject obj = NaverLogin.getProfile(session);
 		System.out.println(obj.toString());
 		if(obj.getString("resultcode").equalsIgnoreCase("00") && obj.getString("message").equalsIgnoreCase("success")) {
+			mav.setViewName("/account/naver_success");
 			JSONObject memberObjData = obj.getJSONObject("response");
 			memberObjData.put("id", Util.covertEmailToId(memberObjData.getString("email")));
 			NaverProfile.memberDataReset(memberObjData, session);
+		} else if(obj.getString("resultcode").equalsIgnoreCase("024") && obj.getString("message").contains("failed")) {
+			mav.setViewName("/main/alert");
+			mav.addObject("message",obj.getString("message"));	
+			mav.addObject("status","Y");
 		}
 		NaverProfile nProfile = NaverProfile.getSessionNaverProfile(session);
 		
-		return "asdasd : {}";
+		
+		System.out.println(nProfile);
+		return mav;
 	}
 }
 
