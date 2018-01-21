@@ -42,7 +42,7 @@
 				tag += '<li class="recommend_li">';
 				tag += '<div style="float: left">';
 				tag += '<a href="#">'
-					+ '<img src="${path}/resources/img/fuck.jpg" style="width: 75px; height: 113px;">'
+					+ '<img src="'+element.image+'" style="width: 75px; height: 113px;">'
 					+ '</a>';
 				tag += '</div>'
 				tag += '<h3>'

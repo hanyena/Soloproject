@@ -13,7 +13,6 @@ import java.util.Map;
 import javax.xml.ws.Response;
 
 import org.apache.commons.lang.StringUtils;
-import org.json.JSONObject;
 import org.json.XML;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,14 +21,169 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
+import net.sf.json.JSONObject;
+
 public class NaverLibrarySearch {
 	public static final String CLIENT_ID = "SPL3vA6BqiE0_5piMOVG";
 	public static final String CLIENT_SECRET = "dZnzzcEk9Q";
 	public static final String SETTING_NAVER_API_URL = "NAVER_API_LIBRARY";
 	public static String NAVER_DATALAB_API_URL_JSON = "https://openapi.naver.com/v1/search/book";
 
+	private String image = "";
+	private String author = "";
+	private String price = "";
+	private String isbn = "";
+	private String link = "";
+	private String discountprice = "";
+	private String publisher = "";
+	private String description = "";
+	private String title = "";
+	private String pubdate = "";
 	
-	public static void dataLabGetLibrary(Map<String,Object> paramMap) {
+	
+	public NaverLibrarySearch(JSONObject obj) {
+		                          // 네이버에서 검색한 결과들
+		if(StringUtils.isNotEmpty(obj.getString("image"))) {
+			this.image = obj.getString("image");
+		}
+		
+		if(StringUtils.isNotEmpty(obj.getString("author"))) {
+			this.author = obj.getString("author");
+		}
+		
+		if(StringUtils.isNotEmpty(obj.getString("price"))) {
+			this.price = obj.getString("price");
+		}
+		
+		if(StringUtils.isNotEmpty(obj.getString("isbn"))) {
+			this.isbn = obj.getString("isbn");
+		}
+		
+		if(StringUtils.isNotEmpty(obj.getString("link"))) {
+			this.link = obj.getString("link");
+		}
+		
+		if(StringUtils.isNotEmpty(obj.getString("discount"))) {
+			this.discountprice = obj.getString("discount");
+		}
+		
+		if(StringUtils.isNotEmpty(obj.getString("publisher"))) {
+			this.publisher = obj.getString("publisher");
+		}
+	
+		if(StringUtils.isNotEmpty(obj.getString("description"))) {
+			this.description = obj.getString("description");
+		}
+		
+		if(StringUtils.isNotEmpty(obj.getString("title"))) {
+			this.title = obj.getString("title");
+		}	
+		
+		if(StringUtils.isNotEmpty(obj.getString("pubdate"))) {
+			this.pubdate = obj.getString("pubdate");
+		}	
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+
+	public String getDiscountprice() {
+		return discountprice;
+	}
+
+	public void setDiscountprice(String discountprice) {
+		this.discountprice = discountprice;
+	}
+
+	public String getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getPubdate() {
+		return pubdate;
+	}
+
+	public void setPubdate(String pubdate) {
+		this.pubdate = pubdate;
+	}
+
+	public static String getClientId() {
+		return CLIENT_ID;
+	}
+
+	public static String getClientSecret() {
+		return CLIENT_SECRET;
+	}
+
+	public static String getSettingNaverApiUrl() {
+		return SETTING_NAVER_API_URL;
+	}
+	
+	@Override
+	public String toString() {
+		return "NaverLibrarySearch [image=" + image + ", author=" + author + ", price=" + price + ", isbn=" + isbn
+				+ ", link=" + link + ", Discountprice=" + discountprice + ", publisher=" + publisher + ", description="
+				+ description + ", title=" + title + ", pubdate=" + pubdate + "]";
+	}
+
+	public static JSONObject dataLabGetLibrary(Map<String,Object> paramMap) {
 		String startYear = "";
 		String endYear = "";
 		String keyField = "";
@@ -104,12 +258,17 @@ public class NaverLibrarySearch {
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			JsonParser jp = new JsonParser();
 			JsonElement je = jp.parse(jsonObj.toString());
-			String pretty = gson.toJson(je);
-			 System.out.println(gson.toJson(je));
+//			String pretty = gson.toJson(je);
+//			System.out.println(gson.toJson(je));
+			JSONObject convertObj = JSONObject.fromObject(gson.toJson(je));
+			convertObj = convertObj.getJSONObject("rss");
+			convertObj = convertObj.getJSONObject("channel");
+			return convertObj;
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e);
 		}
+		return null;
 	}
 	
 	public static void main(String[] args) {

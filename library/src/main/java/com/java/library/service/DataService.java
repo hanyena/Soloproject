@@ -10,7 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.library.dao.DataDaoInterface;
+import com.java.library.util.social.naver.NaverLibrarySearch;
 import com.java.library.util.social.naver.NaverProfile;
+
+import net.sf.json.JSON;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 @Service
 public class DataService implements DataServiceInterface {
 	
@@ -72,12 +77,40 @@ public class DataService implements DataServiceInterface {
 		// 자료가 있을 시 library테이블에서 조회에서 데이터 가져오기
 		if(rstSearch > 0) {
 			rstMap.put("search", ddi.searchSelect(paramMap));
+			// 페이징하기 위한 게시물 총 갯수
+			rstMap.put("bookCnt", ddi.bookCntSelect(paramMap));
+			
 	    // 자료가 없을 시 searchhistory테이블에 검색한 단어 삽입
 		}else {
 			ddi.insertSearchWord(paramMap);
+			//네이버 도서검색 API를 이용한 검색결과 조회
+			JSONObject rstNaverLibraryList = NaverLibrarySearch.dataLabGetLibrary(paramMap);
+			if(rstNaverLibraryList.getInt("total") == 1) {
+				JSONObject oneLibrary = rstNaverLibraryList.getJSONObject("item");
+				NaverLibrarySearch nLibrary = new NaverLibrarySearch(oneLibrary);
+				try {
+					ddi.insertLibrary(nLibrary);
+				} catch (Exception e) {}
+			} else {
+				JSONArray arr = rstNaverLibraryList.getJSONArray("item");
+				for(Object obj : arr) {
+					JSONObject library = (JSONObject)obj;
+					NaverLibrarySearch nLibrary = new NaverLibrarySearch(library);
+					System.out.println(nLibrary);
+					// DB에 값이 있을 경우 예외처리
+					try {
+						ddi.insertLibrary(nLibrary);
+					} catch (Exception e) {
+						continue;
+					}
+				}
+			}
+			// 네이버 책 DB 삽입 완료 
+			rstMap.put("search", ddi.searchSelect(paramMap));
+			// 페이징하기 위한 게시물 총 갯수
+			rstMap.put("bookCnt", ddi.bookCntSelect(paramMap));
 		}
-		// 페이징하기 위한 게시물 총 갯수
-		rstMap.put("bookCnt", ddi.bookCntSelect(paramMap));
+
 		return rstMap;
 	}
 

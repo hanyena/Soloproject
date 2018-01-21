@@ -8,6 +8,8 @@ import javax.annotation.Resource;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.java.library.util.social.naver.NaverLibrarySearch;
+
 @Repository
 public class DataDao implements DataDaoInterface {
 	
@@ -55,6 +57,12 @@ public class DataDao implements DataDaoInterface {
 	@Override
 	public int insertSearchWord(Map<String, Object> paramMap) {
 		return session.insert(NS+"insertsearchword", paramMap);
+	}
+
+	@Override
+	public void insertLibrary(NaverLibrarySearch nLibrary) {
+		session.insert(NS+"insertlibrary", nLibrary);
+		
 	}
 
 	

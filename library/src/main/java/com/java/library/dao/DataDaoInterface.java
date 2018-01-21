@@ -3,6 +3,8 @@ package com.java.library.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.java.library.util.social.naver.NaverLibrarySearch;
+
 public interface DataDaoInterface {
 	
 	// 추천도서페이지
@@ -25,6 +27,9 @@ public interface DataDaoInterface {
 
 	// 도서 검색 단어 삽입
 	public int insertSearchWord(Map<String, Object> paramMap);
+
+	
+	public void insertLibrary(NaverLibrarySearch nLibrary);
 	
 
 }

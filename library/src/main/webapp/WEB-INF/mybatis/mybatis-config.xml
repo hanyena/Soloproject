@@ -11,6 +11,8 @@
 		<!-- 빈클래스 별명 (Alias) -->
 		<!-- <typeAlias type="" alias=""/> -->
 		<typeAlias type="com.java.library.util.social.naver.NaverProfile" alias="naverProfile"/>
+		<typeAlias type="com.java.library.util.social.naver.NaverLibrarySearch" alias="nLibrary"/>
+		
 	</typeAliases>
 
 	<mappers>

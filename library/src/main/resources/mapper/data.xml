@@ -43,6 +43,7 @@
 		<if test="no != null ">
 		   where del_yn = 'N' and no = #{no}
 	    </if> 
+	    limit #{start}, #{viewRow}
 	</select>
 	
 	
@@ -56,6 +57,12 @@
 	<!-- 도서 검색 단어 삽입  -->
 	<insert id = "insertsearchword" parameterType="hashmap" >
 		insert into searchhistory (searchtext, searchperson, keytype) values (#{keyWord}, #{searchperson}, #{arraycondition})
+	</insert>
+	
+	
+	<insert id = "insertlibrary" parameterType="nLibrary">
+		insert into library(title,link,image,author,price,discountprice,publisher,pubdate,isbn,description)
+		values(#{title},#{link},#{image},#{author},#{price},#{discountprice},#{publisher},#{pubdate},#{isbn},#{description})
 	</insert>
 	
 </mapper>
