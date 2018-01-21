@@ -26,9 +26,6 @@ public class DataDao implements DataDaoInterface {
 	public Map<String, Object> recommendViewSelect(Map<String, Object> paramMap) {
 		return session.selectOne(NS+"recommendviewselect", paramMap);
 	}
-	
-	
-	
 
 	// 신간안내 데이터 목록 가져오기
 	@Override
@@ -42,11 +39,22 @@ public class DataDao implements DataDaoInterface {
 		return session.selectList(NS+"searchselect", paramMap);
 	}
 
-	
 	// 도서 데이터 총 갯수 조회 (페이징용)
 	@Override
 	public int bookCntSelect(Map<String, Object> paramMap) {
 		return session.selectOne(NS+"bookcntselect", paramMap);
+	}
+
+	// 도서 검색 단어 조회
+	@Override
+	public int searchhistory(Map<String, Object> paramMap) {
+		return session.selectOne(NS+"searchhistory", paramMap);
+	}
+
+	// 도서 검색 단어 삽입
+	@Override
+	public int insertSearchWord(Map<String, Object> paramMap) {
+		return session.insert(NS+"insertsearchword", paramMap);
 	}
 
 	

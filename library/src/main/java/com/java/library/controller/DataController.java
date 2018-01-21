@@ -110,7 +110,7 @@ public class DataController {
 	@RequestMapping(value = "json/search.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String getDataSearch(@RequestParam Map<String, Object> paramMap) {
-		
+		System.out.println(paramMap);
 		return JSONObject.fromObject(JSONSerializer.toJSON(dsi.searchSelect(paramMap))).toString();
 	}
 

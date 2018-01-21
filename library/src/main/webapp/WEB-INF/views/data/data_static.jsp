@@ -200,13 +200,17 @@
 		},
 		// 도서검색 데이터 불러오기
 		initDataSearch : function() {
+			
+			// cdn.jsp에  serializeObjectd에 의해서 작동
+			var formDatatoJson = $('#librarySearch').serializeObject();
+			formDatatoJson.start = start;
+			formDatatoJson.viewRow = viewRow;
+			console.log(formDatatoJson);
 			$.ajax({
 				url : "${path}/data/json/search.do",
 				type : "POST",
-				data : {
-					"start":start,
-					"viewRow":viewRow
-				},
+				data : formDatatoJson,
+				datatype : "json",
 				async : false
 			}).done(function(resultData) {
 				console.log(resultData);

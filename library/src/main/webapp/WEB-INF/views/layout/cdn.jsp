@@ -1,7 +1,29 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/tag.jsp"%>
+
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="${path}/resources/js/jquery-1.8.2.js"></script>
+<script type="text/javascript">
+// json형식으로 바꿔줌
+	$(function() {
+		$.fn.serializeObject = function() {
+			var o = {};
+			var a = this.serializeArray();
+			$.each(a, function() {
+				if (o[this.name]) {
+					if (!o[this.name].push) {
+						o[this.name] = [ o[this.name] ];
+					}
+					o[this.name].push(this.value || '');
+				} else {
+					o[this.name] = this.value || '';
+				}
+			});
+			return o;
+		};
+	})
+</script>
 <script src="${path}/resources/js/bootstrap.js"></script>
 <script src="${path}/resources/js/flexslider.js"></script>
 <script src="${path}/resources/js/carousel.js"></script>
@@ -22,7 +44,8 @@
 <link href="${path}/resources/css/bootstrap-responsive.css"
 	rel="stylesheet">
 <link href="${path}/resources/css/style.css" rel="stylesheet">
-<link rel="shortcut icon" type="image/x-icon" href="${path}/resources/img/88-1.jpg" />
+<link rel="shortcut icon" type="image/x-icon"
+	href="${path}/resources/img/88-1.jpg" />
 <!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 <!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 <!--   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
@@ -37,14 +60,16 @@
 <!--내가 만든 css영역  -->
 <link rel="stylesheet" href="${path}/resources/css/index.css">
 <script type="text/javascript">
- var naver = {
-		 openLogin : function() {
-			 var apiURL = "${NAVER_API_URL}";
-			 window.open(apiURL, 'naverloginpop', 'titlebar=1, resizable=1, scrollbars=yes, width=600, height=550');
-		 },
-		 closeLogin : function() {
-			 opener.parent.location.reload();
-			 window.close();
-		 }
- }
+	var naver = {
+		openLogin : function() {
+			var apiURL = "${NAVER_API_URL}";
+			window
+					.open(apiURL, 'naverloginpop',
+							'titlebar=1, resizable=1, scrollbars=yes, width=600, height=550');
+		},
+		closeLogin : function() {
+			opener.parent.location.reload();
+			window.close();
+		}
+	}
 </script>

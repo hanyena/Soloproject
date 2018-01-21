@@ -3,8 +3,6 @@
 <%@ include file="/WEB-INF/tag.jsp"%>
 <!-- 변수 선언 부분	 -->
 <script type="text/javascript">
-	
-
 	var board = {
 		// 자바스크립트를 이용한 화면 부분전환용 
 		move : function(paramData, param) {
@@ -60,7 +58,7 @@
 						+ data[i].title + '</a></td>';
 				tag += '<td>' + data[i].regname + '</td>';
 				tag += '<td>' + data[i].regdate2 + '</td>';
-				tag += '<td>' + data[i].cnt + '</td>';
+				tag += '<td>' + data[i].ip + '</td>';
 				tag += '</tr>';
 				tag += '<tr style="border-top:3px solid red;  ">';
 				tag += '<td class="content" colspan="4" style="display:none;">'

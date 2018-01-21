@@ -1,0 +1,73 @@
+
+	<!--  페이징 영역 -->
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="row">
+				<div class="col-xs-3"></div>
+				<div class="col-xs-9" >
+					<div class="row">
+						<div class="col-xs-2"></div>
+						<div class="col-xs-8" >
+							<ul class="pagination pagination-lg ">
+								<%-- 왼쪽 페이징 화살표  // 페이지 번호가 1보다 같거나 작은 경우  클릭 불가--%>
+								if(result.page <=1) {
+									<li class="disabled">
+										<a href="#">
+											<span class="glyphicon glyphicon-chevron-left"> </span>
+										</a>
+									</li>
+								}
+								
+								<%-- 왼쪽 페이징 화살표  // 페이지 번호가 1보다 클경우 이전으로 돌아갈 수 있게--%>
+								if (result.page > 1) {									<li class="">
+										<a href="${path}/board/noticelist.so?pageNum=result.page-1">
+											<span class="glyphicon glyphicon-chevron-left"> </span>
+										</a>
+									</li>
+								}
+								
+								<%-- 페이지 총 번호 // 1,2,3,4,5등 총 페이지 수만큼 반복문--%>
+								for (var a = result.startpage; a >= result.endpage">
+									if (a==result.page) {
+										<li class="active">
+											<a href='${path}/board/noticelist.so?pageNum='+a> 
+												a
+											</a>
+										</li>
+									}
+					
+									if(reuslt.pageNum) {
+										<li class="">
+											<a href="${path}/board/noticelist.so?pageNum="+a>a</a>
+										</li>
+									}
+								}
+
+								<%-- 오른쪽 화살표 페이징 // 현재 페이징 번호가 최대 페이징 수 보다 클경우 클릭 불가 --%>
+								if (result.page >= result.totalPage) {
+									<li class="disabled">
+										<a href="#"> 
+											<span class="glyphicon glyphicon-chevron-right"></span>
+										</a>
+									</li>
+								}
+					
+								<%-- 오른쪽 화살표 페이징 // 현재 페이징 번호가 최대 페이징 수 보다 작을 경우 클릭 가능 --%>
+								if ( result.page < result.totalPage ) {
+									<li class="">
+										<a href="${path}/board/noticelist.so?pageNum="+result.page +1>
+											<span class="glyphicon glyphicon-chevron-right"> </span>
+										</a>
+									</li>
+								}
+							</ul>
+						
+						</div>
+						<div class="col-xs-2">
+							<a class="btn btn-primary" href="${path}/board/writeform.so?boardlist_seq=${param.boardlist_seq}">글작성</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

@@ -33,7 +33,6 @@ public class DataService implements DataServiceInterface {
 		return rstMap;
 	}
 	
-	
 
 	// 신간안내 데이터 목록 가져오기
 	@Override
@@ -62,9 +61,16 @@ public class DataService implements DataServiceInterface {
 		if(StringUtils.isNotEmpty(paramMap.get("viewRow").toString())) {
 			paramMap.put("viewRow", Integer.parseInt(paramMap.get("viewRow").toString()));
 		}
-		rstMap.put("search", ddi.searchSelect(paramMap));
+		int rstSearch = ddi.searchhistory(paramMap);
+		if(rstSearch > 0) {
+			rstMap.put("search", ddi.searchSelect(paramMap));
+		}else {
+			ddi.insertSearchWord(paramMap);
+		}
 		// 페이징하기 위한 게시물 총 갯수
 		rstMap.put("bookCnt", ddi.bookCntSelect(paramMap));
+		
+		
 		return rstMap;
 	}
 

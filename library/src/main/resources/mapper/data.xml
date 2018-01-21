@@ -45,4 +45,17 @@
 	    </if> 
 	</select>
 	
+	<!-- 도서 검색 단어 조회  -->
+	<select id = "searchhistory"  parameterType="hashmap" resultType="hashmap">
+		select count(*) from searchhistory
+		<if test="no != null ">
+		   where searchtext = #{searchtext}
+	    </if> 
+	</select>
+	
+	
+	<insert id = "insertsearchword" parameterType="hashmap" >
+		insert into (searchtext, searchperson) values (#{searchtext}, #{searchperson})
+	</insert>
+	
 </mapper>

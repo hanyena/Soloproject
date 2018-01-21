@@ -19,6 +19,12 @@ public interface DataDaoInterface {
 
 	// 추천도서 상세페이지 데이터 가져오기
 	public Map<String, Object> recommendViewSelect(Map<String, Object> paramMap);
+
+	// 도서 검색 단어 조회
+	public int searchhistory(Map<String, Object> paramMap);
+
+	// 도서 검색 단어 삽입
+	public int insertSearchWord(Map<String, Object> paramMap);
 	
 
 }
