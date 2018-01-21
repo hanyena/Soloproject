@@ -23,6 +23,7 @@ public class NaverProfile {
 	private String refreshToken = "";
 	private String typeToken = "";
 	private Integer expires_in = 0;
+	private String ip = "";
 	public static final String SESSIONNAME = "UserSession";
 	
 	public String getResultCode() {
@@ -139,12 +140,22 @@ public class NaverProfile {
 		this.expires_in = expires_in;
 	}
 
+	
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+
 	@Override
 	public String toString() {
 		return "NaverProfile [resultCode=" + resultCode + ", message=" + message + ", id=" + id + ", nickName="
 				+ nickName + ", name=" + name + ", email=" + email + ", gender=" + gender + ", age=" + age
 				+ ", birthday=" + birthday + ", profileImage=" + profileImage + ", accessToken=" + accessToken
-				+ ", refreshToken=" + refreshToken + ", typeToken=" + typeToken + ", expires_in=" + expires_in + "]";
+				+ ", refreshToken=" + refreshToken + ", typeToken=" + typeToken + ", expires_in=" + expires_in + ", ip="
+				+ ip + "]";
 	}
 	
 	public static void setSessionNaverProfile(NaverProfile nProfile,HttpSession session) {

@@ -39,6 +39,7 @@ public class NaverLogin {
 	 * @param error_description
 	 *            : 네이버 아이디로 로그인 인증에 실패하면 반환받는 에러 메시지
 	 */
+	// 토큰이 나옴
 	public static String startRequestAPIURL(ModelAndView mav, HttpSession session) throws UnsupportedEncodingException {
 		String redirectURI = URLEncoder.encode("http://localhost:8080/api/naverProc.do", "UTF-8");
 		SecureRandom random = new SecureRandom();
@@ -68,6 +69,8 @@ public class NaverLogin {
 	 * @param error_description
 	 *            :에러 메시지
 	 */
+	// callbackAPIURL : 토큰 받은 걸로  로그인 요청을 하고 나서 되돌려 받음
+	// 네이버 로그인 했다고 등록함
 	public static JSONObject callbackAPIURL(Map<String, Object> paramMap, ModelAndView mav)
 			throws UnsupportedEncodingException {
 		JSONObject obj = null;
@@ -107,7 +110,7 @@ public class NaverLogin {
 		}
 		return obj;
 	}
-
+	// 로그인 완료 된 후에 실행되는 정보 수집 
 	public static JSONObject getProfile(HttpSession session) {
 		NaverProfile nProfile = null;
 		JSONObject obj = null;

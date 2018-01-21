@@ -11,7 +11,7 @@
 
 	<!-- 게시판 글 삽입  -->
 	<insert id="insert" parameterType="hashmap">
-       insert into boardcontent(boardlist_no,member_id,title, content, regdate) values(#{boardlist_no},#{member_id},#{title},#{content},now())
+       insert into boardcontent(boardlist_no,member_id,title, content, regname, regdate, ip) values(#{boardlist_no},#{member_id},#{title},#{content}, #{regname}, now(), #{ip})
     </insert>
    
    

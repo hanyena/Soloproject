@@ -183,6 +183,7 @@ public class NaverLibrarySearch {
 				+ description + ", title=" + title + ", pubdate=" + pubdate + "]";
 	}
 
+	// 네이버에 책에 검색을 하여 데이터를 요청하고 결과를 받아옴
 	public static JSONObject dataLabGetLibrary(Map<String,Object> paramMap) {
 		String startYear = "";
 		String endYear = "";

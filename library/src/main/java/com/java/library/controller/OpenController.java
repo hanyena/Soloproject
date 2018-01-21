@@ -28,6 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.java.library.service.BoardServiceInterface;
 import com.java.library.util.HttpUtil;
+import com.java.library.util.social.naver.NaverProfile;
 
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
@@ -78,18 +79,14 @@ public class OpenController {
 		
 		System.out.println("게시판 JSON write.do >>>> : " + paramMap);
 		// 로그인한 사용자의 세션 정보를 가져온다.
-		Map<String, Object> userSession = (Map<String, Object>) session.getAttribute("UserSession");
+		NaverProfile nUserSession = NaverProfile.getSessionNaverProfile(session);
 		// 로그인 된 상태인 경우 paramMap에 userSession 데이터를 넣는다.
-		if (userSession != null) {
-			paramMap.putAll(userSession);
-			paramMap.put("member_id", "yena");
-			paramMap.put("boardlist_no", 2);
-			paramMap.put("regname", "한예나");
-			// 로그인 전인경우는 테스트를 위해 임의로 회원정보를 넣는다.
+		if (nUserSession != null) {
+			paramMap.put("member_id", nUserSession.getId());
+			paramMap.put("ip", nUserSession.getIp());
+			paramMap.put("regname", nUserSession.getName());
 		} else {
-			paramMap.put("member_id", "yena");
-			paramMap.put("boardlist_no", 2);
-			paramMap.put("regname", "한예나");
+
 		}
 		// JSONSerializer => MAP은 순서가 없어서 디비에 저장된 값 순서대로 뽑아 쓰기...위해서..(?)
 		return JSONObject.fromObject(JSONSerializer.toJSON(bsi.boardInsert(paramMap))).toString();

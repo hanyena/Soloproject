@@ -49,7 +49,14 @@
 						id="write" onclick="javascript:board.write()">작성</button>
 				</div>
 			</div>
+			
+			<input type="hidden" name="boardlist_no" value="2"/>
+			<input type="hidden" name="member_id" value="${UserSession.id}"/>
+			<input type="hidden" name="regname" value="${UserSession.name}"/>
+			<input type="hidden" name="ip" value="${UserSession.ip}"/>
 		</form>
+		
+		
 
 		<!-- end: 글쓰기-->
 	</div>

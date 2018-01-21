@@ -23,9 +23,9 @@ public class MemberService implements MemberServiceInterface {
 	public void insertMember(NaverProfile nProfile) {
 		NaverProfile np = mdi.selectMember(nProfile);
 		if(np != null) {
-			mdi.insertMember(nProfile);
-		} else {
 			mdi.updateMember(nProfile);
+		}else {
+			mdi.insertMember(nProfile);
 		}
 	}
 	
