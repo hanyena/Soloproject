@@ -36,4 +36,11 @@
 	href="http://fonts.googleapis.com/css?family=Economica:700,400italic">
 <!--내가 만든 css영역  -->
 <link rel="stylesheet" href="${path}/resources/css/index.css">
-
+<script type="text/javascript">
+ var naver = {
+		 openLogin : function() {
+			 var apiURL = "${NAVER_API_URL}";
+			 window.open(apiURL, 'naverloginpop', 'titlebar=1, resizable=1, scrollbars=yes, width=600, height=550');
+		 }
+ }
+</script>

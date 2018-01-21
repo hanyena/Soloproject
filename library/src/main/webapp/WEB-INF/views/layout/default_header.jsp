@@ -47,7 +47,7 @@
 							<ul class="dropdown-menu">
 								<li><a href="${path}/mylibrary/borrow.do">도서대출</a></li>
 							</ul></li>
-						<li><a href="#">로그인</a></li>
+						<li><a href="NAVER_API_URL">로그인</a></li>
 					</ul>
 				</div>
 			</div>

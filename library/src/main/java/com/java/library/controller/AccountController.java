@@ -39,7 +39,6 @@ public class AccountController{
 		Map<String,Object> userSessionMap = new HashMap<String,Object>();
 		paramMap.put("id", "yena");
 		paramMap.put("password", "yena456");
-		
 		session.setAttribute("UserSession", msi.getMember(paramMap));
 		String plainString = JSONObject.fromObject(JSONSerializer.toJSON(session.getAttribute("UserSession"))).toString();
 		String convertString = plainString.trim();
@@ -55,7 +54,6 @@ public class AccountController{
 	
 	@RequestMapping(value="popup/login.do",method=RequestMethod.GET) 
 	public ModelAndView popupLogin(ModelAndView mav,@RequestParam Map<String,Object> paramMap,HttpServletRequest req, HttpServletResponse res) {
-		
 		mav.setViewName("/account/popup/account_login");
 		mav.addObject("port",req.getRemotePort());
 		mav.addObject("hostname",req.getRemoteHost());
