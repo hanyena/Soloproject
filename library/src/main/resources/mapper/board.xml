@@ -25,7 +25,11 @@
 	<!-- 게시판 전체 목록 조회 -->
 	<select id="select" parameterType="hashmap" resultType="hashmap">
       select *, DATE_FORMAT(regdate,'%X-%m-%d') as regdate2 from boardcontent 
-      where del_YN = 'N' ORDER BY REGDATE DESC limit ${start}, ${viewRow}
+      where del_YN = 'N' ORDER BY REGDATE DESC 
+      
+      <if test="start != null and viewRow != null">
+      	limit #{start}, #{viewRow}
+      </if>
    </select>
    
    	<!-- 게시글 글 총 갯수 조회  -->
@@ -43,7 +47,7 @@
 	  	<if test="title != null"> title=#{title},</if>
 	  	<if test="content != null"> content=#{content}</if>
 	  </set>
-		where no = #{no}
+	  where no = #{no}
 	</update>
 
 
@@ -56,6 +60,7 @@
 		where no = #{no}
 	</update>
 	
-	
-
+	<sql id="paging">
+		limit #{start}, #{viewRow}		
+	</sql>
 </mapper>

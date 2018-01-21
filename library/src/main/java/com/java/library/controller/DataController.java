@@ -94,7 +94,7 @@ public class DataController {
 	@RequestMapping(value = "json/recommendview.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String getDataRecommendview(@RequestParam Map<String, Object> paramMap) {
-		return JSONObject.fromObject(JSONSerializer.toJSON(dsi.recommendSelect(paramMap))).toString();
+		return JSONObject.fromObject(JSONSerializer.toJSON(dsi.recommendViewSelect(paramMap))).toString();
 	}
 	
 	
@@ -110,6 +110,7 @@ public class DataController {
 	@RequestMapping(value = "json/search.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String getDataSearch(@RequestParam Map<String, Object> paramMap) {
+		
 		return JSONObject.fromObject(JSONSerializer.toJSON(dsi.searchSelect(paramMap))).toString();
 	}
 

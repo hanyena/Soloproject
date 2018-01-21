@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,7 +35,14 @@ public class BoardService implements BoardServiceInterface {
 	// 게시판 목록 가져오기
 	@Override
 	public Map<String, Object> boardSelect(Map<String, Object> paramMap) {
-		rstMap = new HashMap<String, Object>();
+		rstMap = new HashMap<String, Object>();		
+		
+		if(StringUtils.isNotEmpty(paramMap.get("start").toString())) {
+			paramMap.put("start", Integer.parseInt(paramMap.get("start").toString()));
+		}
+		if(StringUtils.isNotEmpty(paramMap.get("viewRow").toString())) {
+			paramMap.put("viewRow", Integer.parseInt(paramMap.get("viewRow").toString()));
+		}
 		rstMap.put("board", bdi.boardSelect(paramMap));
 		// 페이징하기 위한 게시물 총 갯수
 		rstMap.put("boardCnt", bdi.boardCntSelect(paramMap));

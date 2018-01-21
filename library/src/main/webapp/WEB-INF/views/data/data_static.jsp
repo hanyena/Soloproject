@@ -15,8 +15,8 @@
 				},
 				async : false
 			}).done(function(resultData) {
-				console.log("11"+resultData);
-				console.log("URL MOVE : "+paramData);
+// 				console.log("11"+resultData);
+// 				console.log("URL MOVE : "+paramData);
 				$('.active').removeClass("active");
 				$('#' + paramData).addClass("active");
 // 				nowPath = paramData ;	
@@ -63,23 +63,21 @@
 		// 추천도서 상세페이지 화면 생성
 		createhtmlRecommendView : function(data) {
 			$(".recommendview_li").empty();
-			$.each(data, function(index, element) {
 				var tag = "";
 				tag += '<div style="float: left">';
 				tag += '<a href="#">'
 						+ '<img src="${path}/resources/img/fuck.jpg" style="width: 75px; height: 113px;">'
 						+ '</a>';
 				tag += '</div>'
-				tag += '<h3>' + '<a href="#">' + element.title
+				tag += '<h3>' + '<a href="#">' + data.title
 						+ '</a>' + '</h3>';
-				tag += '<p class="author">' + element.author
+				tag += '<p class="author">' + data.author
 						+ '</p>';
 				tag += '<p class="proInfo">'
-						+ element.publisher + '</p>';
-				tag += '<p >' + element.description + '</p>';
-				tag += '</div>';
+						+ data.publisher + '</p>';
+				tag += '<p >' + data.description + '</p>';
+			tag += '</div>';
 				$(".recommendview_li").append(tag);
-			})
 		},
 		// span8부분 가져오기
 		mainchange : function(paramData) {
@@ -97,16 +95,13 @@
 				url : "${path}/data/json/recommend.do",
 				type : "POST",
 				data : {
-					"start":start,
-					"viewRow":viewRow
+					"start":start*1,
+					"viewRow":viewRow*1
 				},
 				async : false
 			}).done(function(resultData) {
 				console.log(resultData);
 				data.createhtmlRecommend(resultData.recommend);
-				totCnt = resultData.bookCnt;
-				console.log(totCnt);
-				util.createHtmlPaging(resultData);
 			}).fail(function(d) {
 				alert("fail");
 			});
@@ -121,10 +116,11 @@
 				},
 				async : false
 			}).done(function(result) {
+				
 				//상세페이지 레이아웃을 가져옴. 
 				data.move("recommendview");
 				data.menuSelectCSS();
-				data.createhtmlRecommendView(result.recommend);
+				data.createhtmlRecommendView(result.recommendview);
 			}).fail(function(d) {
 				alert("fail");
 			});

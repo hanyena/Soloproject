@@ -60,7 +60,7 @@
 						+ data[i].title + '</a></td>';
 				tag += '<td>' + data[i].regname + '</td>';
 				tag += '<td>' + data[i].regdate2 + '</td>';
-				tag += '<td>' + data[i].boardcnt + '</td>';
+				tag += '<td>' + data[i].cnt + '</td>';
 				tag += '</tr>';
 				tag += '<tr style="border-top:3px solid red;  ">';
 				tag += '<td class="content" colspan="4" style="display:none;">'

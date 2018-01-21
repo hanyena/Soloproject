@@ -54,10 +54,8 @@
 				   
 				   // 디비에서 데이터 다시 가져 오기 위하여 함수 호출
 				   setTimeout(function(){
-					   if(nowPath == "recommend") {
-							data.initDataRecommend();
-						}else if(nowPath == "list"){
-							board.initData();
+					   if(nowPath == "list") {
+						   board.initData();
 						}else if(nowPath == "search"){
 							data.initDataSearch();
 						}else if(nowPath == "newbook"){
