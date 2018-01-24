@@ -72,19 +72,22 @@ public class BoardService implements BoardServiceInterface {
 		rstMap = new HashMap<String,Object>();
 //		Map<String,Object> userSession = (HashMap<String, Object>) paramMap.get("UserSession");
 		NaverProfile nProfile = NaverProfile.getSessionNaverProfile(session);
-		//로그인 아직 미개발로 인해 아이디 직접 지정
-		String id = nProfile.getId();
-		
-		// 받아온 getBoardOne에서 id값을 꺼내 로그인한 id값 비교
-		if(getBoardOne.get("member_id").equals(id)) {
-			int rstDeleteCnt = bdi.boardDelete(paramMap);
-			if(rstDeleteCnt > 0) {
-				rstMap.put("result", "글 삭제가 완료 되었습니다.");
-			}else{
-				rstMap.put("result", "글 삭제를 실패 하였습니다.");
+
+		if(nProfile != null) {
+			String id = nProfile.getId();
+			// 받아온 getBoardOne에서 id값을 꺼내 로그인한 id값 비교
+			if(getBoardOne.get("member_id").equals(id)) {
+				int rstDeleteCnt = bdi.boardDelete(paramMap);
+				if(rstDeleteCnt > 0) {
+					rstMap.put("result", "글 삭제가 완료 되었습니다.");
+				}else{
+					rstMap.put("result", "글 삭제를 실패 하였습니다.");
+				}
+			}else {
+				rstMap.put("error", "본인글이 아닙니다.");
 			}
 		}else {
-			rstMap.put("error", "본인글이 아닙니다.");
+			rstMap.put("error", "로그인 후 이용 가능합니다.");
 		}
 		return rstMap;
 	}
@@ -101,19 +104,22 @@ public class BoardService implements BoardServiceInterface {
 		
 		
 		NaverProfile nProfile = NaverProfile.getSessionNaverProfile(session);
-		//로그인 아직 미개발로 인해 아이디 직접 지정
-		String id = nProfile.getId();
-		
-		// 받아온 getBoardOne에서 id값을 꺼내 로그인한 id값 비교
-		if(getBoardOne.get("member_id").equals(id)){
-			int rstUpdateCnt = bdi.boardUpdate(paramMap);
-			if(rstUpdateCnt > 0){
-				rstMap.put("result", "글 수정이 완료되었습니다.");
+		if(nProfile != null) {
+			//로그인 아직 미개발로 인해 아이디 직접 지정
+			String id = nProfile.getId();
+			// 받아온 getBoardOne에서 id값을 꺼내 로그인한 id값 비교
+			if(getBoardOne.get("member_id").equals(id)){
+				int rstUpdateCnt = bdi.boardUpdate(paramMap);
+				if(rstUpdateCnt > 0){
+					rstMap.put("result", "글 수정이 완료되었습니다.");
+				}else{
+					rstMap.put("result", "글 수정을 실패하였습니다.");
+				}
 			}else{
-				rstMap.put("result", "글 수정을 실패하였습니다.");
+				rstMap.put("error", "아이디가 동일하지 않습니다.");
 			}
-		}else{
-			rstMap.put("error", "아이디가 동일하지 않습니다.");
+		}else {
+			rstMap.put("error", "로그인 후 이용가능합니다.");
 		}
 		return rstMap;
 	}
