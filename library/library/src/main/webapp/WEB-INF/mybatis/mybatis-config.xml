@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "/WEB-INF/config/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="logImpl" value="LOG4J"/>
+		
+		<setting name="jdbcTypeForNull" value="VARCHAR" />
+		
+	</settings>
+	<typeAliases>
+		<!-- 빈클래스 별명 (Alias) -->
+		<!-- <typeAlias type="" alias=""/> -->
+		<typeAlias type="com.java.library.util.social.naver.NaverProfile" alias="naverProfile"/>
+		<typeAlias type="com.java.library.util.social.naver.NaverLibrarySearch" alias="nLibrary"/>
+		
+	</typeAliases>
+
+	<mappers>
+		<package name="com.imoxion.core.mapper"/>
+	</mappers>
+
+</configuration> 

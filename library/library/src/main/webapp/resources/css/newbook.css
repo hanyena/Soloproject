@@ -1,0 +1,60 @@
+@CHARSET "UTF-8";
+
+#main-font{
+	font-weight: 50px
+}
+
+#search_dy{
+	margin-top : 5px;
+	margin-left : 5px;
+	width: 75px;
+	margin-bottom : 5px;
+}
+.margin{
+	margin-top : 6px;
+	margin-left : 6px;
+}
+
+.newbook_ul{
+    border-top: 2px solid #ff0000;
+}
+
+.newbook_li{
+	border-bottom: 1px solid #b7bad9;	
+}
+
+.recommend_ul{
+    border-top: 2px solid #ff0000;
+}
+
+.recommend_li{
+	border-bottom: 1px solid #b7bad9;	
+}
+
+.recommendview_ul{
+    border-top: 2px solid #ff0000;
+}
+
+.recommendview_li{
+	border-bottom: 1px solid #b7bad9;	
+}
+
+.search_ul{
+    border-top: 2px solid #ff0000;
+}
+
+.search_li{
+	border-bottom: 1px solid #b7bad9;	
+}
+
+.table100{
+	width : 100%;
+	
+}
+
+
+label{
+	font-weight: bold;
+	margin : 0;
+}
+

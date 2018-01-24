@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data">
+    <!-- 추천도서 페이지 -->
+	<select id = "recommendselect" parameterType="hashmap" resultType="hashmap">
+		select * from library
+		<if test="no != null">
+		   where del_yn = 'N' and no = #{no} 
+		</if>
+		order by rand() limit 5
+	</select>
+	
+	<!-- 추천도서 상세페이지 -->
+	<select id = "recommendviewselect" parameterType="hashmap" resultType="hashmap">
+		select * from library
+		<if test="no != null">
+		   where del_yn = 'N' and no = #{no} 
+		</if>
+	</select>
+	
+	<!-- 메인화면 추천도서  -->
+	<select id = "mainrecommend" parameterType="hashmap" resultType="hashmap">
+		select * from library
+		where del_yn = 'N'
+		order by rand()
+		limit 1
+	</select>
+
+	
+	<!--  도서 데이터 총 갯수  -->
+	<select id = "bookcntselect"  parameterType="hashmap" resultType="int">
+		select count(*) from library where del_yn = 'N' 
+	</select>
+	
+	
+	<!-- 신간안내 데이터 목록 조회 -->
+	<select id = "newbookselect" parameterType="hashmap" resultType="hashmap">
+		select * from library
+		<if test="no != null ">
+		   where del_yn = 'N' and no = #{no}
+	    </if> 
+	</select>
+
+	
+	<!-- 도서검색 데이터 목록 조회 -->
+	<select id = "searchselect" parameterType="hashmap" resultType="hashmap">
+		select * from library
+		where 1 = 1
+		<if test="keyWord != null">
+			<if test="arraycondition == 'author'">
+				and author like '%'||#{keyWord}||'%'
+			</if>
+			<if test="arraycondition == 'bookname'">
+				and title like '%'||#{keyWord}||'%'
+			</if>
+			<if test="arraycondition == 'publisher'">
+				and publisher = '%'||#{keyWord}||'%'
+			</if>
+		</if>
+	    limit #{start}, #{viewRow}
+	</select>
+	
+	
+	<!-- 도서 검색 단어 조회  -->
+	<select id = "searchhistory"  parameterType="hashmap" resultType="int">
+		select count(*) from searchhistory
+		where searchtext = #{keyWord} and keytype = #{arraycondition}
+	</select>
+	
+	
+	<!-- 도서 검색 단어 삽입  -->
+	<insert id = "insertsearchword" parameterType="hashmap" >
+		insert into searchhistory (searchtext, searchperson, keytype) values (#{keyWord}, #{searchperson}, #{arraycondition})
+	</insert>
+	
+	
+	<!-- 검색한 도서 library 테이블에 삽입  -->
+	<insert id = "insertlibrary" parameterType="nLibrary">
+		insert into library (title, link, image, author, price, discountprice, publisher, pubdate, isbn, description)
+		values(#{title}, #{link}, #{image}, #{author}, #{price}, #{discountprice}, #{publisher}, #{pubdate}, #{isbn}, #{description})
+	</insert>
+	
+	
+	<!-- 대여할 책 rentlibrary에 삽입  -->
+	<insert id = "borrowbookinsert" parameterType="hashmap">
+		insert into rentlibrary (member_id, title, startdate, enddate) 
+		values (#{member_id}, #{title}, now(), ADDDATE(now(), 7))
+	</insert>
+	
+	<select id ="mainbestview" parameterType="hashmap" resultType="hashmap">
+		select title,count(title) from rentlibrary group by title order by no desc limit 2;
+	</select>
+	
+</mapper>

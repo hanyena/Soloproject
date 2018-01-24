@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+	<!-- 게시판 하나의 목록  -->
+	<!-- resultType => SQL 문장의 결과로 리턴될 도메인 클래스 혹은 데이터 타입 
+	                => select에서는 절대 생략 불가
+         parameterType => controller부터 값을 가져오는 부분              -->
+	                
+
+	<!-- 게시판 글 삽입  -->
+	<insert id="insert" parameterType="hashmap">
+       insert into boardcontent(boardlist_no, member_id, title, content, regname, regdate, ip) values(#{boardlist_no},#{member_id},#{title},#{content}, #{regname}, now(), #{ip})
+    </insert>
+   
+   
+    <!-- 게시판 하나의 목록  조회-->
+    <select id="selectOne" parameterType="hashmap" resultType="hashmap">
+    	select *, DATE_FORMAT(regdate,'%X-%m-%d') as regdate2 from boardcontent 
+    	where del_YN = 'N' and no = #{no}
+    </select>
+	                
+
+	<!-- 게시판 전체 목록 조회 -->
+	<select id="select" parameterType="hashmap" resultType="hashmap">
+      select *, DATE_FORMAT(regdate,'%X-%m-%d') as regdate2 from boardcontent 
+      where del_YN = 'N' ORDER BY REGDATE DESC 
+      
+<!--       <if test="start != null and viewRow != null"> -->
+<!--       	limit #{start}, #{viewRow} -->
+<!--       </if> -->
+   </select>
+   
+   	<!-- 게시글 글 총 갯수 조회  -->
+	<select id="boardcntselect" parameterType="hashmap" resultType="int">
+		select count(*) from boardcontent where del_YN = 'N'
+	</select>
+
+
+	<!-- 수정  -->
+	<update id="update" parameterType="hashmap">
+	  update boardcontent
+	  <set>
+<!-- 	                        title => 컬럼명
+                                #{title} => 파라미터로 보낸 값(수정하려는 값) -->
+	  	<if test="title != null"> title=#{title},</if>
+	  	<if test="content != null"> content=#{content}</if>
+	  </set>
+	  where no = #{no}
+	</update>
+
+
+	<!-- 삭제  -->
+	<update id="delete" parameterType="hashmap">
+		update boardcontent
+		<set>
+			del_YN='Y'
+		</set>
+		where no = #{no}
+	</update>
+	
+	<sql id="paging">
+		limit #{start}, #{viewRow}		
+	</sql>
+</mapper>

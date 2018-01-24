@@ -1,0 +1,44 @@
+package com.java.library.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import com.java.library.util.social.naver.NaverLibrarySearch;
+
+public interface DataDaoInterface {
+	
+	// 추천도서페이지
+	public List<Map<String, Object>> recommendSelect(Map<String, Object> paramMap);
+	
+	// 신간안내 데이터 목록 가져오기
+	public List<Map<String, Object>> newbookSelect(Map<String, Object> paramMap);
+
+	// 도서검색 데이터 목록 가져오기
+	public List<Map<String, Object>> searchSelect(Map<String, Object> paramMap);
+
+	// 도서 데이터 총 갯수 조회(페이징용)
+	public int bookCntSelect(Map<String, Object> paramMap);
+
+	// 추천도서 상세페이지 데이터 가져오기
+	public Map<String, Object> recommendViewSelect(Map<String, Object> paramMap);
+
+	// 도서 검색 단어 조회
+	public int searchhistory(Map<String, Object> paramMap);
+
+	// 도서 검색 단어 삽입
+	public int insertSearchWord(Map<String, Object> paramMap);
+
+	// 도서 정보 삽입
+	public void insertLibrary(NaverLibrarySearch nLibrary);
+
+	// 메인화면에 추천도서 1개 가져오기
+	public Map<String, Object> mainRecommend(Map<String, Object> paramMap);
+
+	// 대여할 책 rentlibrary에 삽입
+	public int borrowBookInsert(Map<String, Object> paramMap);
+
+	public List<Map<String, Object>> mainBestView(Map<String, Object> paramMap);
+
+	
+
+}
